@@ -19,6 +19,8 @@ Route::group([
     Route::resource('/customers', 'CustomersController')->only([
         'index', 'show'
     ]);
+    Route::post('/customers/search', 'CustomersController@search')->name('customers.search');
+
     Route::get('/customers/{customer}/debts', 'CustomersController@debts')->name('customers.debts');
 
     //branches

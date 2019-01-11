@@ -17,7 +17,18 @@
 <!--Custom JavaScript -->
 <script src="{{ Request::root() }}/backend/js/custom.min.js"></script>
 <script src="{{ Request::root() }}/backend/js/sidebar.min.js"></script>
+
 <!-- ============================================================== -->
 <!-- Style switcher -->
 <!-- ============================================================== -->
 <script src="{{ Request::root() }}/backend/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+<!-- Sweet-Alert  -->
+<script src="{{ Request::root() }}/backend/assets/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="{{ Request::root() }}/backend/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
+
+
+<!-- ============================================================== -->
+<!-- ajax -->
+<!-- ============================================================== -->
+<script src="{{ Request::root() }}/js/ajax.js"></script>

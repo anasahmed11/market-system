@@ -25,6 +25,7 @@
             @if ($customer->total_indebtedness > 0)
                 <a href="{{ route('customers.debts', $customer) }}" class="btn btn-primary">تسديد قسط</a>
             @endif
+            <a href="" class="btn btn-info">اضافة دين</a>
             <a href="" class="btn btn-warning">تعديل</a>
             <a href="" class="btn btn-danger">حذف</a>
         </td>
