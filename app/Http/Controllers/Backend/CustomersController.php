@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Customer;
 use App\Debt;
 use App\DebtsType;
+use App\Http\Requests\AddDebtCustomer;
 use App\Http\Requests\StoreCustomer;
 use http\Client\Response;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class CustomersController extends BaseController
             'l_name' => 'الاسم الاخير',
             'nickname' => 'اسم الشهرة',
             'phone' => 'الموبيل',
-            'location' => 'العنوان'
+            'location' => 'العنوان',
+            'id' => 'الكود'
         ];
         parent::__construct();
         $this->model = Customer::class;
@@ -63,49 +65,76 @@ class CustomersController extends BaseController
         return response($res);
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        //
+        $model = view("backend.customers.edit", compact('customer'))->render();
+        $res = [
+            'status' => true,
+            'model' => $model
+        ];
+
+        return response($res);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(StoreCustomer $request, Customer $customer)
     {
-        //
+        $customer->f_name = $request['f_name'];
+        $customer->l_name = $request['l_name'];
+        $customer->nickname = $request['nickname'];
+        $customer->location = $request['location'];
+        $customer->phone = $request['phone'];
+
+        if ($customer->save()) {
+            $res = [
+                'status' => true,
+                'title' => 'تم بنجاح',
+                'message' => 'تم الحفظ'
+            ];
+        } else {
+            $res = [
+                'status' => false,
+                'title' => 'حدث خطاء',
+                'message' => 'لم يتم الحفظ'
+            ];
+        }
+
+        return response($res);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function addDebt(AddDebtCustomer $request, Customer $customer)
     {
-        //
+        if (!DebtsType::find($request['debt_type']))
+            return [
+                'status' => false,
+                'title' => 'حدث خطاء',
+                'message' => 'يجب اختيار النوع الصحيح'
+            ];
+
+        $debt = new Debt();
+        $debt->debts_types_id = $request['debt_type'];
+        $debt->note = $request['description'];
+        $debt->customer_id = $customer->id;
+        $debt->date = $request['date'];
+
+        if ($debt->save()) {
+            $res = [
+                'status' => true,
+                'title' => 'تم بنجاح',
+                'message' => 'تم الحفظ'
+            ];
+        } else {
+            $res = [
+                'status' => false,
+                'title' => 'حدث خطاء',
+                'message' => 'لم يتم الحفظ'
+            ];
+        }
+
+        return response($res);
     }
 }

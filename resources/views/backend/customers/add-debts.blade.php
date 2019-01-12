@@ -1,8 +1,8 @@
-<div id="add-new"
+<div id="add-debts"
      class="modal fade"
      tabindex="-1"
      role="dialog"
-     aria-labelledby="اضافة مستخدم"
+     aria-labelledby="اضافة دين"
      aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
@@ -11,14 +11,12 @@
                 <h4 class="modal-title">اضافة</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <form method="post" action="{{ route('customers.store') }}" class="form-add">
+            <form id="form-add-debts" method="post">
                 @csrf
                 <div class="modal-body">
-                        @include('common.forms.input', ['name'=> 'f_name', 'label'=> 'الاسم الاول'])
-                        @include('common.forms.input', ['name'=> 'l_name', 'label'=> 'الاسم الاخير'])
-                        @include('common.forms.input', ['name'=> 'nickname', 'label'=> 'اسم الشهرة'])
-                        @include('common.forms.input', ['name'=> 'phone', 'label'=> 'رقم الموبيل'])
-                        @include('common.forms.input', ['name'=> 'location', 'label'=> 'العنوان'])
+                    <div id="debt-types"></div>
+                    @include('common.forms.textarea', ['label'=> 'الوصف', 'name'=> 'description'])
+                    @include('common.forms.input', ['label'=> 'التاريخ', 'name'=> 'date', 'type'=> 'date'])
                 </div>
                 <div class="modal-footer">
                     @include('common.forms.close', ['label'=> 'الغاء'])

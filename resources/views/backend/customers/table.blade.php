@@ -25,9 +25,14 @@
             @if ($customer->total_indebtedness > 0)
                 <a href="{{ route('customers.debts', $customer) }}" class="btn btn-primary">تسديد قسط</a>
             @endif
-            <a href="" class="btn btn-info">اضافة دين</a>
-            <a href="" class="btn btn-warning">تعديل</a>
-            <a href="" class="btn btn-danger">حذف</a>
+            <button  url="{{ route('debts.types.add', $customer->id) }}" class="btn btn-info btn-add-debt" data-toggle="modal" data-target="#add-debts">اضافة دين</button>
+            <a href="" class="btn btn-dribbble">الفواتير</a>
+            <button url="{{ route('customers.edit', $customer->id) }}" class="edit btn btn-warning">تعديل</button>
+            <form action="{{ route('customers.destroy', $customer->id) }}" class="delete-one d-inline-block" method="post" >
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">حذف</button>
+            </form>
         </td>
     </tr>
     @endforeach

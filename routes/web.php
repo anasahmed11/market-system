@@ -16,6 +16,7 @@ Route::group([
     ]);
 
     //customers
+    Route::post('/debts/types/add/{customer}', 'CustomersController@addDebt')->name('debts.types.add');
     Route::resource('/customers', 'CustomersController')->only([
         'index', 'show'
     ]);
@@ -33,6 +34,8 @@ Route::group([
         'index', 'show'
     ]);
 
+    Route::get('/debts/types', 'DebtsController@getTypes')->name('debts.types');
+    Route::resource('/debts', 'DebtsController');
 });
 
 /**
@@ -54,6 +57,10 @@ Route::group([
 
     //suppliers
     Route::resource('/suppliers', 'SuppliersController');
+
+    // Debts
+    Route::resource('/debts', 'DebtsController');
+    Route::get('/debts/types', 'DebtsController@getTypes')->name('debts.types');
 
 });
 

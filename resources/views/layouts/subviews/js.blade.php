@@ -27,6 +27,11 @@
 <script src="{{ Request::root() }}/backend/assets/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="{{ Request::root() }}/backend/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
 
+{{--select2--}}
+<script src="{{ Request::root() }}/backend/assets/plugins/select2/dist/js/select2.full.min.js"></script>
+<script>
+    $(".select2").select2();
+</script>
 
 <!-- ============================================================== -->
 <!-- ajax -->
