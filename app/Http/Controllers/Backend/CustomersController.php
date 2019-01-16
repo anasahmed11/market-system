@@ -118,6 +118,7 @@ class CustomersController extends BaseController
         $debt = new Debt();
         $debt->debts_types_id = $request['debt_type'];
         $debt->note = $request['description'];
+        $debt->value = $request['value'];
         $debt->customer_id = $customer->id;
         $debt->date = $request['date'];
 

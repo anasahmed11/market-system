@@ -15,6 +15,7 @@
                 @csrf
                 <div class="modal-body">
                     <div id="debt-types"></div>
+                    @include('common.forms.input', ['label'=> 'القيمة', 'name'=> 'value', 'type'=> 'number'])
                     @include('common.forms.textarea', ['label'=> 'الوصف', 'name'=> 'description'])
                     @include('common.forms.input', ['label'=> 'التاريخ', 'name'=> 'date', 'type'=> 'date'])
                 </div>

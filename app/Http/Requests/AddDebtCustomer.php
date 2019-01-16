@@ -25,6 +25,7 @@ class AddDebtCustomer extends FormRequest
     {
         return [
             'debt_type' => 'required|numeric',
+            'value' => 'required|numeric',
             'description' => 'required|max:500|min:3',
             'date' => 'required|date'
         ];
@@ -34,6 +35,7 @@ class AddDebtCustomer extends FormRequest
     {
         return [
             'debt_type' => 'يجب تحديد النوع',
+            'value' => 'ادخل القيمة',
             'description' => 'ادخل الوصف',
             'date' => 'ادخل التاريخ'
         ];

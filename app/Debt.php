@@ -9,7 +9,7 @@ class Debt extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function type()
+    public function type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(DebtsType::class, 'debts_types_id', 'id');
     }
@@ -17,9 +17,10 @@ class Debt extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function customer()
+    public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
-    //
+
+
 }
