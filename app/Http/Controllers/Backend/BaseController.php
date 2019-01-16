@@ -20,7 +20,7 @@ class BaseController extends Controller
 
     public function index()
     {
-        $data = $this->model::paginate(10);
+        $data = $this->model::orderBy('f_name', 'asc')->paginate(10);
         $table = view("backend.$this->view.table", compact('data'))->render();
 
         return view("backend.$this->view.index", compact('table'));

@@ -20,6 +20,7 @@ class CreateDebtsTable extends Migration
             $table->foreign('debts_types_id')->references('id')->on('debts_types');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->text('note')->nullable();
+            $table->text('value')->default(0);
             $table->timestamps();
         });
     }
