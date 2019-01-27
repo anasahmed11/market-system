@@ -56,7 +56,7 @@ class CustomersController extends BaseController
             ];
         } else {
             $res = [
-                'status' => true,
+                'status' => false,
                 'title' => 'حدث خطاء',
                 'message' => 'لم يتم الحفظ'
             ];
@@ -68,17 +68,6 @@ class CustomersController extends BaseController
     public function show($id)
     {
         //
-    }
-
-    public function edit(Customer $customer)
-    {
-        $model = view("backend.customers.edit", compact('customer'))->render();
-        $res = [
-            'status' => true,
-            'model' => $model
-        ];
-
-        return response($res);
     }
 
     public function update(StoreCustomer $request, Customer $customer)

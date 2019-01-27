@@ -56,23 +56,31 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav mr-auto">
                         <!-- This is  -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="ti-user"></i>المستخدمين
+                        <li class="nav-item bg-success">
+                            <a class="nav-link btn btn-success" href="{{ route('users.index') }}">
+                                <i class="ti-user"></i>فاتورة بيع
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
+                        <li class="nav-item bg-info ">
+                            <a class="nav-link btn btn-info" href="{{ route('users.index') }}">
+                                <i class="ti-user" ></i>فاتورة شراء
+                            </a>
+                        </li>
+                        <li class="nav-item btn-dribbble">
+                            <a class="nav-link btn btn-dribbble" href="{{ route('products.index') }}">
                                 <i class="ti-package"></i>المنتجات
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('customers.index') }}">
                                 <i class="ti-face-smile"></i>العملاء
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="ti-user"></i>المستخدمين
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('branches.index') }}">
                                 <i class="ti-home"></i>الفروع
@@ -81,6 +89,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('suppliers.index') }}">
                                 <i class="ti-import"></i>الموردين
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categories.index') }}">
+                                <i class="ti-import"></i>الاصناف
                             </a>
                         </li>
                     </ul>

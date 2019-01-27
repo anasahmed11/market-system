@@ -13,7 +13,7 @@
                 @endforeach
                 @endif
                 cols="30"
-                rows="10">
+                rows="3">
     @if (isset($value))
         {{ $value }}
     @endif

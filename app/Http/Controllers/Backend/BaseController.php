@@ -20,7 +20,7 @@ class BaseController extends Controller
 
     public function index()
     {
-        $data = $this->model::orderBy('f_name', 'asc')->paginate(10);
+        $data = $this->model::orderBy('created_at', 'desc')->paginate(10);
         $table = view("backend.$this->view.table", compact('data'))->render();
 
         return view("backend.$this->view.index", compact('table'));
@@ -81,4 +81,17 @@ class BaseController extends Controller
         return response($res);
 
     }
+
+    public function edit($id)
+    {
+        $object = $this->model::find($id);
+        $model = view("backend.$this->view.edit", compact('object'))->render();
+        $res = [
+            'status' => true,
+            'model' => $model
+        ];
+
+        return response($res);
+    }
+
 }

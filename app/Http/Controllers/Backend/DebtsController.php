@@ -24,6 +24,7 @@ class DebtsController extends Controller
         $view = view('common.forms.select', array(
             'options'=> DebtsType::all(),
             'value'=> 'id',
+            'input_label'=> 'نوع الدين',
             'label'=> 'name',
             'name'=> 'debt_type'))->render();
         return response($view);

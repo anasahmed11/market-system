@@ -1,4 +1,6 @@
 <table class="table color-table inverse-table">
+    {{ $data->appends(['sort' => 'votes'])->links() }}
+
     <thead>
     <tr>
         <th>#</th>
