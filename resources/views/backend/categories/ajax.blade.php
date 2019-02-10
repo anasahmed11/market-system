@@ -10,6 +10,7 @@
     }
     $(document).on('click', '.add-new', function () {
         if ($(this).attr('parent') == "1") {
+            $('#types').html('');
             return void (0);
         }
         getCategoryTypes();
