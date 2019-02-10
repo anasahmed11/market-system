@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="add new and searching">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/AddDebtSupplier.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/StoreSupplier.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/customers/remove-debts.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/add-debts.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/ajax.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/debts/select2.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/remove-debts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CustomersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CustomersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_01_05_002448_create_debts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_05_002448_create_debts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/categories/ajax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/categories/ajax.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/customers/add-debts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/customers/add-debts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/customers/ajax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/customers/ajax.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/customers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/customers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/customers/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/customers/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/products/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/products/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/suppliers/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/suppliers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/suppliers/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/categories/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/categories/table.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,31 +17,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/categories/table.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
-              <folding>
-                <element signature="e#48#61#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/suppliers/ajax.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-598">
-              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="25" column="86" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="86" />
+            <state relative-caret-position="299">
+              <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -112,7 +70,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" />
@@ -141,7 +98,6 @@
         <option value="$PROJECT_DIR$/resources/views/backend/categories/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/categories/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/products/ajax.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/categories/table.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/CategoriesController.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/customers/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/customers/ajax.blade.php" />
@@ -156,13 +112,15 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_02_10_225133_create_supplier_debts_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_01_05_002448_create_debts_table.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/suppliers/index.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/customers/table.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/suppliers/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/suppliers/table.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/StoreSupplier.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/AddDebtSupplier.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/suppliers/ajax.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/categories/table.blade.php" />
       </list>
     </option>
   </component>
@@ -338,7 +296,7 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="suppliers" type="462c0819:PsiDirectoryNode" />
+              <item name="categories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="erp-v1" type="b2602c69:ProjectViewProjectNode" />
@@ -419,12 +377,12 @@
       <workItem from="1548425556972" duration="476000" />
       <workItem from="1548613372727" duration="15343000" />
       <workItem from="1548768468924" duration="1271000" />
-      <workItem from="1549835779951" duration="5479000" />
+      <workItem from="1549835779951" duration="7009000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76725000" />
+    <option name="totallyTimeSpent" value="78255000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -593,13 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/categories/table.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="150" selection-start-line="18" selection-start-column="150" selection-end-line="18" selection-end-column="150" />
         </state>
       </provider>
     </entry>
@@ -829,27 +780,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="25" column="86" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="86" />
+        <state relative-caret-position="130">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="e#48#61#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/suppliers/ajax.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-598">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        <state relative-caret-position="253">
+          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php">
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
-          <folding>
-            <element signature="e#48#61#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="253">
+          <caret line="26" column="56" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/categories/table.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
         </state>
       </provider>
     </entry>

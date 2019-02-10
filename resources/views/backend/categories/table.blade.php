@@ -13,15 +13,22 @@
     @foreach($data as $row)
             <tr>
                 <td>{{ $row->id }}</td>
-                <td>@if($row->parent) {{ $row->rowParent->name }} @else @endif</td>
+                <td>
+                    @if($row->parent)
+                        @isset($row->rowParent->name)
+                            {{ $row->rowParent->name }}
+                        @endisset
+                    @else
+                    @endif
+                </td>
                 <td>{{ $row->name }}</td>
                 <td>
                     <button url="{{ route('categories.edit', $row->id) }}" parent="@if($row->parent){{ 0 }}@else{{ 1 }}@endif" type-url="{{ route('categories.types.edit', $row->id) }}" class="edit btn btn-warning">تعديل</button>
-                    <form action="{{ route('categories.destroy', $row->id) }}" class="delete-one d-inline-block" method="post" >
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">حذف</button>
-                    </form>
+                    {{--<form action="{{ route('categories.destroy', $row->id) }}" class="delete-one d-inline-block" method="post" >--}}
+                        {{--@csrf--}}
+                        {{--@method('DELETE')--}}
+                        {{--<button type="submit" class="btn btn-danger">حذف</button>--}}
+                    {{--</form>--}}
                 </td>
             </tr>
     @endforeach
