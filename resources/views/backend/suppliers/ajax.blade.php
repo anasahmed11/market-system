@@ -30,6 +30,7 @@
             type: method,
             data: formData,
             success: function (res) {
+                console.log(res);
                 if (res.status)  {
                     //Success Message
                     swal(res.title, res.message, "success");

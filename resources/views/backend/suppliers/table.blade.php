@@ -1,4 +1,6 @@
 <table class="table color-table inverse-table">
+    {{ $data->appends(['sort' => 'votes'])->links() }}
+
     <thead>
     <tr>
         <th>#</th>
@@ -12,23 +14,38 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($data as $suppliers)
-    <tr>
-        <td>{{ $suppliers->id }}</td>
-        <td>{{ $suppliers->f_name }}</td>
-        <td>{{ $suppliers->l_name }}</td>
-        <td>{{ $suppliers->nickname }}</td>
-        <td>{{ $suppliers->phone }}</td>
-        <td>{{ $suppliers->location }}</td>
-        <td>{{ $suppliers->total_indebtedness }}</td>
-        <td>
-            @if ($suppliers->total_indebtedness > 0)
-                {{--<a href="{{ route('suppliers.debts', $suppliers) }}" class="btn btn-primary">تسديد قسط</a>--}}
-            @endif
-            <a href="" class="btn btn-warning">تعديل</a>
-            <a href="" class="btn btn-danger">حذف</a>
-        </td>
-    </tr>
+    @foreach($data as $supplier)
+        <tr>
+            <td>{{ $supplier->id }}</td>
+            <td>{{ $supplier->f_name }}</td>
+            <td>{{ $supplier->l_name }}</td>
+            <td>{{ $supplier->nickname }}</td>
+            <td>{{ $supplier->phone }}</td>
+            <td>{{ $supplier->location }}</td>
+            <td>{{ $supplier->total_indebtedness }}</td>
+            <td>
+                @if ($supplier->total_indebtedness)
+                    <button url="{{ route('suppliers_debts.types.remove', $supplier->id) }}"
+                            class="btn btn-primary btn-remove-debt"
+                            data-toggle="modal"
+                            data-target="#remove-debts">
+                        تسديد قسط
+                    </button>
+                @endif
+                <button  url="{{ route('suppliers_debts.types.add', $supplier->id) }}"
+                         class="btn btn-info btn-add-debt"
+                         data-toggle="modal"
+                         data-target="#add-debts">اضافة دين
+                </button>
+                <a href="" class="btn btn-dribbble">الفواتير</a>
+                <button url="{{ route('suppliers.edit', $supplier->id) }}" class="edit btn btn-warning">تعديل</button>
+                <form action="{{ route('suppliers.destroy', $supplier->id) }}" class="delete-one d-inline-block" method="post" >
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">حذف</button>
+                </form>
+            </td>
+        </tr>
     @endforeach
     </tbody>
 </table>

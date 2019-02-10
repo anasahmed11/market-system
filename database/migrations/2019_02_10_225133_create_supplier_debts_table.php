@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDebtsTable extends Migration
+class CreateSupplierDebtsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateDebtsTable extends Migration
      */
     public function up()
     {
-        Schema::create('debts', function (Blueprint $table) {
+        Schema::create('supplier_debts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('debts_types_id');
-            $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('supplier_id');
             $table->foreign('debts_types_id')->references('id')->on('debts_types');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->text('note')->nullable();
             $table->float('value')->default(0);
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateDebtsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('debts');
+        Schema::dropIfExists('supplier_debts');
     }
 }

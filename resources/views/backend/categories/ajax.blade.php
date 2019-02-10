@@ -9,8 +9,9 @@
         });
     }
     $(document).on('click', '.add-new', function () {
-        var isParent = $(this).attr('parent');
-        if (isParent == 1) return 0;
+        if ($(this).attr('parent') == "1") {
+            return void (0);
+        }
         getCategoryTypes();
     });
 

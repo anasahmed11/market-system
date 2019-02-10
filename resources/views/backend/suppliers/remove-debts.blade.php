@@ -1,17 +1,17 @@
-<div id="add-debts"
+<div id="remove-debts"
      class="modal fade"
      tabindex="-1"
      role="dialog"
-     aria-labelledby="اضافة دين"
+     aria-labelledby="تسديد فاتورة"
      aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">اضافة دين</h4>
+                <h4 class="modal-title">تسديد فاتورة</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <form id="form-add-debts" method="post">
+            <form id="form-remove-debts" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="debt-types"></div>

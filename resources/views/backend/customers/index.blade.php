@@ -23,6 +23,7 @@
 
     @include('backend.customers.add')
     @include('backend.customers.add-debts')
+    @include('backend.customers.remove-debts')
     <section id="edit"></section>
 @endsection
 

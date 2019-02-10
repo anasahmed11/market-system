@@ -127,4 +127,37 @@ class CustomersController extends BaseController
 
         return response($res);
     }
+
+    public function removeDebt(AddDebtCustomer $request, Customer $customer)
+    {
+        if (!DebtsType::find($request['debt_type']))
+            return [
+                'status' => false,
+                'title' => 'حدث خطاء',
+                'message' => 'يجب اختيار النوع الصحيح'
+            ];
+
+        $debt = new Debt();
+        $debt->debts_types_id = $request['debt_type'];
+        $debt->note = $request['description'];
+        $debt->value = $request['value'] * -1;
+        $debt->customer_id = $customer->id;
+        $debt->date = $request['date'];
+
+        if ($debt->save()) {
+            $res = [
+                'status' => true,
+                'title' => 'تم بنجاح',
+                'message' => 'تم الحفظ'
+            ];
+        } else {
+            $res = [
+                'status' => false,
+                'title' => 'حدث خطاء',
+                'message' => 'لم يتم الحفظ'
+            ];
+        }
+
+        return response($res);
+    }
 }

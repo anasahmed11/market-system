@@ -24,10 +24,19 @@
         <td>{{ $customer->location }}</td>
         <td>{{ $customer->total_indebtedness }}</td>
         <td>
-            @if ($customer->total_indebtedness > 0)
-                <a href="{{ route('customers.debts', $customer) }}" class="btn btn-primary">تسديد قسط</a>
+            @if ($customer->total_indebtedness)
+            <button url="{{ route('debts.types.remove', $customer->id) }}"
+                    class="btn btn-primary btn-remove-debt"
+                    data-toggle="modal"
+                    data-target="#remove-debts">
+                تسديد قسط
+            </button>
             @endif
-            <button  url="{{ route('debts.types.add', $customer->id) }}" class="btn btn-info btn-add-debt" data-toggle="modal" data-target="#add-debts">اضافة دين</button>
+            <button  url="{{ route('debts.types.add', $customer->id) }}"
+                     class="btn btn-info btn-add-debt"
+                     data-toggle="modal"
+                     data-target="#add-debts">اضافة دين
+            </button>
             <a href="" class="btn btn-dribbble">الفواتير</a>
             <button url="{{ route('customers.edit', $customer->id) }}" class="edit btn btn-warning">تعديل</button>
             <form action="{{ route('customers.destroy', $customer->id) }}" class="delete-one d-inline-block" method="post" >
