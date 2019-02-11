@@ -969,7 +969,8 @@ File: scss
     position: relative; }
 
 .container-fluid {
-    padding: 25px 25px; }
+    padding: 25px 25px;
+}
 
 .card {
     margin-bottom: 30px; }
@@ -990,7 +991,8 @@ File: scss
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); }
 
 .fix-header .page-wrapper {
-    padding-top: 70px; }
+    padding-top: 45px;
+}
 
 .fix-header .right-side-panel {
     top: 148px;
@@ -1517,13 +1519,14 @@ ul#themecolors li a.working:before {
 *******************/
 .footer {
     bottom: 0;
-    color: #67757c;
+    color: #fff;
     left: 0px;
-    padding: 17px 15px;
+    padding: 5px 15px;
     position: absolute;
     right: 0;
     border-top: 1px solid rgba(120, 130, 140, 0.13);
-    background: #ffffff; }
+    background: #283e4a;
+}
 
 /*******************
  scrollbar

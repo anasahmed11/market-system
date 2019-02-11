@@ -20,6 +20,7 @@ Route::group([
     Route::resource('/customers', 'CustomersController');
 
     //branches
+    Route::post('/branches/search', 'BranchesController@search')->name('branches.search');
     Route::resource('/branches', 'BranchesController');
 
     //suppliers

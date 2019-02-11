@@ -1,4 +1,5 @@
-<table class="table color-table inverse-table">
+<div class="table-responsive">
+    <table class="table color-table inverse-table">
     {{ $data->appends(['sort' => 'votes'])->links() }}
 
     <thead>
@@ -49,6 +50,7 @@
     @endforeach
     </tbody>
 </table>
+</div>
 <div class="text-center">
     {{ $data->links() }}
 </div>

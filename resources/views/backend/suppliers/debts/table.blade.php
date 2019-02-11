@@ -1,4 +1,4 @@
-<table class="table color-table inverse-table">
+<table class="table color-table inverse-table table-responsive">
     <thead>
     <tr>
         <th>التاريخ</th>

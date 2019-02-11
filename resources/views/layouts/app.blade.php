@@ -35,102 +35,98 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="{{ route('index') }}">
+                <b>
+                    LOGO
+                </b>
+            </a>
+            <button class="navbar-toggler"
+                    type="button" data-toggle="collapse"
+                    data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="main-nav">
                 <!-- ============================================================== -->
-                <!-- Logo -->
+                <!-- toggle and nav items -->
                 <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('index') }}">
-                        <b>
-                            LOGO
-                        </b>
-                    </a>
-                </div>
+                <ul class="navbar-nav mr-auto" >
+                    <!-- This is  -->
+                    <li class="nav-item bg-success">
+                        <a class="nav-link btn btn-success" href="{{ route('users.index') }}">
+                            <i class="ti-user"></i>فاتورة بيع
+                        </a>
+                    </li>
+                    <li class="nav-item bg-info">
+                        <a class="nav-link btn btn-info" href="{{ route('users.index') }}">
+                            <i class="ti-user" ></i>فاتورة شراء
+                        </a>
+                    </li>
+                    <li class="nav-item btn-dribbble">
+                        <a class="nav-link btn btn-dribbble" href="{{ route('products.index') }}">
+                            <i class="ti-package"></i>المنتجات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('customers.index') }}">
+                            <i class="ti-face-smile"></i>العملاء
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="ti-user"></i>المستخدمين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('branches.index') }}">
+                            <i class="ti-home"></i>الفروع
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('suppliers.index') }}">
+                            <i class="ti-import"></i>الموردين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('categories.index') }}">
+                            <i class="ti-import"></i>الاصناف
+                        </a>
+                    </li>
+                </ul>
                 <!-- ============================================================== -->
-                <!-- End Logo -->
+                <!-- User profile and search -->
                 <!-- ============================================================== -->
-                <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav mr-auto">
-                        <!-- This is  -->
-                        <li class="nav-item bg-success">
-                            <a class="nav-link btn btn-success" href="{{ route('users.index') }}">
-                                <i class="ti-user"></i>فاتورة بيع
-                            </a>
-                        </li>
-                        <li class="nav-item bg-info ">
-                            <a class="nav-link btn btn-info" href="{{ route('users.index') }}">
-                                <i class="ti-user" ></i>فاتورة شراء
-                            </a>
-                        </li>
-                        <li class="nav-item btn-dribbble">
-                            <a class="nav-link btn btn-dribbble" href="{{ route('products.index') }}">
-                                <i class="ti-package"></i>المنتجات
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customers.index') }}">
-                                <i class="ti-face-smile"></i>العملاء
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="ti-user"></i>المستخدمين
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('branches.index') }}">
-                                <i class="ti-home"></i>الفروع
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('suppliers.index') }}">
-                                <i class="ti-import"></i>الموردين
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categories.index') }}">
-                                <i class="ti-import"></i>الاصناف
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                        <!-- ============================================================== -->
-                        <!-- Profile -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ Request::root() }}/backend/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ Request::root() }}/backend/assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>Steave Jobs</h4>
-                                                <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+                <ul class="navbar-nav my-lg-0">
+                    {{--<!-- ============================================================== -->--}}
+                    {{--<!-- Profile -->--}}
+                    {{--<!-- ============================================================== -->--}}
+                    {{--<li class="nav-item dropdown">--}}
+                        {{--<a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ Request::root() }}/backend/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>--}}
+                        {{--<div class="dropdown-menu dropdown-menu-right animated flipInY">--}}
+                            {{--<ul class="dropdown-user">--}}
+                                {{--<li>--}}
+                                    {{--<div class="dw-user-box">--}}
+                                        {{--<div class="u-img"><img src="{{ Request::root() }}/backend/assets/images/users/1.jpg" alt="user"></div>--}}
+                                        {{--<div class="u-text">--}}
+                                            {{--<h4>Steave Jobs</h4>--}}
+                                            {{--<p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>--}}
+                                    {{--</div>--}}
+                                {{--</li>--}}
+                                {{--<li role="separator" class="divider"></li>--}}
+                                {{--<li><a href="#"><i class="ti-user"></i> My Profile</a></li>--}}
+                                {{--<li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>--}}
+                                {{--<li><a href="#"><i class="ti-email"></i> Inbox</a></li>--}}
+                                {{--<li role="separator" class="divider"></li>--}}
+                                {{--<li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>--}}
+                                {{--<li role="separator" class="divider"></li>--}}
+                                {{--<li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+                </ul>
+            </div>
+        </nav>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->

@@ -9,11 +9,21 @@ use App\Http\Controllers\Controller;
 class BranchesController extends BaseController
 {
 
+    protected $searchTypes;
+
     public function __construct()
     {
+        $this->searchTypes = [
+            'name' => 'الاسم',
+            'phone' => 'الموبيل',
+            'id' => 'الكود'
+        ];
+        parent::__construct();
         $this->model = Branch::class;
         $this->view = 'branches';
+
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -1,4 +1,5 @@
-<table class="table color-table inverse-table">
+<div class="table-responsive">
+    <table class="table color-table inverse-table">
     <thead>
     <tr>
         <th>#</th>
@@ -31,6 +32,7 @@
     @endforeach
     </tbody>
 </table>
+</div>
 <div class="text-center">
     {{ $data->links() }}
 </div>
