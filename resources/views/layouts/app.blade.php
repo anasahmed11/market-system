@@ -53,10 +53,27 @@
                 <!-- ============================================================== -->
                 <ul class="navbar-nav mr-auto" >
                     <!-- This is  -->
-                    <li class="nav-item bg-success">
-                        <a class="nav-link btn btn-success" href="{{ route('invoices.create', 'selling-1') }}">
-                            <i class="ti-user"></i>فاتورة بيع
+                    <li class="nav-item dropdown bg-success">
+                        <a class="dropdown-toggle d-inline-block"
+                           data-toggle="dropdown"
+                           href="#"
+                           style="height: 100%; line-height: 35px">
+                            فاتورة بيع
+                            <b class="caret"></b>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li class="bg-success">
+                                <a class="nav-link btn btn-success" href="{{ route('invoices.create', 'selling-1') }}">
+                                    قطاعي
+                                </a>
+                            </li>
+                            <li class="bg-info">
+                                <a class="nav-link btn btn-info" href="{{ route('invoices.create', 'selling-2') }}">
+                                    جملة
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
                     <li class="nav-item bg-info">
                         <a class="nav-link btn btn-info" href="{{ route('users.index') }}">

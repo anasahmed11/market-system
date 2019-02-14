@@ -246,7 +246,11 @@
                 type: 'POST',
                 data: formData,
                 success: function (res) {
-                    console.log(res);
+                    if (res.state === true) {
+                        swal(res.title, res.message, "success");
+                    } else {
+                        swal(res.title, res.message, "error");
+                    }
                 },
                 error: function (res) {
                     console.log(res);

@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Backend;
 use App\Branch;
 use App\Category;
 use App\Customer;
+use App\Invoice;
+use App\InvoiceProduct;
 use App\InvoicesType;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class InvoicesController extends Controller
 {
@@ -19,18 +22,12 @@ class InvoicesController extends Controller
     }
 
 
-    /**
-     * @param InvoicesType $invoicesType
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     * @throws \Throwable
-     */
-    public function create(InvoicesType $invoicesType): View
+    public function create(InvoicesType $invoicesType)
     {
-        if (!$invoicesType) {
-            return redirect()->route('invoices.index');
-        }
+        if (!$invoicesType) return redirect()->route('invoices.index');
 
         switch ($invoicesType->slug) {
+            case 'selling-2':
             case 'selling-1':
                 $customerView = view('common.forms.select', array(
                     'options'=> Customer::all(),
@@ -54,9 +51,102 @@ class InvoicesController extends Controller
         return $view;
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @param InvoicesType $invoicesType
+     * @return array
+     */
+    public function store(Request $request, InvoicesType $invoicesType): array
     {
-        return $request;
+        if (!$invoicesType) return ['status' => false, 'title' => 'حدث خطاء', 'message' => 'لم يتم تحديد نوع الفاتورة'];
+
+        $errors = [];
+
+        $customer = Customer::findOrFail($request['customer_id']);
+        $branch = Branch::findOrFail($request['branch_id']);
+
+        if (!$customer) {
+            $errors[] = 'لم يتم العثور علي العميل';
+        }
+        if (!$branch) {
+            $errors[] = 'لم يتم العثور علي الفرع';
+        }
+
+        if (count($errors)) {
+            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
+        }
+        // save Invoice info
+        $invoice = new Invoice();
+        $invoice->slug = time() . '-' . $branch->id . '-' . Auth::user()->id . '-';
+        $invoice->type_id = $invoicesType->id;
+        $invoice->user_id = Auth::user()->id;
+        $invoice->customer_id = $customer->id;
+        $invoice->branch_id = $branch->id;
+        $invoice->date = $request['date'] ?$request['date'] : date('Y-m-d h:i:s');
+        $invoice->added_value = $request['added_value'];
+        $invoice->discount_value = $request['discount_value'];
+        $invoice->payed = $request['payed'];
+        $invoice->remaining = $request['remaining'];
+        $invoice->note = $request['note'];
+
+        try {
+            $invoice->saveOrFail();
+        } catch (\Throwable $e) {
+            $errors[] = 'حدث خطاء في حفظ الفاتورة';
+        }
+
+        if (count($errors)) {
+            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
+        }
+
+        // save Invoice Product
+        $invoiceProduct = new InvoiceProduct();
+        foreach ($request['products'] as $invProduct) {
+            if (!$product = Product::findOrFail($invProduct['id'])) continue;
+
+            $invoiceProduct->invoice_id = $invoice->id;
+            $invoiceProduct->product_id = $product->id;
+            $invoiceProduct->category_id = $product->cat_id;
+            $invoiceProduct->quantity = $invProduct['quantity'] > $product->quantity ?
+                $product->quantity : $invProduct['quantity']; // @TODO quantity validation
+            if ($invoicesType->slug === 'selling-1') {
+                $invoiceProduct->price = $product->price;
+            } elseif($invoicesType->slug === 'selling-2') {
+                $invoiceProduct->price = $product->price2;
+            }
+            $invoiceProduct->sub_total = $invoiceProduct->price * $invoiceProduct->quantity;
+            try {
+                if (!$invoiceProduct->saveOrFail()) {
+                    $errors[] = " {$product->name}حدث خطاء في حفظ ";
+                    continue;
+                }
+            } catch (\Throwable $e) {
+                $errors[] = " {$product->name}حدث خطاء في حفظ ";
+                $errors[] = $e->getMessage();
+                //TODO Error Log
+            }
+            $invoice->sub_total += $invoicesType->sub_total; // calculate invoice sub total
+        }
+
+        $invoice->total = $invoice->sub_total + $invoice->added_value - $invoice->discount_value; // calculate invoice total
+
+        try {
+            if (!$invoice->saveOrFail()) $errors[] = 'حدث خطاء في حفظ اجمالي افاتورة';
+        } catch (\Throwable $e) {
+            $errors[] = "{$product->name}حدث خطاء في حفظ ";
+            //TODO Error Log
+        }
+
+        if (count($errors)) {
+            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
+        }
+
+        // all done
+        return [
+            'status' => true,
+            'title' => 'تم الحفظ',
+            'message' =>  $invoice->slug . $invoice->id . ' تم حفظ الفاتورة بكود '
+        ];
     }
 
     /**
