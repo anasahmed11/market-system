@@ -18,7 +18,8 @@
                     @include('common.forms.input', ['name'=> 'name', 'label'=> 'الاسم'])
                     @include('common.forms.input', ['name'=> 'price', 'label'=> 'سعر القطاعي', 'type'=> 'number'])
                     @include('common.forms.input', ['name'=> 'price2', 'label'=> 'سعر الجملة', 'type'=> 'number'])
-                    @include('common.forms.input', ['name'=> 'reorder_point', 'label'=> 'نقطة الطلب', 'type'=> 'reorder_point'])
+                    @include('common.forms.input', ['name'=> 'reorder_point', 'label'=> 'نقطة الطلب', 'type'=> 'number'])
+                    @include('common.forms.input', ['name'=> 'quantity', 'label'=> 'الكمية', 'type'=> 'number'])
                     @include('common.forms.textarea', ['name'=> 'description', 'label'=> 'التفاصيل'])
                 </div>
                 <div class="modal-footer">

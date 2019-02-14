@@ -5794,7 +5794,8 @@ File: scss
         display: inline-block;
         line-height: 40px; }
     .mini-sidebar .page-wrapper {
-        margin-left: 70px; }
+        margin-left: 0;
+    }
     .flex-wrap {
         -ms-flex-wrap: nowrap !important;
         flex-wrap: nowrap !important;
@@ -5941,4 +5942,11 @@ File: scss
 .nav-item a.active {
     color: #242a33 !important;
     background: whitesmoke;
+}
+
+.inverse-table tr th{
+    min-width: 100px;
+}
+.inverse-table tr th.product-name{
+    min-width: 250px;
 }

@@ -83,6 +83,7 @@ class ProductsController extends BaseController
         $product->name = $request['name'];
         $product->price = $request['price'];
         $product->price2 = $request['price2'];
+        $product->quantity = $request['quantity'];
         $product->description = $request['description'];
         $product->reorder_point	 = $request['reorder_point'];
 

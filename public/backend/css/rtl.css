@@ -2,3 +2,10 @@
     direction: rtl;
     text-align: right;
 }
+
+.block-ltr {
+    direction: ltr;
+}
+.block-rtl {
+    direction: rtl;
+}

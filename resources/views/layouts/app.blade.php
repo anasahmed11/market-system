@@ -54,7 +54,7 @@
                 <ul class="navbar-nav mr-auto" >
                     <!-- This is  -->
                     <li class="nav-item bg-success">
-                        <a class="nav-link btn btn-success" href="{{ route('users.index') }}">
+                        <a class="nav-link btn btn-success" href="{{ route('invoices.create', 'selling-1') }}">
                             <i class="ti-user"></i>فاتورة بيع
                         </a>
                     </li>

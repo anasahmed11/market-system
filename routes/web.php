@@ -44,6 +44,17 @@ Route::group([
     Route::get('/categories/types', 'CategoriesController@getAllTypes')->name('categories.types');
     Route::get('/categories/parents', 'CategoriesController@getAllParents')->name('categories.parents');
     Route::resource('/categories', 'CategoriesController');
+
+    //invoices
+//    Route::resource('/invoices', 'InvoicesController');
+    Route::group([
+        'prefix' => 'invoices',
+        'as' => 'invoices.'
+    ], function () {
+        Route::get('/index', 'InvoicesController@index')->name('index');
+        Route::get('/create/{invoicesType}', 'InvoicesController@create')->name('create');
+        Route::post('/store/{invoicesType}', 'InvoicesController@store')->name('store');
+    });
 });
 
 /**
