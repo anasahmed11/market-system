@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="add new and searching">
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/sub_views/customer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/sub_views/item.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/sub_views/products.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/sub_views/total_price.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/sub_views/user.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/backend/css/rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/backend/css/rtl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/backend/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/backend/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="add new and searching" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,13 +16,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1265">
-              <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
+            <state relative-caret-position="284">
+              <caret line="38" column="45" lean-forward="true" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ProductsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-159">
+              <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/InvoicesController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="347">
@@ -43,6 +39,15 @@
               <folding>
                 <element signature="e#48#63#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/products/add.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="13" column="62" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -102,11 +107,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/backend/products/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/BaseController.php" />
         <option value="$PROJECT_DIR$/public/js/ajax.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ProductsController.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/categories/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/categories/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/categories/edit.blade.php" />
@@ -153,6 +156,8 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/invoices/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/InvoicesController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/products/add.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/ProductsController.php" />
       </list>
     </option>
   </component>
@@ -287,13 +292,15 @@
             <path>
               <item name="erp-v1" type="b2602c69:ProjectViewProjectNode" />
               <item name="erp-v1" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Backend" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="erp-v1" type="b2602c69:ProjectViewProjectNode" />
               <item name="erp-v1" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="erp-v1" type="b2602c69:ProjectViewProjectNode" />
@@ -330,22 +337,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="erp-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="erp-v1" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="customers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="erp-v1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="erp-v1" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="invoices" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="erp-v1" type="b2602c69:ProjectViewProjectNode" />
@@ -469,12 +460,12 @@
       <workItem from="1549880981358" duration="9716000" />
       <workItem from="1549924168145" duration="7712000" />
       <workItem from="1550006767301" duration="7590000" />
-      <workItem from="1550162686713" duration="326000" />
+      <workItem from="1550162686713" duration="570000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104415000" />
+    <option name="totallyTimeSpent" value="104659000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -487,7 +478,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="706" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25530303" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -504,7 +494,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3291367" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32857144" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.4964029" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.4964029" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3291367" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -766,20 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/products/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ProductsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="67" column="29" selection-start-line="60" selection-start-column="16" selection-end-line="67" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/DebtsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -865,13 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1265">
-          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/invoices/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5750">
@@ -886,6 +855,27 @@
           <folding>
             <element signature="e#48#63#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/products/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="13" column="62" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="38" column="45" lean-forward="true" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/ProductsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-159">
+          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
         </state>
       </provider>
     </entry>

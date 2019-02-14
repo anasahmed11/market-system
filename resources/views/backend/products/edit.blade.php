@@ -19,7 +19,8 @@
                     @include('common.forms.input', ['edit'=> true, 'value'=> $object->name, 'name'=> 'name', 'label'=> 'الاسم'])
                     @include('common.forms.input', ['edit'=> true, 'value'=> $object->price, 'name'=> 'price', 'label'=> 'سعر القطاعي', 'type'=> 'number'])
                     @include('common.forms.input', ['edit'=> true, 'value'=> $object->price2, 'name'=> 'price2', 'label'=> 'سعر الجملة', 'type'=> 'number'])
-                    @include('common.forms.input', ['edit'=> true, 'value'=> $object->reorder_point, 'name'=> 'reorder_point', 'label'=> 'نقطة الطلب', 'type'=> 'reorder_point'])
+                    @include('common.forms.input', ['edit'=> true, 'value'=> $object->reorder_point, 'name'=> 'reorder_point', 'label'=> 'نقطة الطلب', 'type'=> 'number'])
+                    @include('common.forms.input', ['edit'=> true, 'value'=> $object->quantity, 'name'=> 'quantity', 'label'=> 'الكمية', 'type'=> 'number'])
                     @include('common.forms.textarea', ['edit'=> true, 'value'=> $object->description, 'name'=> 'description', 'label'=> 'التفاصيل'])
                 </div>
                 <div class="modal-footer">
