@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pageTitle')
-    فاتورة
+    فاتورة بيع
 @endsection
 
 @section('content')
@@ -105,6 +105,7 @@
         </div>
         <div class="col-md-3 text-center">
             <button class="btn btn-success" id="save-invoice">حفظ</button>
+            <button class="btn btn-danger" onclick="location.reload()">فاتورة جديدة</button>
         </div>
     </div>
 
@@ -246,7 +247,8 @@
                 type: 'POST',
                 data: formData,
                 success: function (res) {
-                    if (res.state === true) {
+                    console.log(res);
+                    if (res.status == true) {
                         swal(res.title, res.message, "success");
                     } else {
                         swal(res.title, res.message, "error");

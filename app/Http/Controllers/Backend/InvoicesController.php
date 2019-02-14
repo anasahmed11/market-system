@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Branch;
 use App\Category;
 use App\Customer;
+use App\Debt;
+use App\DebtsType;
 use App\Invoice;
 use App\InvoiceProduct;
 use App\InvoicesType;
@@ -125,10 +127,26 @@ class InvoicesController extends Controller
                 $errors[] = $e->getMessage();
                 //TODO Error Log
             }
-            $invoice->sub_total += $invoicesType->sub_total; // calculate invoice sub total
+            $invoice->sub_total += $invoiceProduct->sub_total; // calculate invoice sub total
+            $product->quantity -= $invoiceProduct->quantity; // calculate stock
+            $product->save();
         }
 
         $invoice->total = $invoice->sub_total + $invoice->added_value - $invoice->discount_value; // calculate invoice total
+//
+        try{
+            $debt = new Debt();
+//            $debtType = DebtsType::find(['slug'=> 'type-1']);
+            $debt->debts_types_id = 1;
+            $debt->customer_id = $customer->id;
+            $debt->note = $invoice->slug . $invoice->id;
+            $debt->value = $invoice->total - $invoice->payed;
+            $debt->date = date('Y-m-d h:i:s');
+            $debt->save();
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+
 
         try {
             if (!$invoice->saveOrFail()) $errors[] = 'حدث خطاء في حفظ اجمالي افاتورة';
