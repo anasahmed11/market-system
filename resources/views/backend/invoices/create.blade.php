@@ -39,17 +39,12 @@
                             @if (count($category->products))
                                 <optgroup label="@isset($category->rowParent->name) {{ $category->rowParent->name }} , @endisset {{ $category->name }}">
                                     @foreach($category->products as $product)
-                                        @if ($product->quantity > 1)
+                                        @if ($product->quantity > 1 || $invoicesType->slug === 'buying-1')
                                             <option value="{{ $product->id }}"
                                                     quantity="{{ $product->quantity }}"
                                                     price="@if($invoicesType->slug === 'selling-1'){{ $product->price }}@elseif ($invoicesType->slug === 'selling-2'){{ $product->price2 }}@endif">
                                                 {{ $product->name }}
                                                 <span>
-                                                {{--@if($invoicesType->slug === 'selling-1')--}}
-                                                    {{--{{ $product->price }}--}}
-                                                {{--@elseif ($invoicesType->slug === 'selling-2')--}}
-                                                    {{--{{ $product->price2 }}--}}
-                                                {{--@endif--}}
                                         </span>
                                             </option>
                                         @else
@@ -65,8 +60,14 @@
                     </select>
                 </th>
                 <th>
-                    سعر المنتج
+
+                    @if($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2')
+                        سعر المنتج
                     <div id="product-price" price="">0 جنية</div>
+                    @elseif($invoicesType->slug === 'buying-1')
+                        سعر الشراء
+                    <input id="product-price" type="number" name="price" class="form-control">
+                    @endif
                 </th>
                 <th>
                     الكمية
@@ -117,6 +118,8 @@
         let invoiceProductsArray = [],
             invoiceProductsWithAllDetails = [];
 
+        const invoiceTypeSlug = '{{ $invoicesType->slug }}';
+
         //events
         $(document).on('change', '#select-product', function () {
             let option = $('#select-product optgroup option[value="' + $(this).val() + '"]'),
@@ -125,21 +128,34 @@
                 quantityInput = $('#quantity'),
                 productPriceDiv = $('#product-price');
 
-            quantityInput.attr('max', productMaxQuantity);
             quantityInput.val(1);
 
-            productPriceDiv.html(productPrice + ' جنية ');
-            productPriceDiv.attr('price', productPrice);
-            $('#product-total-price').html(productPrice + ' جنية ');
+            if (invoiceTypeSlug === 'selling-1' || invoiceTypeSlug === 'selling-2') {
+                quantityInput.attr('max', productMaxQuantity);
+                productPriceDiv.html(productPrice + ' جنية ');
+                productPriceDiv.attr('price', productPrice);
+                $('#product-total-price').html(productPrice + ' جنية ');
+                calculateInvoice();
+            }
+
+        });
+
+        $(document).on('keyup', 'input#product-price', function () {
+            const value = $(this).val(),
+                quantity = $('#quantity').val();
+
+            $('#product-total-price').html(quantity * value + ' جنية ');
             calculateInvoice();
         });
 
         $(document).on('keyup', '#quantity', function () {
             let max = $(this).attr('max'),
                 value = $(this).val(),
-                productPrice = $('#product-price').attr('price');
+                productPrice = invoiceTypeSlug === 'buying-1'? $('input#product-price').val() : $('#product-price').attr('price');
 
-            if (parseInt(value) > parseInt(max)) {
+            if ((parseInt(value) > parseInt(max)) &&
+                (invoiceTypeSlug === 'selling-1' ||
+                    invoiceTypeSlug === 'selling-2')) {
                 swal('خطاء في تحديد الكمية', 'غير متوافر سوي ' + max, "error");
                 value = max;
                 $(this).val(value);
@@ -153,6 +169,8 @@
             let product = $('#select-product').val(),
                 option = $('#select-product optgroup option[value="' + product + '"]'),
                 quantity = $('#quantity'),
+                productPrice = invoiceTypeSlug === 'buying-1' ?
+                    parseFloat($('input#product-price').val()) : parseFloat(option.attr('price'));
                 row = '<tr id="row-' + product + '">';
 
             if (isNaN(product)){
@@ -168,10 +186,11 @@
                 return void (0);
             }
 
-            const productTotal = parseInt(quantity.val()) * parseFloat(option.attr('price'));
+            const productTotal = parseInt(quantity.val()) * productPrice;
+
 
             row += '<td>' + option.html() + '</td>';
-            row += '<td>' + option.attr('price') + '</td>';
+            row += '<td>' + productPrice + '</td>';
             row += '<td>' + quantity.val() + '</td>';
             row += '<td class="product-total">' + productTotal + '</td>';
             row += '<td>' +
@@ -229,6 +248,7 @@
         $(document).on('click', '#save-invoice', function () {
             const formData = {
                 customer_id: $('#customer').val(),
+                supplier_id: $('#supplier').val(),
                 branch_id: $('#branch').val(),
                 date: $('#date').val(),
                 sub_total: $('#invoice-sub-total').val(),

@@ -11,6 +11,10 @@ use App\Invoice;
 use App\InvoiceProduct;
 use App\InvoicesType;
 use App\Product;
+use App\SuplliersInvoiceProduct;
+use App\Supplier;
+use App\SupplierDebt;
+use App\SuppliersInvoice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +52,26 @@ class InvoicesController extends Controller
                     'invoicesType'=> $invoicesType,
                     'categoryWithProducts'=> $categoryWithProducts
                 ]);
+                break;
+            case 'buying-1':
+                $vendorsView = view('common.forms.select', array(
+                    'options'=> Supplier::all(),
+                    'value'=> 'id',
+                    'input_label'=> 'اسم المورد',
+                    'label'=> 'nickname',
+                    'name'=> 'supplier'))->render();
+                $categoryWithProducts = Category::Where('parent', '!=', null)
+                    ->orderBy('name', 'asc')
+                    ->get();
+
+                $view = view('backend.invoices.create', [
+                    // @TODO pagination or search
+                    'region_top_right'=> $vendorsView,
+                    'branches'=> Branch::all(),
+                    'invoicesType'=> $invoicesType,
+                    'categoryWithProducts'=> $categoryWithProducts
+                ]);
+                break;
         }
 
         return $view;
@@ -56,20 +80,27 @@ class InvoicesController extends Controller
     /**
      * @param Request $request
      * @param InvoicesType $invoicesType
-     * @return array
+     * @return array|string
      */
-    public function store(Request $request, InvoicesType $invoicesType): array
+    public function store(Request $request, InvoicesType $invoicesType)
     {
         if (!$invoicesType) return ['status' => false, 'title' => 'حدث خطاء', 'message' => 'لم يتم تحديد نوع الفاتورة'];
 
         $errors = [];
 
-        $customer = Customer::findOrFail($request['customer_id']);
-        $branch = Branch::findOrFail($request['branch_id']);
-
-        if (!$customer) {
-            $errors[] = 'لم يتم العثور علي العميل';
+        if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+            $customer = Customer::findOrFail($request['customer_id']);
+            if (!$customer) {
+                $errors[] = 'لم يتم العثور علي العميل';
+            }
+        } elseif ($invoicesType->slug === 'buying-1') {
+            $supplier = Supplier::findOrFail($request['supplier_id']);
+            if (!$supplier) {
+                $errors[] = 'لم يتم العثور علي المورد';
+            }
         }
+
+        $branch = Branch::findOrFail($request['branch_id']);
         if (!$branch) {
             $errors[] = 'لم يتم العثور علي الفرع';
         }
@@ -78,13 +109,18 @@ class InvoicesController extends Controller
             return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
         }
         // save Invoice info
-        $invoice = new Invoice();
+        if ($invoicesType->slug === 'buying-1') {
+            $invoice = new SuppliersInvoice();
+            $invoice->supplier_id = $supplier->id;
+        } else {
+            $invoice = new Invoice();
+            $invoice->customer_id = $supplier->id;
+        }
         $invoice->slug = time() . '-' . $branch->id . '-' . Auth::user()->id . '-';
         $invoice->type_id = $invoicesType->id;
         $invoice->user_id = Auth::user()->id;
-        $invoice->customer_id = $customer->id;
         $invoice->branch_id = $branch->id;
-        $invoice->date = $request['date'] ?$request['date'] : date('Y-m-d h:i:s');
+        $invoice->date = $request['date'] ? $request['date'] : date('Y-m-d h:i:s');
         $invoice->added_value = $request['added_value'];
         $invoice->discount_value = $request['discount_value'];
         $invoice->payed = $request['payed'];
@@ -95,6 +131,7 @@ class InvoicesController extends Controller
             $invoice->saveOrFail();
         } catch (\Throwable $e) {
             $errors[] = 'حدث خطاء في حفظ الفاتورة';
+//            $errors[] = $e->getMessage();
         }
 
         if (count($errors)) {
@@ -102,20 +139,32 @@ class InvoicesController extends Controller
         }
 
         // save Invoice Product
-        $invoiceProduct = new InvoiceProduct();
+        if ($invoicesType->slug === 'buying-1') {
+            $invoiceProduct = new SuplliersInvoiceProduct();
+        } else {
+            $invoiceProduct = new InvoiceProduct();
+        }
+
         foreach ($request['products'] as $invProduct) {
             if (!$product = Product::findOrFail($invProduct['id'])) continue;
 
             $invoiceProduct->invoice_id = $invoice->id;
             $invoiceProduct->product_id = $product->id;
             $invoiceProduct->category_id = $product->cat_id;
-            $invoiceProduct->quantity = $invProduct['quantity'] > $product->quantity ?
-                $product->quantity : $invProduct['quantity']; // @TODO quantity validation
+            if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+                $invoiceProduct->quantity = $invProduct['quantity'] > $product->quantity ?
+                    $product->quantity : $invProduct['quantity']; // @TODO quantity validation
+            } elseif ($invoicesType->slug === 'buying-1') {
+                $invoiceProduct->quantity = $invProduct['quantity'];
+            }
             if ($invoicesType->slug === 'selling-1') {
                 $invoiceProduct->price = $product->price;
             } elseif($invoicesType->slug === 'selling-2') {
                 $invoiceProduct->price = $product->price2;
+            } elseif ($invoicesType->slug === 'buying-1') {
+                $invoiceProduct->price = $product['price'];
             }
+
             $invoiceProduct->sub_total = $invoiceProduct->price * $invoiceProduct->quantity;
             try {
                 if (!$invoiceProduct->saveOrFail()) {
@@ -127,18 +176,28 @@ class InvoicesController extends Controller
                 $errors[] = $e->getMessage();
                 //TODO Error Log
             }
+
             $invoice->sub_total += $invoiceProduct->sub_total; // calculate invoice sub total
-            $product->quantity -= $invoiceProduct->quantity; // calculate stock
+            if ($invoicesType->slug === 'buying-1') {
+                $product->quantity += $invoiceProduct->quantity; // calculate stock
+            } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+                $product->quantity -= $invoiceProduct->quantity; // calculate stock
+            }
             $product->save();
         }
-
         $invoice->total = $invoice->sub_total + $invoice->added_value - $invoice->discount_value; // calculate invoice total
-//
+
         try{
-            $debt = new Debt();
-//            $debtType = DebtsType::find(['slug'=> 'type-1']);
-            $debt->debts_types_id = 1;
-            $debt->customer_id = $customer->id;
+            if ($invoicesType->slug === 'buying-1') {
+                $debt = new SupplierDebt();
+                $debt->debts_types_id = 1;
+                $debt->supplier_id = $supplier->id;
+            } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+                $debt = new Debt();
+                $debt->debts_types_id = 1;
+                $debt->customer_id = $customer->id;
+            }
+
             $debt->note = $invoice->slug . $invoice->id;
             $debt->value = $invoice->total - $invoice->payed;
             $debt->date = date('Y-m-d h:i:s');
@@ -146,19 +205,15 @@ class InvoicesController extends Controller
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
-
-
         try {
             if (!$invoice->saveOrFail()) $errors[] = 'حدث خطاء في حفظ اجمالي افاتورة';
         } catch (\Throwable $e) {
             $errors[] = "{$product->name}حدث خطاء في حفظ ";
             //TODO Error Log
         }
-
         if (count($errors)) {
-            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
+            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ', $errors)];
         }
-
         // all done
         return [
             'status' => true,
@@ -167,12 +222,6 @@ class InvoicesController extends Controller
         ];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

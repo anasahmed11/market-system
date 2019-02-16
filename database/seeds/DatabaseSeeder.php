@@ -44,6 +44,13 @@ class DatabaseSeeder extends Seeder
             ]);
         } catch (Exception $exception) {}
 
+        try{
+            DB::table('invoices_types')->insert([
+                'name' => 'فاتورة شراء',
+                'slug' => 'buying-1',
+            ]);
+        } catch (Exception $exception) {}
+
 
 
 

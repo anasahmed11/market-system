@@ -76,7 +76,7 @@
 
                     </li>
                     <li class="nav-item bg-info">
-                        <a class="nav-link btn btn-info" href="{{ route('users.index') }}">
+                        <a class="nav-link btn btn-info" href="{{ route('invoices.create', 'buying-1') }}">
                             <i class="ti-user" ></i>فاتورة شراء
                         </a>
                     </li>
