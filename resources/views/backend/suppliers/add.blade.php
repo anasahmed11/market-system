@@ -11,7 +11,7 @@
                 <h4 class="modal-title">اضافة</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <form method="post" action="{{ route('customers.store') }}" class="form-add">
+            <form method="post" action="{{ route('suppliers.store') }}" class="form-add">
                 @csrf
                 <div class="modal-body">
                         @include('common.forms.input', ['name'=> 'f_name', 'label'=> 'الاسم الاول'])
