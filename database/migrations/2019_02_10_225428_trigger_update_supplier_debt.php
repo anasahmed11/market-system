@@ -19,7 +19,7 @@ class TriggerUpdateSupplierDebt extends Migration
                     UPDATE `suppliers` 
                     SET
                     `total_indebtedness` = `total_indebtedness` + NEW.value
-                    WHERE `suppliers` = NEW.suppliers_id;
+                    WHERE `suppliers`.id = NEW.suppliers_id;
                 END
         ');
     }
