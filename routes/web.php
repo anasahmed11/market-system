@@ -95,3 +95,15 @@ Route::get('/401', function () {
     return view('errors.401');
 })->name('admin.access');
 
+//Clear Cache facade value:
+Route::get('/cache', function() {
+    Artisan::call('cache:clear');
+
+    Artisan::call('optimize');
+
+    Artisan::call('route:clear');
+
+    Artisan::call('config:cache');
+
+    return '<h1>Clear cleared</h1>';
+});
