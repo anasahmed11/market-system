@@ -16,8 +16,14 @@
                 @method('PUT')
                 <div class="modal-body">
                    <div id="types-edit"></div>
-                    @include('common.forms.input', ['edit'=> true, 'value'=> $object->name, 'name'=> 'name', 'label'=> 'الاسم'])
-                    @include('common.forms.textarea', ['edit'=> true, 'value'=> $object->description,'name'=> 'description', 'label'=> 'التفاصيل'])      </div>
+                    @include('common.forms.input', [
+                    'edit'=> true,
+                    'value'=> $object->name,
+                    'name'=> 'name',
+                    'label'=> 'الاسم'
+                    ])
+                    @include('common.forms.textarea', ['edit'=> true, 'value'=> $object->description,'name'=> 'description', 'label'=> 'التفاصيل'])
+                </div>
                 <div class="modal-footer">
                     @include('common.forms.close', ['label'=> 'الغاء'])
                     @include('common.forms.submit', ['label'=> 'حفظ'])
