@@ -114,7 +114,7 @@ class InvoicesController extends Controller
             $invoice->supplier_id = $supplier->id;
         } else {
             $invoice = new Invoice();
-            $invoice->customer_id = $supplier->id;
+            $invoice->customer_id = $customer->id;
         }
         $invoice->slug = time() . '-' . $branch->id . '-' . Auth::user()->id . '-';
         $invoice->type_id = $invoicesType->id;
