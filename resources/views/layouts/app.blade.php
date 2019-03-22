@@ -16,6 +16,9 @@
         @yield('before_css')
         @include('layouts.subviews.css')
         @yield('after_css')
+
+        <script src="https://browser.sentry-cdn.com/4.6.4/bundle.min.js" crossorigin="anonymous"></script>
+        <script>Sentry.init({ dsn: 'https://598c2e6499f94912b90b555c002bb5bd@sentry.io/1421218' });</script>
     </head>
 
     <body class="fix-header card-no-border fix-sidebar">
