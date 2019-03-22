@@ -4,7 +4,8 @@
 Auth::routes();
 
 Route::group([
-    'namespace' => 'Backend'
+    'namespace' => 'Backend',
+    'middleware' => 'auth'
 ], function () {
     //dashboard
     Route::resource('/', 'DashboardController');
