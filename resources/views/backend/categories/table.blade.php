@@ -24,7 +24,7 @@
                 </td>
                 <td>{{ $row->name }}</td>
                 <td>
-                    <button url="{{ route('categories.edit', $row->id) }}" parent="@if($row->parent){{ 0 }}@else{{ 1 }}@endif" type-url="{{ route('categories.types.edit', $row->id) }}" class="edit btn btn-warning">تعديل</button>
+                    <button url="{{ route('categories.edit', $row->id) }}" parent="@if($row->parent){{ 0 }}@else{{ 1 }}@endif" type-url="{{ route('categories.cat.types.edit', $row->id) }}" class="edit btn btn-warning">تعديل</button>
                     {{--<form action="{{ route('categories.destroy', $row->id) }}" class="delete-one d-inline-block" method="post" >--}}
                         {{--@csrf--}}
                         {{--@method('DELETE')--}}

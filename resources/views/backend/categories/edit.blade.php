@@ -11,13 +11,13 @@
                 <h4 class="modal-title">تعديل</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <form method="post" action="{{ route('products.update', $object->id) }}" class="form-edit">
+            <form method="post" action="{{ route('categories.update', $object->id) }}" class="form-edit">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
                    <div id="types-edit"></div>
                     @include('common.forms.input', ['edit'=> true, 'value'=> $object->name, 'name'=> 'name', 'label'=> 'الاسم'])
-                    @include('common.forms.textarea', ['edit'=> true, 'value'=> $object->name,'name'=> 'description', 'label'=> 'التفاصيل'])      </div>
+                    @include('common.forms.textarea', ['edit'=> true, 'value'=> $object->description,'name'=> 'description', 'label'=> 'التفاصيل'])      </div>
                 <div class="modal-footer">
                     @include('common.forms.close', ['label'=> 'الغاء'])
                     @include('common.forms.submit', ['label'=> 'حفظ'])

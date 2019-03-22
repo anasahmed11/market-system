@@ -13,6 +13,7 @@
     });
 
     function getCategoryTypesEdit(url) {
+        console.log(url);
         $.ajax({
             type: 'GET',
             url: url,

@@ -42,6 +42,7 @@ Route::group([
     //category
     Route::post('/categories/search', 'CategoriesController@search')->name('categories.search');
     Route::get('/categories/types/edit/{id}', 'CategoriesController@getAllTypesEdit')->name('categories.types.edit');
+    Route::get('/categories/types/cat_edit/{id}', 'CategoriesController@getAllTypesEditCategories')->name('categories.cat.types.edit');
     Route::get('/categories/types', 'CategoriesController@getAllTypes')->name('categories.types');
     Route::get('/categories/parents', 'CategoriesController@getAllParents')->name('categories.parents');
     Route::resource('/categories', 'CategoriesController');

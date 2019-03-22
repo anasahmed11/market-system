@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CategoriesController extends BaseController
@@ -39,7 +40,19 @@ class CategoriesController extends BaseController
             'value'=> 'id',
             'input_label'=> 'الاصنف',
             'label'=> 'name',
-            'object'=> $id,
+            'object'=> Product::find($id)->cat_id,
+            'name'=> 'type'))->render();
+        return response($view);
+    }
+
+    public function getAllTypesEditCategories($id)
+    {
+        $view = view('common.forms.select', array(
+            'options'=> Category::whereNull('parent')->get(),
+            'value'=> 'id',
+            'input_label'=> 'الاصنف',
+            'label'=> 'name',
+            'object'=> Category::find($id)->parent,
             'name'=> 'type'))->render();
         return response($view);
     }
