@@ -13,7 +13,6 @@
     });
 
     function getCategoryTypesEdit(url) {
-        console.log(url);
         $.ajax({
             type: 'GET',
             url: url,
@@ -24,7 +23,10 @@
     }
     $(document).on('click', '.edit', function () {
         var url = $(this).attr('type-url');
-        getCategoryTypesEdit(url);
+        setTimeout(function(){
+            getCategoryTypesEdit(url);
+        }, 1000);
+
     });
 
 </script>
