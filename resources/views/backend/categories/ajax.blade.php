@@ -31,6 +31,9 @@
             $('#types').html('');
             return void (0);
         }
-        getCategoryTypesEdit(url);
+
+        setTimeout(function(){
+            getCategoryTypesEdit(url);
+        }, 1000);
     });
 </script>
