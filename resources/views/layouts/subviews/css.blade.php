@@ -1,6 +1,7 @@
 <!-- Bootstrap Core CSS -->
 <link href="{{ Request::root() }}/backend/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="{{ Request::root() }}/backend/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ Request::root() }}/backend/assets/plugins/datatables/media/css/dataTables.bootstrap4.css">
 <!-- Custom CSS -->
 <link href="{{ Request::root() }}/backend/css/style.css" rel="stylesheet">
 <link href="{{ Request::root() }}/backend/css/rtl.css" rel="stylesheet">

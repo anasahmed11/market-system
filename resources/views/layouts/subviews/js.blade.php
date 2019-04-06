@@ -33,6 +33,18 @@
     $(".select2").select2();
 </script>
 
+<script src="{{ Request::root() }}/backend/assets/plugins/datatables/datatables.min.js"></script>
+<script>
+
+    $('#main-table table').DataTable({
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+
+</script>
+
 <!-- ============================================================== -->
 <!-- ajax -->
 <!-- ============================================================== -->

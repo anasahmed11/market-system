@@ -24,7 +24,10 @@ class InvoicesController extends Controller
 
     public function index()
     {
-        return 'index';
+        $data = Invoice::orderBy('created_at', 'desc')->get();
+        $table = view('backend.invoices.table', compact('data'))->render();
+
+        return view('backend.invoices.index', compact('table'));
     }
 
 

@@ -5,7 +5,35 @@
 @endsection
 
 @section('content')
+    <style>
+        .printing{
+            display: none;
+        }
+        @media print {
+            .btn, thead, footer{
+                display: none;
+            }
+
+            .printing {
+                display: block;
+            }
+        }
+    </style>
     <div class="row block-ltr text-right" >
+        <div class="col-md-4">
+            <div class="printing">
+{{--                <h3 style="text-align: left !important;">اسم الشركة</h3>--}}
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="printing">
+
+            </div>
+        </div>
         <div class="col-md-4">
             @include('common.forms.select',
                 array(
@@ -107,6 +135,7 @@
         <div class="col-md-3 text-center">
             <button class="btn btn-success" id="save-invoice">حفظ</button>
             <button class="btn btn-danger" onclick="location.reload()">فاتورة جديدة</button>
+            <button class="btn btn-info" onclick="window.print();">طباعة</button>
         </div>
     </div>
 

@@ -76,6 +76,11 @@
                                     جملة
                                 </a>
                             </li>
+                            <li class="bg-info">
+                                <a class="nav-link btn btn-info" href="{{ route('invoices.index') }}">
+                                    كل الفواتير
+                                </a>
+                            </li>
                         </ul>
 
                     </li>
