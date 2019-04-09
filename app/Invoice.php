@@ -15,4 +15,19 @@ class Invoice extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(InvoicesType::class, 'type_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(InvoiceProduct::class, 'invoice_id');
+    }
 }

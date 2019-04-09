@@ -30,6 +30,66 @@ class InvoicesController extends Controller
         return view('backend.invoices.index', compact('table'));
     }
 
+    public function edit(Invoice $invoice)
+    {
+        switch ($invoice->type->slug) {
+            case 'selling-2':
+            case 'selling-1':
+                $customerView = view('common.forms.select', array(
+                    'options'=> Customer::all(),
+                    'value'=> 'id',
+                    'object' => $invoice->customer->id,
+                    'input_label'=> 'اسم العميل',
+                    'label'=> 'nickname',
+                    'name'=> 'customer'))->render();
+                $categoryWithProducts = Category::Where('parent', '!=', null)
+                    ->orderBy('name', 'asc')
+                    ->get();
+
+            $products = [];
+            $productIds = [];
+            foreach ($invoice->products as $product) {
+                $row = $product->product->toArray();
+                $row['quantity'] = $product->quantity;
+                $row['price'] = $product->price;
+                $products[] = $row;
+                $productIds[] = $product->product_id;
+            }
+
+                $view = view('backend.invoices.edit', [
+                    'js_products' => json_encode($products),
+                    'js_products_ids' => json_encode($productIds),
+                    'invoice'=> $invoice,
+                    'region_top_right'=> $customerView,
+                    'branches'=> Branch::all(),
+                    'invoicesType'=> $invoice->type,
+                    'categoryWithProducts'=> $categoryWithProducts
+                ]);
+                break;
+            case 'buying-1':
+                $vendorsView = view('common.forms.select', array(
+                    'options'=> Supplier::all(),
+                    'value'=> 'id',
+                    'input_label'=> 'اسم المورد',
+                    'label'=> 'nickname',
+                    'name'=> 'supplier'))->render();
+                $categoryWithProducts = Category::Where('parent', '!=', null)
+                    ->orderBy('name', 'asc')
+                    ->get();
+
+                $view = view('backend.invoices.create', [
+                    // @TODO pagination or search
+                    'region_top_right'=> $vendorsView,
+                    'branches'=> Branch::all(),
+                    'invoicesType'=> $invoicesType,
+                    'categoryWithProducts'=> $categoryWithProducts
+                ]);
+                break;
+        }
+
+        return $view;
+    }
+
 
     public function create(InvoicesType $invoicesType)
     {
@@ -223,44 +283,5 @@ class InvoicesController extends Controller
             'title' => 'تم الحفظ',
             'message' =>  $invoice->slug . $invoice->id . ' تم حفظ الفاتورة بكود '
         ];
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

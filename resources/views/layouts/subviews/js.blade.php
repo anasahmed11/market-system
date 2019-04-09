@@ -36,13 +36,14 @@
 <script src="{{ Request::root() }}/backend/assets/plugins/datatables/datatables.min.js"></script>
 <script>
 
-    $('#main-table table').DataTable({
+    $('#invoice-table').DataTable({
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
     $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 
+    $.fn.dataTableExt.sErrMode = 'throw';
 </script>
 
 <!-- ============================================================== -->

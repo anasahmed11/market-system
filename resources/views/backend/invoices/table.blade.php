@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table id="main-table-data"
+    <table id="invoice-table"
            class="display nowrap table table-hover table-striped table-bordered"
            cellspacing="0"
            width="100%">
@@ -36,6 +36,7 @@
                 </td>
                 <td>{{ $row->total }}</td>
                 <td>
+                    <a href="{{ route('invoices.edit', $row->id) }}" class="btn btn-info">تعديل</a>
 {{--                    <button url="{{ route('invoices.index') }}" class="edit btn btn-warning">تعديل</button>--}}
                     {{--<form action="{{ route('categories.destroy', $row->id) }}" class="delete-one d-inline-block" method="post" >--}}
                         {{--@csrf--}}

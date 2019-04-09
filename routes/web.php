@@ -56,6 +56,7 @@ Route::group([
         Route::get('/index', 'InvoicesController@index')->name('index');
         Route::get('/create/{invoicesType}', 'InvoicesController@create')->name('create');
         Route::post('/store/{invoicesType}', 'InvoicesController@store')->name('store');
+        Route::get('/edit/{invoice}', 'InvoicesController@edit')->name('edit');
     });
 });
 
