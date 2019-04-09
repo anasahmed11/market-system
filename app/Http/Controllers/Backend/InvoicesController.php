@@ -66,25 +66,25 @@ class InvoicesController extends Controller
                     'categoryWithProducts'=> $categoryWithProducts
                 ]);
                 break;
-            case 'buying-1':
-                $vendorsView = view('common.forms.select', array(
-                    'options'=> Supplier::all(),
-                    'value'=> 'id',
-                    'input_label'=> 'اسم المورد',
-                    'label'=> 'nickname',
-                    'name'=> 'supplier'))->render();
-                $categoryWithProducts = Category::Where('parent', '!=', null)
-                    ->orderBy('name', 'asc')
-                    ->get();
-
-                $view = view('backend.invoices.create', [
-                    // @TODO pagination or search
-                    'region_top_right'=> $vendorsView,
-                    'branches'=> Branch::all(),
-                    'invoicesType'=> $invoicesType,
-                    'categoryWithProducts'=> $categoryWithProducts
-                ]);
-                break;
+//            case 'buying-1':
+//                $vendorsView = view('common.forms.select', array(
+//                    'options'=> Supplier::all(),
+//                    'value'=> 'id',
+//                    'input_label'=> 'اسم المورد',
+//                    'label'=> 'nickname',
+//                    'name'=> 'supplier'))->render();
+//                $categoryWithProducts = Category::Where('parent', '!=', null)
+//                    ->orderBy('name', 'asc')
+//                    ->get();
+//
+//                $view = view('backend.invoices.create', [
+//                    // @TODO pagination or search
+//                    'region_top_right'=> $vendorsView,
+//                    'branches'=> Branch::all(),
+//                    'invoicesType'=> $invoicesType,
+//                    'categoryWithProducts'=> $categoryWithProducts
+//                ]);
+//                break;
         }
 
         return $view;

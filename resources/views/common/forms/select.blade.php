@@ -1,7 +1,7 @@
 @if (!isset($group))
     <div class="form-group">
         <label for="{{ $name }}" class="control-label">{{ $input_label }}:</label>
-        <select name="{{ $name }}" id="{{ $name }}" class="form-control">
+        <select name="{{ $name }}" id="{{ $name }}" class="select2 form-control">
             @foreach($options as $option)
                 @if (isset($object) && $option->$value == $object)
                     <option value="{{ $option->$value }}" selected>{{ $option->$label }}</option>
@@ -14,7 +14,7 @@
 @elseif($group)
     <div class="form-group">
         <label for="{{ $name }}" class="control-label">{{ $input_label }}:</label>
-        <select name="{{ $name }}" id="{{ $name }}" class="form-control">
+        <select name="{{ $name }}" id="{{ $name }}" class="select2 form-control">
             @foreach($options as $option)
                 <optgroup label="{{ $option->name }}">
                     @foreach($option->rowChilds as $sub)

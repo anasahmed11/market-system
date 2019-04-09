@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="add new and searching">
-      <change afterPath="$PROJECT_DIR$/resources/views/backend/invoices/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/InvoicesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/InvoicesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/InvoiceProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/InvoiceProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/js.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="add new and searching" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -478,12 +469,12 @@
       <workItem from="1554538414290" duration="2569000" />
       <workItem from="1554548410712" duration="747000" />
       <workItem from="1554671592772" duration="2136000" />
-      <workItem from="1554756675106" duration="4564000" />
+      <workItem from="1554756675106" duration="4888000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143940000" />
+    <option name="totallyTimeSpent" value="144264000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -496,9 +487,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="706" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23863636" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23863636" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -513,7 +503,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3291367" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32761577" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3561151" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3561151" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3291367" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
