@@ -201,14 +201,16 @@ class InvoicesController extends Controller
             return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
         }
 
-        // save Invoice Product
-        if ($invoicesType->slug === 'buying-1') {
-            $invoiceProduct = new SuplliersInvoiceProduct();
-        } else {
-            $invoiceProduct = new InvoiceProduct();
-        }
+
 
         foreach ($request['products'] as $invProduct) {
+            // save Invoice Product
+            if ($invoicesType->slug === 'buying-1') {
+                $invoiceProduct = new SuplliersInvoiceProduct();
+            } else {
+                $invoiceProduct = new InvoiceProduct();
+            }
+
             if (!$product = Product::findOrFail($invProduct['id'])) continue;
 
             $invoiceProduct->invoice_id = $invoice->id;

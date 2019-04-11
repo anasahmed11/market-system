@@ -44,6 +44,8 @@
     $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 
     $.fn.dataTableExt.sErrMode = 'throw';
+
+    $('.datepicker').datepicker();
 </script>
 
 <!-- ============================================================== -->
