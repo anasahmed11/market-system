@@ -17,12 +17,6 @@
             .printing {
                 display: block;
             }
-
-            .date-invoice{
-                width: 50%;
-                display: block;
-
-            }
         }
     </style>
     <div class="row block-ltr text-right" >
@@ -69,6 +63,7 @@
     <hr>
     <div class="table-product table-responsive table-bordered">
         <table class="table color-table inverse-table">
+
             <thead>
             <tr>
                 <th class="product-name">
@@ -123,6 +118,13 @@
             </tr>
             </thead>
             <tbody id="invoice-products">
+                <tr style="background: #c3c3c3">
+                    <td>المنتج</td>
+                    <td>سعر المنتج</td>
+                    <td>الكمية</td>
+                    <td>اجمالي السعر</td>
+                    <td>  </td>
+                </tr>
             @foreach($invoice->products as $product)
                 <tr>
                     <td>{{ $product->product->name }}</td>
