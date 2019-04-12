@@ -17,6 +17,12 @@
             .printing {
                 display: block;
             }
+
+            .date-invoice{
+                width: 50%;
+                display: block;
+
+            }
         }
     </style>
     <div class="row block-ltr text-right" >
@@ -34,7 +40,7 @@
 
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             @include('common.forms.select',
                 array(
                       'options'=> $branches,
@@ -46,7 +52,7 @@
                 )
             )
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6 date-invoice">
             @include('common.forms.input', [
             'label'=> 'التاريخ',
             'name'=> 'date',
@@ -54,7 +60,7 @@
             'value'=> date('Y-m-d', strtotime($invoice->date))
             ])
         </div>
-        <div class="col-md-4 region-top-right">
+        <div class="col-md-6 region-top-right">
             @isset($region_top_right)
                 {!! $region_top_right !!}
             @endisset
