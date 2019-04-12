@@ -40,7 +40,7 @@ class InvoicesController extends Controller
                     'value'=> 'id',
                     'object' => $invoice->customer->id,
                     'input_label'=> 'اسم العميل',
-                    'label'=> 'nickname',
+                    'label'=> ['nickname', 'f_name', 'l_name'],
                     'name'=> 'customer'))->render();
                 $categoryWithProducts = Category::Where('parent', '!=', null)
                     ->orderBy('name', 'asc')
@@ -102,7 +102,7 @@ class InvoicesController extends Controller
                     'options'=> Customer::all(),
                     'value'=> 'id',
                     'input_label'=> 'اسم العميل',
-                    'label'=> 'nickname',
+                    'label'=> ['nickname', 'f_name', 'l_name'],
                     'name'=> 'customer'))->render();
                 $categoryWithProducts = Category::Where('parent', '!=', null)
                                                     ->orderBy('name', 'asc')
