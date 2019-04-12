@@ -34,7 +34,7 @@
 
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             @include('common.forms.select',
                 array(
                       'options'=> $branches,
@@ -45,10 +45,10 @@
                 )
             )
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             @include('common.forms.input', ['label'=> 'التاريخ', 'name'=> 'date', 'type'=> 'date'])
         </div>
-        <div class="col-md-4 region-top-right">
+        <div class="col-md-6 region-top-right">
             @isset($region_top_right)
                 {!! $region_top_right !!}
             @endisset
@@ -111,6 +111,13 @@
             </tr>
             </thead>
             <tbody id="invoice-products">
+            <tr style="background: #c3c3c3">
+                <td>المنتج</td>
+                <td>سعر المنتج</td>
+                <td>الكمية</td>
+                <td>اجمالي السعر</td>
+                <td>  </td>
+            </tr>
 
             </tbody>
         </table>
