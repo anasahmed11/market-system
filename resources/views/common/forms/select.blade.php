@@ -6,9 +6,7 @@
                 @if (isset($object) && $option->$value == $object)
                     <option value="{{ $option->$value }}" selected>
                         @if (is_array($label))
-                            @foreach($label as $item)
-                                {{ $option->$item }}
-                            @endforeach
+                            @foreach($label as $item){{ $option->$item }} @endforeach
                         @else
                             {{ $option->$label }}
                         @endif
@@ -17,9 +15,7 @@
                 @else
                     <option value="{{ $option->$value }}">
                         @if (is_array($label))
-                            @foreach($label as $item)
-                                {{ $option->$item }}
-                            @endforeach
+                            @foreach($label as $item){{ $option->$item }} @endforeach
                         @else
                             {{ $option->$label }}
                         @endif
@@ -38,9 +34,7 @@
                         @if (isset($object) && $sub->$value == $object)
                             <option value="{{ $sub->$value }}" selected>
                                 @if (is_array($label))
-                                    @foreach($label as $item)
-                                        {{ $option->$item }}
-                                    @endforeach
+                                    @foreach($label as $item){{ $option->$item }} @endforeach
                                 @else
                                     {{ $sub->$label }}
                                 @endif
@@ -48,9 +42,7 @@
                         @else
                             <option value="{{ $sub->$value }}">
                                 @if (is_array($label))
-                                    @foreach($label as $item)
-                                        {{ $option->$item }}
-                                    @endforeach
+                                    @foreach($label as $item){{ $option->$item }} @endforeach
                                 @else
                                     {{ $sub->$label }}
                                 @endif
