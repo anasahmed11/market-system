@@ -459,15 +459,18 @@ class InvoicesController extends Controller
 //            $debt->supplier_id = $supplier->id;
         } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
             $debt = new Debt();
-            $debt->debts_types_id = 1;
+            $debt->debts_types_id = 2;
             $debt->customer_id = $customer->id;
         }
 
         $debt->note = $invoice->slug . $invoice->id;
-        $debt->value = $invoice->remaining - $invoiceRemaining;// calculate a deference between a old debt and new
+        $debt->value = $invoice->remaining * -1;// calculate a deference between a old debt and new
         $debt->date = date('Y-m-d h:i:s');
         $debt->save();
 
+        $invoice->delete();
+
+        return back();
     }
 
     private function deleteProductFromInvoiceByInvoice(Invoice $invoice)
