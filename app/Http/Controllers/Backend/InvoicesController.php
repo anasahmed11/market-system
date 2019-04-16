@@ -91,7 +91,6 @@ class InvoicesController extends Controller
         return $view;
     }
 
-
     public function create(InvoicesType $invoicesType)
     {
         if (!$invoicesType) return redirect()->route('invoices.index');
@@ -434,6 +433,41 @@ class InvoicesController extends Controller
             'title' => 'تم الحفظ',
             'message' =>  $invoice->slug . $invoice->id . ' تم حفظ الفاتورة بكود '
         ];
+    }
+
+    public function delete(Invoice $invoice)
+    {
+        $this->deleteProductFromInvoiceByInvoice($invoice);
+
+        $invoicesType = $invoice->type;
+
+        if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+            $customer = $invoice->customer;
+            if (!$customer) {
+                $errors[] = 'لم يتم العثور علي العميل';
+            }
+        } elseif ($invoicesType->slug === 'buying-1') {
+//            $supplier = Supplier::findOrFail($request['supplier_id']);
+//            if (!$supplier) {
+//                $errors[] = 'لم يتم العثور علي المورد';
+//            }
+        }
+
+        if ($invoicesType->slug === 'buying-1') {
+//            $debt = new SupplierDebt();
+//            $debt->debts_types_id = 1;
+//            $debt->supplier_id = $supplier->id;
+        } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+            $debt = new Debt();
+            $debt->debts_types_id = 1;
+            $debt->customer_id = $customer->id;
+        }
+
+        $debt->note = $invoice->slug . $invoice->id;
+        $debt->value = $invoice->remaining - $invoiceRemaining;// calculate a deference between a old debt and new
+        $debt->date = date('Y-m-d h:i:s');
+        $debt->save();
+
     }
 
     private function deleteProductFromInvoiceByInvoice(Invoice $invoice)
