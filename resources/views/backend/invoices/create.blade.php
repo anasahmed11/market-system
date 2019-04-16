@@ -261,11 +261,11 @@
                 if (result.value) {
                     $('#row-'+rowId).remove();
                     const filtered = invoiceProductsArray.filter(function(value){
-                        return value !== rowId;
+                        return value != rowId;
                     });
 
                     const filteredProducts = invoiceProductsWithAllDetails.filter(function(value){
-                        return value.id !== rowId;
+                        return value.id != rowId;
                     });
 
                     invoiceProductsArray = filtered;

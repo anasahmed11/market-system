@@ -126,11 +126,11 @@
                     <td>  </td>
                 </tr>
             @foreach($invoice->products as $product)
-                <tr>
+                <tr id="row-{{ $product->product->id }}">
                     <td>{{ $product->product->name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->quantity }}</td>
-                    <td>{{ $product->quantity * $product->price }}</td>
+                    <td class="product-total">{{ $product->quantity * $product->price }}</td>
                     <td><button class="btn btn-danger delete-row" row-id="{{ $product->product->id }}">حذف</button></td>
                 </tr>
             @endforeach
@@ -187,7 +187,6 @@
         </div>
         <div class="col-md-3 text-center">
             <button class="btn btn-success" id="save-invoice">حفظ</button>
-            <button class="btn btn-danger" onclick="location.reload()">فاتورة جديدة</button>
             <button class="btn btn-info" onclick="window.print();">طباعة</button>
         </div>
     </div>
@@ -200,6 +199,7 @@
         let invoiceProductsArray = {!! $js_products_ids !!},
             invoiceProductsWithAllDetails = {!! $js_products !!};
 
+        console.log(invoiceProductsWithAllDetails);
         const invoiceTypeSlug = '{{ $invoicesType->slug }}';
 
         //events
@@ -307,11 +307,11 @@
                 if (result.value) {
                     $('#row-'+rowId).remove();
                     const filtered = invoiceProductsArray.filter(function(value){
-                        return value !== rowId;
+                        return value != rowId;
                     });
 
                     const filteredProducts = invoiceProductsWithAllDetails.filter(function(value){
-                        return value.id !== rowId;
+                        return value.id != rowId;
                     });
 
                     invoiceProductsArray = filtered;
@@ -345,7 +345,7 @@
             };
 
             $.ajax({
-                url: '{{ route('invoices.store', $invoicesType->slug) }}',
+                url: '{{ route('invoices.update', $invoice) }}',
                 type: 'POST',
                 data: formData,
                 success: function (res) {
@@ -392,6 +392,7 @@
         function validInvoice() {
             //
         }
+
     </script>
     <script>
         //@TODO select2 ajax
