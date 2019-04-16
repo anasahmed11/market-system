@@ -52,6 +52,7 @@ class InvoicesController extends Controller
                 $row = $product->product->toArray();
                 $row['quantity'] = $product->quantity;
                 $row['price'] = $product->price;
+                $row['product_total'] = $product->price * $product->quantity;
                 $products[] = $row;
                 $productIds[] = $product->product_id;
             }
@@ -109,7 +110,6 @@ class InvoicesController extends Controller
                                                     ->get();
 
                 $view = view('backend.invoices.create', [
-                    // @TODO pagination or search
                     'region_top_right'=> $customerView,
                     'branches'=> Branch::all(),
                     'invoicesType'=> $invoicesType,
@@ -128,7 +128,6 @@ class InvoicesController extends Controller
                     ->get();
 
                 $view = view('backend.invoices.create', [
-                    // @TODO pagination or search
                     'region_top_right'=> $vendorsView,
                     'branches'=> Branch::all(),
                     'invoicesType'=> $invoicesType,
@@ -201,8 +200,6 @@ class InvoicesController extends Controller
             return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
         }
 
-
-
         foreach ($request['products'] as $invProduct) {
             // save Invoice Product
             if ($invoicesType->slug === 'buying-1') {
@@ -242,7 +239,7 @@ class InvoicesController extends Controller
                 //TODO Error Log
             }
 
-            $invoice->sub_total += $invoiceProduct->sub_total; // calculate invoice sub total
+            $invoice->sub_total = $invoiceProduct->sub_total; // calculate invoice sub total
             if ($invoicesType->slug === 'buying-1') {
                 $product->quantity += $invoiceProduct->quantity; // calculate stock
             } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
@@ -285,5 +282,168 @@ class InvoicesController extends Controller
             'title' => 'تم الحفظ',
             'message' =>  $invoice->slug . $invoice->id . ' تم حفظ الفاتورة بكود '
         ];
+    }
+
+    public function update(Request $request, Invoice $invoice)
+    {
+        if (!$invoice) return ['status' => false, 'title' => 'حدث خطاء', 'message' => 'لم يتم تحديد الفاتورة'];
+
+        $errors = [];
+
+        $invoicesType = $invoice->type;
+
+        if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+            $customer = Customer::findOrFail($request['customer_id']);
+            if (!$customer) {
+                $errors[] = 'لم يتم العثور علي العميل';
+            }
+        } elseif ($invoicesType->slug === 'buying-1') {
+            $supplier = Supplier::findOrFail($request['supplier_id']);
+            if (!$supplier) {
+                $errors[] = 'لم يتم العثور علي المورد';
+            }
+        }
+
+        $branch = Branch::findOrFail($request['branch_id']);
+        if (!$branch) {
+            $errors[] = 'لم يتم العثور علي الفرع';
+        }
+
+        if (count($errors)) {
+            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
+        }
+        // save Invoice info
+        if ($invoicesType->slug === 'buying-1') {
+            $invoice = new SuppliersInvoice();
+            $invoice->supplier_id = $supplier->id;
+        } else {
+            $invoice->customer_id = $customer->id;
+        }
+        $invoice->slug = time() . '-' . $branch->id . '-' . Auth::user()->id . '-';
+        $invoice->type_id = $invoicesType->id;
+        $invoice->user_id = Auth::user()->id;
+        $invoice->branch_id = $branch->id;
+        $invoice->date = $request['date'] ? $request['date'] : date('Y-m-d h:i:s');
+        $invoice->added_value = $request['added_value'];
+        $invoice->discount_value = $request['discount_value'];
+        $invoice->payed = $request['payed'];
+        $invoiceRemaining = $invoice->remaining;
+        $invoice->remaining = $request['remaining'];
+        $invoice->note = $request['note'];
+
+        try {
+            $invoice->saveOrFail();
+        } catch (\Throwable $e) {
+            $errors[] = 'حدث خطاء في حفظ الفاتورة';
+//            $errors[] = $e->getMessage();
+        }
+
+        if (count($errors)) {
+            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
+        }
+
+        //remove all products related with this invoice and save a new products
+        //remove all
+        $this->deleteProductFromInvoiceByInvoice($invoice);
+        //add new products
+        foreach ($request['products'] as $invProduct) {
+            // save Invoice Product
+            if (!$product = Product::findOrFail($invProduct['id'])) continue;
+
+            if ($invoicesType->slug === 'buying-1') {
+                $invoiceProduct = new SuplliersInvoiceProduct();
+            } else {
+                $invoiceProduct = InvoiceProduct::where([
+                    'invoice_id'=> $invoice->id,
+                    'product_id'=> $product->id
+                    ])->get()->first()
+                ;
+                if (!$invoiceProduct) $invoiceProduct = new InvoiceProduct();
+            }
+
+            $invoiceProduct->invoice_id = $invoice->id;
+            $invoiceProduct->product_id = $product->id;
+            $invoiceProduct->category_id = $product->cat_id;
+
+            if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+                $invoiceProduct->quantity = $invProduct['quantity'] > $product->quantity ?
+                    $product->quantity : $invProduct['quantity']; // @TODO quantity validation
+            } elseif ($invoicesType->slug === 'buying-1') {
+                $invoiceProduct->quantity = $invProduct['quantity'];
+            }
+            if ($invoicesType->slug === 'selling-1') {
+                $invoiceProduct->price = $product->price;
+            } elseif($invoicesType->slug === 'selling-2') {
+                $invoiceProduct->price = $product->price2;
+            } elseif ($invoicesType->slug === 'buying-1') {
+                $invoiceProduct->price = $product['price'];
+            }
+
+            $invoiceProduct->sub_total = $invoiceProduct->price * $invoiceProduct->quantity;
+            try {
+                if (!$invoiceProduct->saveOrFail()) {
+                    $errors[] = " {$product->name}حدث خطاء في حفظ ";
+                    continue;
+                }
+            } catch (\Throwable $e) {
+                $errors[] = " {$product->name}حدث خطاء في حفظ ";
+                $errors[] = $e->getMessage();
+                //TODO Error Log
+            }
+
+            $invoice->sub_total = $request['sub_total']; // calculate invoice sub total
+            if ($invoicesType->slug === 'buying-1') {
+                $product->quantity += $invoiceProduct->quantity; // calculate stock
+            } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+                $product->quantity -= $invoiceProduct->quantity; // calculate stock
+            }
+            $product->save();
+        }
+        $invoice->total = $request['total']; // calculate invoice total
+
+        try{
+            if ($invoicesType->slug === 'buying-1') {
+                $debt = new SupplierDebt();
+                $debt->debts_types_id = 1;
+                $debt->supplier_id = $supplier->id;
+            } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+                $debt = new Debt();
+                $debt->debts_types_id = 1;
+                $debt->customer_id = $customer->id;
+            }
+
+            $debt->note = $invoice->slug . $invoice->id;
+            $debt->value = $invoice->remaining - $invoiceRemaining;// calculate a deference between a old debt and new
+            $debt->date = date('Y-m-d h:i:s');
+            $debt->save();
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+        try {
+            if (!$invoice->saveOrFail()) $errors[] = 'حدث خطاء في حفظ اجمالي افاتورة';
+        } catch (\Throwable $e) {
+            $errors[] = "{$product->name}حدث خطاء في حفظ ";
+            //TODO Error Log
+        }
+        if (count($errors)) {
+            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ', $errors)];
+        }
+        // all done
+        return [
+            'status' => true,
+            'title' => 'تم الحفظ',
+            'message' =>  $invoice->slug . $invoice->id . ' تم حفظ الفاتورة بكود '
+        ];
+    }
+
+    private function deleteProductFromInvoiceByInvoice(Invoice $invoice)
+    {
+        foreach (InvoiceProduct::where('invoice_id', $invoice->id)->get() as $invoiceProduct) {
+            if ($product = Product::find($invoiceProduct->product_id)) {
+                $product->quantity += $invoiceProduct->quantity;
+                $product->save();
+            }
+        }
+        InvoiceProduct::where('invoice_id', $invoice->id)->delete();
     }
 }
