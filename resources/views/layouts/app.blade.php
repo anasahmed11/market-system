@@ -57,6 +57,36 @@
                 <!-- ============================================================== -->
                 <ul class="navbar-nav mr-auto" >
                     <!-- This is  -->
+                    <li class="nav-item dropdown bg-danger">
+                        <a class="dropdown-toggle d-inline-block"
+                           data-toggle="dropdown"
+                           href="#"
+                           style="height: 100%; line-height: 35px">
+                ادارة الموظفين 
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="bg-success">
+                                <a class="nav-link btn btn-success" href="{{ route('employees.index') }}">
+                                    الموظفين 
+                                </a>
+                            </li>
+                            <li class="bg-info">
+                                <a class="nav-link btn btn-info" href="{{ route('expenses.index') }}">
+                                    المصروفات
+                                </a>
+                            </li>
+                            <li class="bg-info">
+                                <a class="nav-link btn btn-info" href="#">
+                                    الورديات 
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    
+
                     <li class="nav-item dropdown bg-success">
                         <a class="dropdown-toggle d-inline-block"
                            data-toggle="dropdown"
@@ -94,6 +124,7 @@
                             <i class="ti-package"></i>المنتجات
                         </a>
                     </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('customers.index') }}">
                             <i class="ti-face-smile"></i>العملاء

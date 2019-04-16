@@ -47,6 +47,14 @@ Route::group([
     Route::get('/categories/parents', 'CategoriesController@getAllParents')->name('categories.parents');
     Route::resource('/categories', 'CategoriesController');
 
+    //employees
+    Route::post('/employees/search', 'EmployeeController@search')->name('employees.search');
+    Route::resource('/employees', 'EmployeeController');
+
+       //expenses
+       Route::post('/expenses/search', 'ExpenseController@search')->name('expenses.search');
+       Route::resource('/expenses', 'ExpenseController');
+
     //invoices
 //    Route::resource('/invoices', 'InvoicesController');
     Route::group([

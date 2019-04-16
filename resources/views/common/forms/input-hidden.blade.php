@@ -7,7 +7,7 @@
         @endif
         name="{{ $name }}"
         @if (isset($value))
-        value="{{ $value }}"
+        value="$value"
         @endif
         @isset ($attrs)
             @foreach ($attrs as $attr)

@@ -10,6 +10,7 @@ use App\Http\Requests\StoreCustomer;
 use http\Client\Response;
 use Illuminate\Http\Request;
 
+
 class CustomersController extends BaseController
 {
 
