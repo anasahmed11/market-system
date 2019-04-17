@@ -51,9 +51,13 @@ Route::group([
     Route::post('/employees/search', 'EmployeeController@search')->name('employees.search');
     Route::resource('/employees', 'EmployeeController');
 
-       //expenses
-       Route::post('/expenses/search', 'ExpenseController@search')->name('expenses.search');
-       Route::resource('/expenses', 'ExpenseController');
+    //expenses
+    Route::post('/expenses/search', 'ExpenseController@search')->name('expenses.search');
+    Route::resource('/expenses', 'ExpenseController');
+
+    //shifts
+    Route::post('/shifts/search', 'ShiftController@search')->name('shifts.search');
+    Route::resource('/shifts', 'ShiftController');
 
     //invoices
 //    Route::resource('/invoices', 'InvoicesController');
