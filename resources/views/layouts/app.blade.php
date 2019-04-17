@@ -77,12 +77,7 @@
                                 </a>
                             </li>
                             
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('shifts.index') }}">
-                                    الورديات 
-
-                                </a>
-                            </li>
+                           
                           
                         </ul>
 
