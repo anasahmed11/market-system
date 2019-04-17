@@ -65,7 +65,6 @@
                 االمخزن                            <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-<<<<<<< HEAD
                             <li class="bg-success">
                                 <a class="nav-link btn btn-success" href="{{ route('report.storeState') }}">
                                     حاللة المخزن 
@@ -74,21 +73,14 @@
                             <li class="bg-info">
                                 <a class="nav-link btn btn-info" href="{{ route('report.outOfStock') }}">
                                     النواقص
-=======
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('employees.index') }}">
-                                    الموظفين 
+
                                 </a>
                             </li>
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('expenses.index') }}">
-                                    المصروفات
-                                </a>
-                            </li>
+                            
                             <li class="">
                                 <a class="nav-link btn" href="{{ route('shifts.index') }}">
                                     الورديات 
->>>>>>> ee315f6d7d571e6f80efa173ac3e3acab75c8154
+
                                 </a>
                             </li>
                           
