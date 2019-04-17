@@ -25,8 +25,13 @@ class ReportController extends Controller
      */
     public function getStoreState(Request $request)
     {
-        $data = Product::orderBy('created_at', 'desc')->paginate(10);
+        $data = Product::paginate(10);
+
         $table = view("backend.reports.table", compact('data'))->render();
+        if ($request->ajax()) {
+            return view('backend.reports.table', compact('data'));
+        }
+
 
         return view("backend.reports.stockState", compact('table'));
     }
@@ -45,6 +50,10 @@ class ReportController extends Controller
     
            // dump($data);die;
         $table = view("backend.reports.table", compact('data'))->render();
+        
+        if ($request->ajax()) {
+            return view('backend.reports.table', compact('data'));
+        }
 
        return view("backend.reports.outOfStock", compact('table'));
     }
