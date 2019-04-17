@@ -7,6 +7,7 @@ use App\Branch;
 use App\Shift;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 
 
@@ -27,6 +28,9 @@ class EmployeeController extends BaseController
         parent::__construct();
         $this->model = Employee::class;
         $this->view = 'employees';
+
+        View::share('branches', Branch::all());
+        View::share('shifts', Shift::all());
 
     }
 

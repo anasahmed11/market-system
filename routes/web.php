@@ -59,6 +59,13 @@ Route::group([
     Route::post('/shifts/search', 'ShiftController@search')->name('shifts.search');
     Route::resource('/shifts', 'ShiftController');
 
+      //Report controller 
+
+      Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');
+      Route::get('/report/outOfStock', 'ReportController@getOutOfStock')->name('report.outOfStock');
+
+     
+
     //invoices
 //    Route::resource('/invoices', 'InvoicesController');
     Route::group([

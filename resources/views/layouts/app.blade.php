@@ -62,25 +62,20 @@
                            data-toggle="dropdown"
                            href="#"
                            style="height: 100%; line-height: 35px">
-                ادارة الموظفين 
-                            <b class="caret"></b>
+                االمخزن                            <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="bg-success">
-                                <a class="nav-link btn btn-success" href="{{ route('employees.index') }}">
-                                    الموظفين 
+                                <a class="nav-link btn btn-success" href="{{ route('report.storeState') }}">
+                                    حاللة المخزن 
                                 </a>
                             </li>
                             <li class="bg-info">
-                                <a class="nav-link btn btn-info" href="{{ route('expenses.index') }}">
-                                    المصروفات
+                                <a class="nav-link btn btn-info" href="{{ route('report.outOfStock') }}">
+                                    النواقص
                                 </a>
                             </li>
-                            <li class="bg-info">
-                                <a class="nav-link btn btn-success" href="{{ route('shifts.index') }}">
-                                    الورديات 
-                                </a>
-                            </li>
+                          
                         </ul>
 
                     </li>
@@ -148,6 +143,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('categories.index') }}">
                             <i class="ti-import"></i>الاصناف
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('employees.index') }}">
+                            <i class="ti-face-smile"></i>الموظفين
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('expenses.index') }}">
+                            <i class="ti-money"></i>المصروفات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shifts.index') }}">
+                            <i class="ti-time"></i>الورديات
                         </a>
                     </li>
                 </ul>

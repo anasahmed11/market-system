@@ -8,7 +8,7 @@ use App\Employee;
 use App\Expense;
 use App\Expenses_type;
 use Auth;
-
+use Illuminate\Support\Facades\View;
 
 class ExpenseController extends BaseController
 {
@@ -18,10 +18,18 @@ class ExpenseController extends BaseController
 
     public function __construct()
     {
-        $this->searchTypes = [ ];
+        $this->searchTypes = [
+            'payment_date' => 'تاريخ الدفع',
+            'notes' => 'ملاحظات',
+         ];
         parent::__construct();
         $this->model = Expense::class;
         $this->view = 'expenses';
+
+      
+        
+        View::share('employees', Employee::all());
+        View::share('expenses_type', Expenses_type::all());
         
 
     }
