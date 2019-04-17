@@ -22,12 +22,16 @@ use Illuminate\Support\Facades\Auth;
 class InvoicesController extends Controller
 {
 
-    public function index()
+    public function index(InvoicesType $invoicesType)
     {
-        $data = Invoice::orderBy('created_at', 'desc')->get();
-        $table = view('backend.invoices.table', compact('data'))->render();
+        $data = $invoicesType->slug != 'buying-1'?
+            Invoice::orderBy('created_at', 'desc')->get() :
+            SuppliersInvoice::orderBy('created_at', 'desc')->get();
 
-        return view('backend.invoices.index', compact('table'));
+        $table = view('backend.invoices.table', compact('data', 'invoicesType'))->render();
+
+
+        return view('backend.invoices.index', compact('table', 'invoicesType'));
     }
 
     public function edit(Invoice $invoice)
@@ -482,5 +486,25 @@ class InvoicesController extends Controller
             }
         }
         InvoiceProduct::where('invoice_id', $invoice->id)->delete();
+    }
+
+    public function filter(Request $request, InvoicesType $invoicesType)
+    {
+        if (!$request['from'] || !$request['to'])
+            return redirect(route('invoices.index', $invoicesType->slug));
+
+        $data = $invoicesType->slug != 'buying-1'?
+            Invoice::orderBy('created_at', 'desc')
+                ->where('date', '>=', $request['from'])
+                ->where('date', '<=', $request['to'])
+                ->get() :
+            SuppliersInvoice::orderBy('created_at', 'desc')
+                ->where('date', '>=', $request['from'])
+                ->where('date', '<=', $request['to'])
+                ->get();
+
+        $table = view('backend.invoices.table', compact('data', 'invoicesType'))->render();
+
+        return view('backend.invoices.index', compact('table', 'invoicesType'));
     }
 }

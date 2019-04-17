@@ -57,7 +57,7 @@
                 <!-- ============================================================== -->
                 <ul class="navbar-nav mr-auto" >
                     <!-- This is  -->
-                    <li class="nav-item dropdown bg-danger">
+                    <li class="nav-item dropdown">
                         <a class="dropdown-toggle d-inline-block"
                            data-toggle="dropdown"
                            href="#"
@@ -66,28 +66,25 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="bg-success">
-                                <a class="nav-link btn btn-success" href="{{ route('employees.index') }}">
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('employees.index') }}">
                                     الموظفين 
                                 </a>
                             </li>
-                            <li class="bg-info">
-                                <a class="nav-link btn btn-info" href="{{ route('expenses.index') }}">
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('expenses.index') }}">
                                     المصروفات
                                 </a>
                             </li>
-                            <li class="bg-info">
-                                <a class="nav-link btn btn-success" href="{{ route('shifts.index') }}">
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('shifts.index') }}">
                                     الورديات 
                                 </a>
                             </li>
                         </ul>
 
                     </li>
-
-                    
-
-                    <li class="nav-item dropdown bg-success">
+                    <li class="nav-item dropdown ">
                         <a class="dropdown-toggle d-inline-block"
                            data-toggle="dropdown"
                            href="#"
@@ -96,31 +93,48 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="bg-success">
-                                <a class="nav-link btn btn-success" href="{{ route('invoices.create', 'selling-1') }}">
+                            <li class="">
+                                <a class="nav-link btn " href="{{ route('invoices.create', 'selling-1') }}">
                                     قطاعي
                                 </a>
                             </li>
-                            <li class="bg-info">
-                                <a class="nav-link btn btn-info" href="{{ route('invoices.create', 'selling-2') }}">
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('invoices.create', 'selling-2') }}">
                                     جملة
                                 </a>
                             </li>
-                            <li class="bg-info">
-                                <a class="nav-link btn btn-info" href="{{ route('invoices.index') }}">
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('invoices.index', 'selling-1') }}">
                                     كل الفواتير
                                 </a>
                             </li>
                         </ul>
 
                     </li>
-                    <li class="nav-item bg-info">
-                        <a class="nav-link btn btn-info" href="{{ route('invoices.create', 'buying-1') }}">
-                            <i class="ti-user" ></i>فاتورة شراء
+                    <li class="nav-item dropdown ">
+                        <a class="dropdown-toggle d-inline-block"
+                           data-toggle="dropdown"
+                           href="#"
+                           style="height: 100%; line-height: 35px">
+                            فاتورة شراء
+                            <b class="caret"></b>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('invoices.create', 'buying-1') }}">
+                                    <i class="ti-user" ></i> فاتورة جديدة
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('invoices.index', 'buying-1') }}">
+                                    كل الفواتير
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
-                    <li class="nav-item btn-dribbble">
-                        <a class="nav-link btn btn-dribbble" href="{{ route('products.index') }}">
+                    <li class="nav-item">
+                        <a class="nav-link btn" href="{{ route('products.index') }}">
                             <i class="ti-package"></i>المنتجات
                         </a>
                     </li>

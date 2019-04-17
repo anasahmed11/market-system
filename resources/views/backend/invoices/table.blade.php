@@ -7,7 +7,7 @@
     <tr>
         <th>#</th>
         <th>التاريخ</th>
-        <th>اسم العميل</th>
+        <th>{{ $invoicesType->slug == 'buying-1'? 'اسم المورد': 'اسم العميل' }}</th>
         <th>الاجمالي</th>
         <th>التحكم</th>
     </tr>
@@ -16,7 +16,7 @@
     <tr>
         <th>#</th>
         <th>التاريخ</th>
-        <th>اسم العميل</th>
+        <th>{{ $invoicesType->slug == 'buying-1'? 'اسم المورد': 'اسم العميل' }}</th>
         <th>الاجمالي</th>
         <th>التحكم</th>
     </tr>
@@ -26,14 +26,26 @@
             <tr>
                 <td>{{ $row->slug }}{{ $row->id }}</td>
                 <td>{{ $row->date }}</td>
-                <td>
-                    @if($row->customer)
-                        @isset($row->customer->f_name)
-                            {{ $row->customer->f_name }} {{ $row->customer->l_name }}
-                        @endisset
-                    @else
-                    @endif
-                </td>
+                @if ($invoicesType->slug != 'buying-1')
+                    <td>
+                        @if($row->customer)
+                            @isset($row->customer->f_name)
+                                {{ $row->customer->f_name }} {{ $row->customer->l_name }}
+                            @endisset
+                        @else
+                        @endif
+                    </td>
+                @else
+                    <td>
+                        @if($row->supplier)
+                            @isset($row->supplier->f_name)
+                                {{ $row->supplier->f_name }} {{ $row->supplier->l_name }}
+                            @endisset
+                        @else
+                        @endif
+                    </td>
+                @endif
+
                 <td>{{ $row->total }}</td>
                 <td>
                     <a href="{{ route('invoices.edit', $row->id) }}" class="btn btn-info">تعديل</a>
