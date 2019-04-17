@@ -49,13 +49,7 @@
                 <td>{{ $row->total }}</td>
                 <td>
                     <a href="{{ route('invoices.edit', $row->id) }}" class="btn btn-info">تعديل</a>
-                    <a href="{{ route('invoices.delete', $row->id) }}" class="btn btn-danger">حذف</a>
-{{--                    <button url="{{ route('invoices.index') }}" class="edit btn btn-warning">تعديل</button>--}}
-                    {{--<form action="{{ route('categories.destroy', $row->id) }}" class="delete-one d-inline-block" method="post" >--}}
-                        {{--@csrf--}}
-                        {{--@method('DELETE')--}}
-                        {{--<button type="submit" class="btn btn-danger">حذف</button>--}}
-                    {{--</form>--}}
+                    <a href="{{ route('invoices.delete', ['id'=>$row->id, 'invoicesType'=>$invoicesType->slug]) }}" class="btn btn-danger">حذف</a>
                 </td>
             </tr>
     @endforeach

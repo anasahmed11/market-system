@@ -439,32 +439,31 @@ class InvoicesController extends Controller
         ];
     }
 
-    public function delete(Invoice $invoice)
+    public function delete($id, InvoicesType $invoicesType)
     {
-        $this->deleteProductFromInvoiceByInvoice($invoice);
-
-        $invoicesType = $invoice->type;
-
         if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+            $invoice = Invoice::find($id);
             $customer = $invoice->customer;
             if (!$customer) {
                 $errors[] = 'لم يتم العثور علي العميل';
             }
-        } elseif ($invoicesType->slug === 'buying-1') {
-//            $supplier = Supplier::findOrFail($request['supplier_id']);
-//            if (!$supplier) {
-//                $errors[] = 'لم يتم العثور علي المورد';
-//            }
-        }
 
-        if ($invoicesType->slug === 'buying-1') {
-//            $debt = new SupplierDebt();
-//            $debt->debts_types_id = 1;
-//            $debt->supplier_id = $supplier->id;
-        } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+            $this->deleteProductFromInvoiceByInvoice($invoice);
             $debt = new Debt();
-            $debt->debts_types_id = 2;
+            $debt->debts_types_id = DebtsType::where('slug', 'invo-remove')->get()->first()->id;
             $debt->customer_id = $customer->id;
+
+        } elseif ($invoicesType->slug === 'buying-1') {
+            $invoice = SuppliersInvoice::find($id);
+            $supplier = $invoice->supplier;
+            if (!$supplier) {
+                $errors[] = 'لم يتم العثور علي المورد';
+            }
+
+            $this->deleteProductFromInvoiceBySuppliserInvoice($invoice);
+            $debt = new SupplierDebt();
+            $debt->debts_types_id = DebtsType::where('slug', 'invo-remove')->get()->first()->id;
+            $debt->supplier_id = $supplier->id;
         }
 
         $debt->note = $invoice->slug . $invoice->id;
@@ -486,6 +485,17 @@ class InvoicesController extends Controller
             }
         }
         InvoiceProduct::where('invoice_id', $invoice->id)->delete();
+    }
+
+    private function deleteProductFromInvoiceBySuppliserInvoice(SuppliersInvoice $invoice)
+    {
+        foreach (SuplliersInvoiceProduct::where('invoice_id', $invoice->id)->get() as $invoiceProduct) {
+            if ($product = Product::find($invoiceProduct->product_id)) {
+                $product->quantity -= $invoiceProduct->quantity;
+                $product->save();
+            }
+        }
+        SuplliersInvoiceProduct::where('invoice_id', $invoice->id)->delete();
     }
 
     public function filter(Request $request, InvoicesType $invoicesType)
