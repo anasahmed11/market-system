@@ -12,12 +12,15 @@
         getCategoryTypes();
     });
 
-    function getCategoryTypesEdit(url) {
+    function getfilterDate(flag) {
         $.ajax({
-            type: 'GET',
-            url: url,
+            type: 'POST',
+            data: { 'flag' : flag ,
+                    '_token': {{ csrf_token() }} 
+                 },
+            url: '{{ route('report.filter') }}',
             success: function (res) {
-                $('#types-edit').html(res);
+                $('#main-table').html(res.table);
             }
         });
     }
@@ -28,5 +31,25 @@
         }, 1000);
 
     });
+
+    $(document).on('click', '.filter', function () {
+        var flag = $(this).attr('data-flag');
+        //setTimeout(function(){
+           // getfilterDate(flag);
+            $.ajax({
+            type: 'POST',
+            data: { 'flag' : flag ,
+                    '_token': '{{ csrf_token() }}' 
+                 },
+            url: '{{ route('report.filter') }}',
+            success: function (res) {
+                $('#main-table').html(res.table);
+            }
+        });
+       // }, 1000);
+
+    });
+
+    
 
 </script>

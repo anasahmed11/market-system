@@ -24,6 +24,30 @@ class Product extends Model
 
     public function scopeOutOfStock($query)
     {
-        return $query->where('quantity', 0);
+      $result =  $query->where('quantity', 0)->orWhere(function ($q) {
+            $q->whereRaw('reorder_point > quantity');
+            });
+    return $result;
+         
     }
+
+        /**
+     * Scope a query to only include products quantity equal 0.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+
+
+    public function scopeNotOutOfStock($query)
+    {
+      $result =  $query->where('quantity','!=', 0)->orWhere(function ($q) {
+            $q->whereRaw('reorder_point < quantity');
+            });
+    return $result;
+         
+    }
+
+    
+
 }

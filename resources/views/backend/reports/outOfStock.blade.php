@@ -20,10 +20,7 @@
         {!! $table !!}
     </div>
 
-    @include('backend.products.add')
-    <section id="edit"></section>
+   
+   
 @endsection
 
-@section('after_js')
-    @include('backend.products.ajax')
-@endsection

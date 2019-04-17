@@ -26,9 +26,9 @@ class ReportController extends Controller
     public function getStoreState(Request $request)
     {
         $data = Product::orderBy('created_at', 'desc')->paginate(10);
-        $table = view("backend.products.table", compact('data'))->render();
+        $table = view("backend.reports.table", compact('data'))->render();
 
-        return view("backend.products.StoreState", compact('table'));
+        return view("backend.reports.stockState", compact('table'));
     }
 
       /**
@@ -41,14 +41,45 @@ class ReportController extends Controller
     {
         
 
-        $data =Product::outOfStock()->orWhere(function ($query) {
-            $query->whereRaw('reorder_point > quantity');
-            })->paginate(10);
+        $data =Product::outOfStock()->paginate(10);
     
            // dump($data);die;
         $table = view("backend.reports.table", compact('data'))->render();
 
        return view("backend.reports.outOfStock", compact('table'));
+    }
+
+
+    public function filter(Request $request)
+    {
+       // return true;
+        //die("sa");
+        if (!empty($request['flag'])) {
+            if ($request['flag'] === 'all')
+            //allproducta
+                $data =  Product::orderBy('created_at', 'desc')->paginate(10);
+
+            else  if ($request['flag'] === 'out')
+            //out of stock products
+
+                $data =Product::outOfStock()->paginate(10);
+
+            else  if ($request['flag'] === 'notOut')
+            //avilable products
+
+             $data =Product::notOutOfStock()->paginate(10);
+            
+        } else {
+            $data =  Product::orderBy('created_at', 'desc')->paginate(10);
+        }
+
+        $table = view("backend.reports.table", compact('data'))->render();
+
+        $res = [
+            'status' => true,
+            'table' => $table
+        ];
+        return response($res);
     }
 
    

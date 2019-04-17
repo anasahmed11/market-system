@@ -62,12 +62,13 @@
                            data-toggle="dropdown"
                            href="#"
                            style="height: 100%; line-height: 35px">
-                االمخزن                            <b class="caret"></b>
+                                     المخزن         
+                                   <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="bg-success">
                                 <a class="nav-link btn btn-success" href="{{ route('report.storeState') }}">
-                                    حاللة المخزن 
+                                    حالة المخزن 
                                 </a>
                             </li>
                             <li class="bg-info">
