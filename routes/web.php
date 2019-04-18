@@ -63,7 +63,7 @@ Route::group([
 
       Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');
       Route::get('/report/outOfStock', 'ReportController@getOutOfStock')->name('report.outOfStock');
-      Route::POST('/report/filter', 'ReportController@filter')->name('report.filter');
+      Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
       
 
      

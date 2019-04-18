@@ -12,18 +12,7 @@
         getCategoryTypes();
     });
 
-    function getfilterDate(flag) {
-        $.ajax({
-            type: 'POST',
-            data: { 'flag' : flag ,
-                    '_token': {{ csrf_token() }} 
-                 },
-            url: '{{ route('report.filter') }}',
-            success: function (res) {
-                $('#main-table').html(res.table);
-            }
-        });
-    }
+  
     $(document).on('click', '.edit', function () {
         var url = $(this).attr('type-url');
         setTimeout(function(){
@@ -33,15 +22,17 @@
     });
 
     $(document).on('click', '.filter', function () {
+        console.log("star ......");
         var flag = $(this).attr('data-flag');
         
             $.ajax({
-            type: 'POST',
-            data: { 'flag' : flag ,
-                    '_token': '{{ csrf_token() }}' 
-                 },
-            url: '{{ route('report.filter') }}',
+            type: 'get',
+
+            url: '{{ route('report.storeState') }}'+'?flag='+flag,
             success: function (res) {
+
+                console.log("callbaCK ......");
+
                 $('#main-table').html(res.table);
             }
         });
@@ -53,6 +44,8 @@
 
 
     /** ====================ajax pagination======================== */
+
+    
 
     $(window).on('hashchange', function() {
         if (window.location.hash) {
@@ -75,22 +68,25 @@
             $(this).parent('li').addClass('active');
   
             var myurl = $(this).attr('href');
+            console.log(myurl);
             var page=$(this).attr('href').split('page=')[1];
   
-            getData(page);
+            getData(myurl,page);
         });
   
     });
   
-    function getData(page){
+    function getData(myurl,page){
         $.ajax(
         {
-            url: '?page=' + page,
+            url: myurl,//'?page=' + page,
             type: "get",
             datatype: "html"
         }).done(function(data){
-            $("#main-table").empty().html(data);
-            location.hash = page;
+            console.log("done");
+            $("#main-table").empty().html(data.table);
+            //$('#main-table').html(res.table);
+            //location.hash = page;
         }).fail(function(jqXHR, ajaxOptions, thrownError){
               alert('No response from server');
         });
