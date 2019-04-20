@@ -21,7 +21,7 @@ class ShiftController extends BaseController
         ];
         parent::__construct();
         $this->model = Shift::class;
-        $this->view = 'Shifts';
+        $this->view = 'shifts';
 
     }
 

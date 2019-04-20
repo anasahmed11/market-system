@@ -57,32 +57,7 @@
                 <!-- ============================================================== -->
                 <ul class="navbar-nav mr-auto" >
                     <!-- This is  -->
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle d-inline-block"
-                           data-toggle="dropdown"
-                           href="#"
-                           style="height: 100%; line-height: 35px">
-                                     المخزن         
-                                   <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="bg-success">
-                                <a class="nav-link btn btn-success" href="{{ route('report.storeState') }}">
-                                    حالة المخزن 
-                                </a>
-                            </li>
-                            <li class="bg-info">
-                                <a class="nav-link btn btn-info" href="{{ route('report.outOfStock') }}">
-                                    النواقص
 
-                                </a>
-                            </li>
-                            
-                           
-                          
-                        </ul>
-
-                    </li>
                     <li class="nav-item dropdown ">
                         <a class="dropdown-toggle d-inline-block"
                            data-toggle="dropdown"
@@ -108,7 +83,6 @@
                                 </a>
                             </li>
                         </ul>
-
                     </li>
                     <li class="nav-item dropdown ">
                         <a class="dropdown-toggle d-inline-block"
@@ -132,15 +106,46 @@
                         </ul>
 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn" href="{{ route('products.index') }}">
-                            <i class="ti-package"></i>المنتجات
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle d-inline-block"
+                           data-toggle="dropdown"
+                           href="#"
+                           style="height: 100%; line-height: 35px">
+                            المخزن
+                            <b class="caret"></b>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('products.index') }}">
+                                    <i class="ti-package"></i>المنتجات
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('categories.index') }}">
+                                    <i class="ti-import"></i>الاصناف
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="nav-link btn" href="{{ route('report.storeState') }}">
+                                    حالة المخزن
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="nav-link btn " href="{{ route('report.outOfStock') }}">
+                                    النواقص
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                   
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('customers.index') }}">
                             <i class="ti-face-smile"></i>العملاء
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('suppliers.index') }}">
+                            <i class="ti-import"></i>الموردين
                         </a>
                     </li>
                     <li class="nav-item">
@@ -154,13 +159,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('suppliers.index') }}">
-                            <i class="ti-import"></i>الموردين
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('categories.index') }}">
-                            <i class="ti-import"></i>الاصناف
+                        <a class="nav-link" href="{{ route('shifts.index') }}">
+                            <i class="ti-time"></i>الورديات
                         </a>
                     </li>
                     <li class="nav-item">
@@ -171,11 +171,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('expenses.index') }}">
                             <i class="ti-money"></i>المصروفات
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shifts.index') }}">
-                            <i class="ti-time"></i>الورديات
                         </a>
                     </li>
                 </ul>

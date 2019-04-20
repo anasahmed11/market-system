@@ -264,7 +264,7 @@ class InvoicesController extends Controller
             }
 
             $debt->note = $invoice->slug . $invoice->id;
-            $debt->value = $invoice->total - $invoice->payed;
+            $debt->value = $request['remaining'];
             $debt->date = date('Y-m-d h:i:s');
             $debt->save();
         } catch (\Exception $exception) {
