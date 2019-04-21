@@ -121,7 +121,7 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a class="nav-link" href="{{ route('categories.index') }}">
+                                <a class="nav-link btn" href="{{ route('categories.index') }}">
                                     <i class="ti-import"></i>الاصناف
                                 </a>
                             </li>
