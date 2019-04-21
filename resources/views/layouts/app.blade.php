@@ -144,13 +144,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}">
-                            <i class="ti-user"></i>المستخدمين
+                        <a class="nav-link" href="{{ route('suppliers.index') }}">
+                            <i class="ti-import"></i>الموردين
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('suppliers.index') }}">
-                            <i class="ti-import"></i>الموردين
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="ti-user"></i>المستخدمين
                         </a>
                     </li>
                     <li class="nav-item">
