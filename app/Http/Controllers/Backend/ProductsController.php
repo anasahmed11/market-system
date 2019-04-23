@@ -16,7 +16,8 @@ class ProductsController extends BaseController
         $this->searchTypes = [
             'name' => 'الاسم',
             'description' => 'التفاصيل',
-            'id' => 'الكود'
+            'id' => 'الكود',
+            'cat_id' => 'الصنف',
         ];
         parent::__construct();
         $this->model = Product::class;
