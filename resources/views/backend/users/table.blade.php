@@ -25,8 +25,12 @@
             @endif
         </td>
         <td>
-            <a href="" class="btn btn-warning">تعديل</a>
-            <a href="" class="btn btn-danger">حذف</a>
+        <button url="{{ route('users.edit', $user->id) }}" class="edit btn btn-warning">تعديل</button>
+        <form action="{{ route('users.destroy', $user->id) }}" class="delete-one d-inline-block" method="post" >
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">حذف</button>
+        </form>
         </td>
     </tr>
     @endforeach

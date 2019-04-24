@@ -11,34 +11,33 @@
                 <h4 class="modal-title">اضافة مستخدم</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
+            <form method="post" action="{{ route('users.store') }}" class="form-add">
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="name" class="control-label">الاسم:</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="control-label">البريد:</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" class="control-label">الموبيل:</label>
-                        <input type="text" class="form-control" id="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="control-label">كلمة المرور:</label>
-                        <input type="password" class="form-control" id="password">
-                    </div>
-                    <div class="form-group">
-                        <label for="re_password" class="control-label">تاكيد كلمة المرور:</label>
-                        <input type="password" class="form-control" id="re_password">
-                    </div>
-                </form>
+           
+                @csrf
+                   
+                    @include('common.forms.select',
+                                array(
+                                    'options'=> $employees,
+                                    'value'=> 'id',
+                                    'input_label'=> 'اختار الموظف',
+                                    'label'=> ['f_name','l_name'],
+                                    'name'=> 'employee_id'
+                                )
+                            )
+                        @include('common.forms.input', ['name'=> 'email','type'=> 'email','label'=>  'االبريد'])
+                        @include('common.forms.input', ['name'=> 'phone','type'=> 'phone','label'=>  'الموبيل'])
+                        @include('common.forms.input', ['name'=> 'password','type'=> 'password', 'label'=> 'كلمة المرور'])
+                        @include('common.forms.input', ['name'=> 'cpassword','type'=> 'password', 'label'=> 'تاكيد كلمة المرور'])
+                      
+                    
+              
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">الغاء</button>
-                <button type="button" class="btn btn-outline-success waves-effect waves-light">حفظ</button>
+                    @include('common.forms.close', ['label'=> 'الغاء'])
+                    @include('common.forms.submit', ['label'=> 'حفظ'])
             </div>
+            </form>
         </div>
     </div>
 </div>

@@ -15,4 +15,11 @@
     </div>
 
     @include('backend.users.add')
+    <section id="edit"></section>                
+
+
+@endsection
+
+@section('after_js')
+    @include('backend.users.ajax')
 @endsection
