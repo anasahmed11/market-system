@@ -48,7 +48,7 @@
 
                 <td>{{ $row->total }}</td>
                 <td>
-                    <a href="{{ route('invoices.edit', $row->id) }}" class="btn btn-info">تعديل</a>
+                    <a href="{{ route('invoices.edit', [$invoicesType->slug, $row->id ]) }}" class="btn btn-info">تعديل</a>
                     <a href="{{ route('invoices.delete', ['id'=>$row->id, 'invoicesType'=>$invoicesType->slug]) }}" class="btn btn-danger">حذف</a>
                 </td>
             </tr>

@@ -76,8 +76,8 @@ Route::group([
     ], function () {
         Route::get('/{invoicesType}', 'InvoicesController@index')->name('index');
         Route::get('/create/{invoicesType}', 'InvoicesController@create')->name('create');
-        Route::get('/edit/{invoice}', 'InvoicesController@edit')->name('edit');
-        Route::post('/update/{invoice}', 'InvoicesController@update')->name('update');
+        Route::get('/edit/{invoicesType}/{invoice}', 'InvoicesController@edit')->name('edit');
+        Route::post('/update/{invoicesType}/{invoice}', 'InvoicesController@update')->name('update');
         Route::post('/store/{invoicesType}', 'InvoicesController@store')->name('store');
         Route::get('/delete/{id}/{invoicesType}', 'InvoicesController@delete')->name('delete');
         Route::post('/filter/{invoicesType}', 'InvoicesController@filter')->name('filter');

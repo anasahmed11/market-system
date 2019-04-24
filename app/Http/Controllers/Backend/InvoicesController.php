@@ -34,11 +34,12 @@ class InvoicesController extends Controller
         return view('backend.invoices.index', compact('table', 'invoicesType'));
     }
 
-    public function edit(Invoice $invoice)
+    public function edit(InvoicesType $invoicesType, $invoice)
     {
-        switch ($invoice->type->slug) {
+        switch ($invoicesType->slug) {
             case 'selling-2':
             case 'selling-1':
+                $invoice = Invoice::find($invoice);
                 $customerView = view('common.forms.select', array(
                     'options'=> Customer::all(),
                     'value'=> 'id',
@@ -71,25 +72,39 @@ class InvoicesController extends Controller
                     'categoryWithProducts'=> $categoryWithProducts
                 ]);
                 break;
-//            case 'buying-1':
-//                $vendorsView = view('common.forms.select', array(
-//                    'options'=> Supplier::all(),
-//                    'value'=> 'id',
-//                    'input_label'=> 'اسم المورد',
-//                    'label'=> 'nickname',
-//                    'name'=> 'supplier'))->render();
-//                $categoryWithProducts = Category::Where('parent', '!=', null)
-//                    ->orderBy('name', 'asc')
-//                    ->get();
-//
-//                $view = view('backend.invoices.create', [
-//                    // @TODO pagination or search
-//                    'region_top_right'=> $vendorsView,
-//                    'branches'=> Branch::all(),
-//                    'invoicesType'=> $invoicesType,
-//                    'categoryWithProducts'=> $categoryWithProducts
-//                ]);
-//                break;
+            case 'buying-1':
+                $invoice = SuppliersInvoice::find($invoice);
+                $vendorsView = view('common.forms.select', array(
+                    'options'=> Supplier::all(),
+                    'value'=> 'id',
+                    'input_label'=> 'اسم المورد',
+                    'label'=>  ['f_name', 'l_name', 'nickname'],
+                    'name'=> 'supplier'))->render();
+                $categoryWithProducts = Category::Where('parent', '!=', null)
+                    ->orderBy('name', 'asc')
+                    ->get();
+
+                $products = [];
+                $productIds = [];
+                foreach ($invoice->products as $product) {
+                    $row = $product->product->toArray();
+                    $row['quantity'] = $product->quantity;
+                    $row['price'] = $product->price;
+                    $row['product_total'] = $product->price * $product->quantity;
+                    $products[] = $row;
+                    $productIds[] = $product->product_id;
+                }
+
+                $view = view('backend.invoices.edit', [
+                    'js_products' => json_encode($products),
+                    'js_products_ids' => json_encode($productIds),
+                    'invoice'=> $invoice,
+                    'region_top_right'=> $vendorsView,
+                    'branches'=> Branch::all(),
+                    'invoicesType'=> $invoice->type,
+                    'categoryWithProducts'=> $categoryWithProducts
+                ]);
+                break;
         }
 
         return $view;
@@ -242,7 +257,7 @@ class InvoicesController extends Controller
                 //TODO Error Log
             }
 
-            $invoice->sub_total = $invoiceProduct->sub_total; // calculate invoice sub total
+//            $invoice->sub_total = $invoiceProduct->sub_total; // calculate invoice sub total
             if ($invoicesType->slug === 'buying-1') {
                 $product->quantity += $invoiceProduct->quantity; // calculate stock
             } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
@@ -250,6 +265,7 @@ class InvoicesController extends Controller
             }
             $product->save();
         }
+        $invoice->sub_total = $request['sub_total'];
         $invoice->total = $invoice->sub_total + $invoice->added_value - $invoice->discount_value; // calculate invoice total
 
         try{
@@ -287,13 +303,17 @@ class InvoicesController extends Controller
         ];
     }
 
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request, InvoicesType $invoicesType, $invoice)
     {
+        if ($invoicesType->slug === 'buying-1') {
+            $invoice = SuppliersInvoice::find($invoice);
+        } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+            $invoice = Invoice::find($invoice);
+        }
         if (!$invoice) return ['status' => false, 'title' => 'حدث خطاء', 'message' => 'لم يتم تحديد الفاتورة'];
 
         $errors = [];
 
-        $invoicesType = $invoice->type;
 
         if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
             $customer = Customer::findOrFail($request['customer_id']);
@@ -317,7 +337,6 @@ class InvoicesController extends Controller
         }
         // save Invoice info
         if ($invoicesType->slug === 'buying-1') {
-            $invoice = new SuppliersInvoice();
             $invoice->supplier_id = $supplier->id;
         } else {
             $invoice->customer_id = $customer->id;
@@ -347,14 +366,24 @@ class InvoicesController extends Controller
 
         //remove all products related with this invoice and save a new products
         //remove all
-        $this->deleteProductFromInvoiceByInvoice($invoice);
+        if ($invoicesType->slug === 'buying-1') {
+            $this->deleteProductFromInvoiceBySuppliserInvoice($invoice);
+        } else {
+            $this->deleteProductFromInvoiceByInvoice($invoice);
+        }
+
         //add new products
         foreach ($request['products'] as $invProduct) {
             // save Invoice Product
             if (!$product = Product::findOrFail($invProduct['id'])) continue;
 
             if ($invoicesType->slug === 'buying-1') {
-                $invoiceProduct = new SuplliersInvoiceProduct();
+                $invoiceProduct = SuplliersInvoiceProduct::where([
+                    'invoice_id'=> $invoice->id,
+                    'product_id'=> $product->id
+                ])->get()->first()
+                ;
+                if (!$invoiceProduct) $invoiceProduct = new SuplliersInvoiceProduct();
             } else {
                 $invoiceProduct = InvoiceProduct::where([
                     'invoice_id'=> $invoice->id,
