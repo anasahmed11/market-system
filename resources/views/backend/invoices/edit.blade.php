@@ -345,7 +345,7 @@
             };
 
             $.ajax({
-                url: '{{ route('invoices.update', $invoice) }}',
+                url: '{{ route('invoices.update', [ $invoicesType ,$invoice]) }}',
                 type: 'POST',
                 data: formData,
                 success: function (res) {
