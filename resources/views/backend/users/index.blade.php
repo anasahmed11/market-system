@@ -17,7 +17,7 @@
         </div>
     </div>
     <br>
-    <div class="row">
+    <div class="row" id="main-table">
         {!! $table !!}
     </div>
 

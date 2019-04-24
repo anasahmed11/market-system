@@ -30,21 +30,16 @@ class BaseController extends Controller
     {
         if (!empty($request['search']) && array_key_exists($request['search_type'], $this->searchTypes)) {
             if ($request['search_type'] === 'id')
-            {
+            
                 //die(" not cat");
                 $data = $this->model::where($request['search_type'], $request['search'])->paginate(1);
-            }
-            else if ($request['search_type'] === 'cat_id')
-            {
-               // die(" cat");
-                $catgories=Category::where('name', 'LIKE', "%" . $request['search'] ."%")->get();
-                $data = $this->model::whereIn('cat_id',$catgories)->paginate(10);
-            }
+            
+            
             else
-            {
+            
                 //die("not cat");
                 $data = $this->model::where($request['search_type'], 'LIKE', "%" . $request['search'] ."%")->paginate(10);
-            }
+            
                 
 
         } else {
