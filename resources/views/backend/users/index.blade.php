@@ -5,7 +5,14 @@
 @endsection
 @section('content')
     <div class="row text-center">
-        <div class="col-md-12">
+    <div class="col-md-6 text-left">
+         @include('common.forms.search', [
+            'searchLabel' => 'بحث',
+            'route' => route('users.search'),
+            'types' => $searchTypes
+         ])
+        </div>
+        <div class="col-md-6">
             <button class="btn btn-success" data-toggle="modal" data-target="#add-new">مستخدم جديد</button>
         </div>
     </div>

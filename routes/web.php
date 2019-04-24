@@ -11,6 +11,7 @@ Route::group([
     Route::resource('/', 'DashboardController');
 
     //users
+    Route::post('/users/search', 'UsersController@search')->name('users.search');
     Route::resource('/users', 'UsersController');
 
     //customers

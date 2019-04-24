@@ -11,6 +11,7 @@ use App\Http\Requests\StoreUserRequest;
 
 class UsersController extends BaseController
 {
+    protected $searchTypes;
     public function __construct()
     {
         $this->searchTypes = [
