@@ -93,6 +93,10 @@ function formErrors(errorsForm, edit=0) {
 $(document).on('keyup', '.input-search', function () {
    $(this).parent().submit();
 });
+$(document).on('change', '.cat', function () {
+    //alert("ssssss");
+    $(this).parent().submit();
+ });
 
 $('form.form-search').submit(function (e) {
     e.preventDefault();
@@ -172,3 +176,54 @@ $(document).on('submit', 'form.delete-one', function (e) {
         }
     });
 });
+
+
+    /** ====================ajax pagination======================== */
+
+    
+
+    $(window).on('hashchange', function() {
+        if (window.location.hash) {
+            var page = window.location.hash.replace('#', '');
+            if (page == Number.NaN || page <= 0) {
+                return false;
+            }else{
+                getData(page);
+            }
+        }
+    });
+    
+    $(document).ready(function()
+    {
+        $(document).on('click', '.pagination a',function(event)
+        {
+            event.preventDefault();
+  
+            $('li').removeClass('active');
+            $(this).parent('li').addClass('active');
+  
+            var myurl = $(this).attr('href');
+            console.log(myurl);
+            var page=$(this).attr('href').split('page=')[1];
+  
+            getData(myurl,page);
+        });
+  
+    });
+  
+    function getData(myurl,page){
+        $.ajax(
+        {
+            url: myurl,//'?page=' + page,
+            type: "get",
+            datatype: "html"
+        }).done(function(data){
+            console.log("done");
+            $("#main-table").empty().html(data.table);
+            //$('#main-table').html(res.table);
+            //location.hash = page;
+        }).fail(function(jqXHR, ajaxOptions, thrownError){
+              alert('No response from server');
+        });
+    }
+

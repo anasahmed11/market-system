@@ -7,6 +7,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Nexmo\Response;
+use Illuminate\Support\Facades\View;
 
 class ProductsController extends BaseController
 {
@@ -22,6 +23,7 @@ class ProductsController extends BaseController
         parent::__construct();
         $this->model = Product::class;
         $this->view = 'products';
+        View::share('categories', Category::all());
 
     }
 

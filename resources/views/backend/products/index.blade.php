@@ -13,7 +13,7 @@
          ])
         </div>
         <div class="col-md-6">
-            <button id="add-new-product" class="btn btn-success" data-toggle="modal" data-target="#add-new">جديد</button>
+            <button id="add-new-product" class="btn btn-success pull-right" data-toggle="modal" data-target="#add-new">اضافة منتج جديد</button>
         </div>
     </div>
     <br>

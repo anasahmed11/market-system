@@ -18,9 +18,20 @@ class BaseController extends Controller
         View::share('searchTypes', $this->searchTypes);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data = $this->model::orderBy('created_at', 'desc')->paginate(10);
+        $data->appends(request()->input())->links();
+        if ($request->ajax()) {
+            //$data->appends(request()->input())->links();
+            $table = view("backend.$this->view.table", compact('data'))->render();
+    
+            $res = [
+                'status' => true,
+                'table' => $table
+            ];
+            return response($res);
+        }
         $table = view("backend.$this->view.table", compact('data'))->render();
 
         return view("backend.$this->view.index", compact('table'));
@@ -31,21 +42,28 @@ class BaseController extends Controller
         if (!empty($request['search']) && array_key_exists($request['search_type'], $this->searchTypes)) {
             if ($request['search_type'] === 'id')
             
-                //die(" not cat");
+            {
                 $data = $this->model::where($request['search_type'], $request['search'])->paginate(1);
-            
-            
+            } 
             else
-            
-                //die("not cat");
-                $data = $this->model::where($request['search_type'], 'LIKE', "%" . $request['search'] ."%")->paginate(10);
-            
-                
+            {
+               $data = $this->model::where($request['search_type'], 'LIKE', "%" . $request['search'] ."%");
 
+               //check if category selected
+               if(!empty($request['cat_id']) && $request['cat_id'] )
+               {
+                  $data->Where('cat_id',$request['cat_id']);
+               }
+
+              $data=$data->paginate(10);
+            
+            }
+            
+        
         } else {
             $data = $this->model::paginate(10);
         }
-
+        //dd($data);
         $table = view("backend.$this->view.table", compact('data'))->render();
 
         $res = [
