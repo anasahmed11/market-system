@@ -15,8 +15,8 @@ class AlterUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('name');
-            $table->unsignedInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->unsignedInteger('employee_id')->after('id')->nullable();
+            //$table->foreign('employee_id')->references('id')->on('employees');
         });
     }
 
