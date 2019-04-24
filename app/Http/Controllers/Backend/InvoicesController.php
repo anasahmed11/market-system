@@ -257,7 +257,7 @@ class InvoicesController extends Controller
                 //TODO Error Log
             }
 
-            $invoice->sub_total = $invoiceProduct->sub_total; // calculate invoice sub total
+//            $invoice->sub_total = $invoiceProduct->sub_total; // calculate invoice sub total
             if ($invoicesType->slug === 'buying-1') {
                 $product->quantity += $invoiceProduct->quantity; // calculate stock
             } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
@@ -265,6 +265,7 @@ class InvoicesController extends Controller
             }
             $product->save();
         }
+        $invoice->sub_total = $request['sub_total'];
         $invoice->total = $invoice->sub_total + $invoice->added_value - $invoice->discount_value; // calculate invoice total
 
         try{
