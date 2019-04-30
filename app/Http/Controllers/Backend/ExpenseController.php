@@ -28,7 +28,7 @@ class ExpenseController extends BaseController
 
       
         
-        View::share('employees', Employee::all());
+        
         View::share('expenses_type', Expenses_type::all());
         
 

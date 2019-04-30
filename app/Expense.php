@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
-    protected $fillable = ['user_id','employee_id','expenses_type_id','received_amount','paid_amount','payment_date','notes'];
+    protected $fillable = ['user_id','expenses_type_id','received_amount','paid_amount','payment_date','notes'];
 
 
      /**
@@ -18,13 +18,7 @@ class Expense extends Model
     }
 
 
-     /**
-     * Get the  Expense employee  .
-     */
-    public function employee()
-    {
-        return $this->belongsTo('App\Employee','employee_id');
-    }
+    
 
     /**
      * Get the  Expense type  .

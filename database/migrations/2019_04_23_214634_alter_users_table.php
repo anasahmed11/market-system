@@ -14,9 +14,9 @@ class AlterUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->unsignedInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
+           // $table->dropColumn('name');
+           // $table->unsignedInteger('employee_id');
+            //$table->foreign('employee_id')->references('id')->on('employees');
         });
     }
 
@@ -28,7 +28,7 @@ class AlterUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->dropColumn('employee_id');
+           //$table->dropColumn('employee_id');
         });
     }
 }

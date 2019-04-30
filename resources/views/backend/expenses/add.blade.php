@@ -15,18 +15,6 @@
                 @csrf
                 <div class="modal-body">
 
-                
-
-                @include('common.forms.select',
-                                array(
-                                    'options'=> $employees,
-                                    'value'=> 'id',
-                                    'input_label'=> 'اختار الموظف',
-                                    'label'=> ['f_name','l_name'],
-                                    'name'=> 'employee_id'
-                                )
-                            )
-
 
                 @include('common.forms.select',
                     array(
@@ -37,7 +25,7 @@
                         'name'=> 'expenses_type_id'
                     )
                 )
-                        @include('common.forms.input', ['name'=> 'received_amount', 'label'=>  'المبلغ المستلم '])
+                        @include('common.forms.input', ['name'=> 'received_amount', 'label'=>  'المبلغ الاجمالى'])
                         @include('common.forms.input', ['name'=> 'paid_amount', 'label'=> 'المبلغ المدفوع'])
                         @include('common.forms.input', ['name'=> 'payment_date', 'type'=> 'date', 'label'=> 'تاريخ الدفع'])
                         @include('common.forms.textarea', ['name'=> 'notes', 'label'=> 'ملاحظات '])

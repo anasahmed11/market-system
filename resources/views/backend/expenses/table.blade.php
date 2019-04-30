@@ -6,8 +6,7 @@
         <tr>
             <th>#</th>
             <th>المستخدم   </th>
-            <th>الموظف </th>
-            <th>المبلغ المستلم </th>
+            <th>المبلغ الاجمالى </th>
             <th>المبلغ المدفوع </th>
             <th>تاريخ الدفع  </th>
             <th> ملاحظات  </th>
@@ -20,8 +19,7 @@
        
             <tr>
                 <td>{{ $row->id }}</td>
-                <td>{{ $row->user->name }}</td>
-                <td>{{ $row->employee->f_name }} {{ $row->employee->l_name }}</td>
+                <td>{{ $row->user->employee->f_name }}</td>
                 <td>{{ $row->received_amount }}</td>
                 <td>{{ $row->paid_amount }}</td>
                 <td>{{ $row->payment_date }}</td>
