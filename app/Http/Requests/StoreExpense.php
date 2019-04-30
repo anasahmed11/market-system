@@ -25,7 +25,7 @@ class StoreExpense extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required',
+            
             'received_amount' => 'required',
             'paid_amount' => 'required',
             'payment_date' => 'required'
@@ -35,7 +35,7 @@ class StoreExpense extends FormRequest
     public function messages()
     {
         return [
-            'employee_id.required' => 'يجب اختيار الموضف',
+           
             'received_amount.required'  => 'بجب ادخال المبلغ المستلم ',
             'paid_amount.required'  => 'يجب ادخال المبلغ المدفوع',
             'payment_date.required'  => 'يجب ادخال تاريخ الدفع'

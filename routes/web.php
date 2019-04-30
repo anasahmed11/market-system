@@ -60,6 +60,11 @@ Route::group([
     Route::post('/shifts/search', 'ShiftController@search')->name('shifts.search');
     Route::resource('/shifts', 'ShiftController');
 
+    //expensesType
+    Route::post('/expensesType/search', 'ExpenseTypeController@search')->name('expensesType.search');
+    Route::resource('/expensesType', 'ExpenseTypeController');
+
+
       //Report controller 
 
       Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');

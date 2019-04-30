@@ -2,39 +2,25 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\StoreExpense;
+use App\Http\Requests\ExpenseTypeRequest;
 use Illuminate\Http\Request;
-use App\Employee;
-use App\Expense;
-use App\ Expenses_type as ExpensesType;
-use Auth;
-use Illuminate\Support\Facades\View;
+use App\Expenses_type as ExpensesType;
 
-class ExpenseController extends BaseController
+class ExpenseTypeController extends BaseController
 {
-
     protected $searchTypes;
-
 
     public function __construct()
     {
         $this->searchTypes = [
-            'payment_date' => 'تاريخ الدفع',
-            'notes' => 'ملاحظات',
-         ];
+            'name' => 'الاسم',
+            'id' => 'الكود'
+        ];
         parent::__construct();
-        $this->model = Expense::class;
-        $this->view = 'expenses';
-
-      
-        
-        
-        View::share('expenses_type', ExpensesType::all());
-        
-
+        $this->model = ExpensesType::class;
+        $this->view = 'expenses_type';
     }
 
-   
 
     /**
      * Show the form for creating a new resource.
@@ -46,24 +32,21 @@ class ExpenseController extends BaseController
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExpense $request)
+    public function store(ExpenseTypeRequest $request)
     {
-        //$request->user_id=Auth::user()->id;
-        $request['user_id'] = Auth::user()->id;
-        //dump($request->except('_token'));die();
-        $expense = new Expense($request->except('_token'));
-
-        if ($expense->save()) {
+        $ex = new ExpensesType($request->except('_token'));
+        if ($ex->save()) {
             $res = [
                 'status' => true,
-                'title' => 'تم بنجاح',
-                'message' => 'تم الحفظ'
+                'title' => 'عملية الحفظ',
+                'message' => 'تم الحفظ بنجاح'
             ];
         } else {
             $res = [
@@ -76,25 +59,35 @@ class ExpenseController extends BaseController
         return response($res);
     }
 
-    
+      /**
+     * Display the specified resource.
+     *
+     * @param  \App\ExpensesType  $shift
+     * @return \Illuminate\Http\Response
+     */
+    public function show(ExpensesType $ex)
+    {
+        //
+    }
 
-    /**
+     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Expense  $expense
+     * @param  \App\ExpensesType  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreExpense $request, Expense $expense)
+
+
+    public function update(ExpenseTypeRequest $request,ExpensesType $expense)
     {
-        
-          $request['user_id'] = Auth::user()->id;
-        
-        if ($expense->fill($request->except('_token'))->save()) {
+
+       // dd($expense->fill($request->except('_token'))->save());
+        if($expense->fill($request->except('_token'))->save()) {
             $res = [
                 'status' => true,
-                'title' => 'تم بنجاح',
-                'message' => 'تم الحفظ'
+                'title' => 'عملية الحفظ',
+                'message' => 'تم التعديل بنجاح '
             ];
         } else {
             $res = [
@@ -103,10 +96,7 @@ class ExpenseController extends BaseController
                 'message' => 'لم يتم الحفظ'
             ];
         }
-        //dd($res);
+//dd($res);
         return response($res);
     }
-    
-
-    
 }

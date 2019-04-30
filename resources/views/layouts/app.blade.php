@@ -173,6 +173,11 @@
                             <i class="ti-money"></i>المصروفات
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('expensesType.index') }}">
+                            <i class="ti-money"></i> نوع المصروفات
+                        </a>
+                    </li>
                 </ul>
                 <!-- ============================================================== -->
                 <!-- User profile and search -->

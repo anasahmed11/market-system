@@ -111,6 +111,7 @@ class BaseController extends Controller
     public function edit($id)
     {
         $object = $this->model::find($id);
+       // dd($object);
         $model = view("backend.$this->view.edit", compact('object'))->render();
         $res = [
             'status' => true,
