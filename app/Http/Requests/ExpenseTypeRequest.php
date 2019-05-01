@@ -26,7 +26,6 @@ class ExpenseTypeRequest extends FormRequest
     {
         return [
             'name' => 'required'
-           
         ];
     }
 

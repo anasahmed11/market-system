@@ -65,12 +65,11 @@ Route::group([
     Route::resource('/expensesType', 'ExpenseTypeController');
 
 
-      //Report controller 
+    //Report controller
+    Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');
+    Route::get('/report/outOfStock', 'ReportController@getOutOfStock')->name('report.outOfStock');
+    Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
-      Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');
-      Route::get('/report/outOfStock', 'ReportController@getOutOfStock')->name('report.outOfStock');
-      Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
-      
 
      
 

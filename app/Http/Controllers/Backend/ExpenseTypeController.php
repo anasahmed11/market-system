@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Expenses_type;
 use App\Http\Requests\ExpenseTypeRequest;
 use Illuminate\Http\Request;
 use App\Expenses_type as ExpensesType;
@@ -19,17 +20,6 @@ class ExpenseTypeController extends BaseController
         parent::__construct();
         $this->model = ExpensesType::class;
         $this->view = 'expenses_type';
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
 
@@ -59,31 +49,11 @@ class ExpenseTypeController extends BaseController
         return response($res);
     }
 
-      /**
-     * Display the specified resource.
-     *
-     * @param  \App\ExpensesType  $shift
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ExpensesType $ex)
+
+    public function update(ExpenseTypeRequest $request, $expense)
     {
-        //
-    }
-
-     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExpensesType  $expense
-     * @return \Illuminate\Http\Response
-     */
-
-
-    public function update(ExpenseTypeRequest $request,ExpensesType $expense)
-    {
-
+        $expense = Expenses_type::find($expense);
         $expense->name = $request['name'];
-       // dd($expense->fill($request->except('_token'))->save());
         if($expense->save()) {
             $res = [
                 'status' => true,

@@ -77,6 +77,7 @@ class InvoicesController extends Controller
                 $vendorsView = view('common.forms.select', array(
                     'options'=> Supplier::all(),
                     'value'=> 'id',
+                    'object' => $invoice->supplier->id,
                     'input_label'=> 'اسم المورد',
                     'label'=>  ['f_name', 'l_name', 'nickname'],
                     'name'=> 'supplier'))->render();
