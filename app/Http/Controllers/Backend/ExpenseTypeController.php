@@ -82,8 +82,9 @@ class ExpenseTypeController extends BaseController
     public function update(ExpenseTypeRequest $request,ExpensesType $expense)
     {
 
+        $expense->name = $request['name'];
        // dd($expense->fill($request->except('_token'))->save());
-        if($expense->fill($request->except('_token'))->save()) {
+        if($expense->save()) {
             $res = [
                 'status' => true,
                 'title' => 'عملية الحفظ',
