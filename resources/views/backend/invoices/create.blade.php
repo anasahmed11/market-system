@@ -239,7 +239,7 @@
             invoiceProductsArray.push(product);
             invoiceProductsWithAllDetails.push({
                 id: product,
-                price: option.attr('price'),
+                price: $('#product-price').val(),
                 quantity: quantity.val(),
                 product_total: productTotal
             });

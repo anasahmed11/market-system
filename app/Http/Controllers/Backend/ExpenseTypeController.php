@@ -75,8 +75,6 @@ class ExpenseTypeController extends BaseController
      * @param  \App\ExpensesType  $expense
      * @return \Illuminate\Http\Response
      */
-
-
     public function update(ExpenseTypeRequest $request,ExpensesType $expense)
     {
 

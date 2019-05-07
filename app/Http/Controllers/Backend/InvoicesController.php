@@ -88,6 +88,7 @@ class InvoicesController extends Controller
                 $products = [];
                 $productIds = [];
                 foreach ($invoice->products as $product) {
+//                    dd($product->product);
                     $row = $product->product->toArray();
                     $row['quantity'] = $product->quantity;
                     $row['price'] = $product->price;
@@ -243,9 +244,8 @@ class InvoicesController extends Controller
             } elseif($invoicesType->slug === 'selling-2') {
                 $invoiceProduct->price = $product->price2;
             } elseif ($invoicesType->slug === 'buying-1') {
-                $invoiceProduct->price = $product['price'];
+                $invoiceProduct->price = $invProduct['price'];
             }
-
             $invoiceProduct->sub_total = $invoiceProduct->price * $invoiceProduct->quantity;
             try {
                 if (!$invoiceProduct->saveOrFail()) {
