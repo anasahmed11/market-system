@@ -6,7 +6,7 @@ use App\Http\Requests\StoreExpense;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\Expense;
-use App\ Expenses_type as ExpensesType;
+use App\ ExpensesType as ExpensesType;
 use Auth;
 use Illuminate\Support\Facades\View;
 

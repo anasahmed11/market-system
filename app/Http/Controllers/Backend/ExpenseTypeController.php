@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Requests\ExpenseTypeRequest;
 use Illuminate\Http\Request;
-use App\Expenses_type as ExpensesType;
+use App\ExpensesType as ExpensesType;
 
 class ExpenseTypeController extends BaseController
 {
@@ -70,6 +70,7 @@ class ExpenseTypeController extends BaseController
      * @param  \App\ExpensesType  $exType
      * @return \Illuminate\Http\Response
      */
+
     public function update(ExpenseTypeRequest $request,ExpensesType $exType)
     {
        // dd($request['id']);
@@ -96,31 +97,5 @@ class ExpenseTypeController extends BaseController
 
    
 
-   
-   /*  
-   public function update(ExpenseTypeRequest $request,ExpensesType $expenseType)
-    {
-       dd($expenseType->id);
-       $x= ExpensesType::find($expenseType->id);
-
-        dd($x);
-        $expenseType->name = $request['name'];
-       // dd($expense->fill($request->except('_token'))->save());
-        if($expenseType ->save()) {
-            $res = [
-                'status' => true,
-                'title' => 'عملية الحفظ',
-                'message' => 'تم التعديل بنجاح '
-            ];
-        } else {
-            $res = [
-                'status' => false,
-                'title' => 'حدث خطاء',
-                'message' => 'لم يتم الحفظ'
-            ];
-        }
-//dd($res);
-        return response($res);
-    }
-    */
 }
+ 
