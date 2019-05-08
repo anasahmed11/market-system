@@ -88,6 +88,7 @@ class ExpenseController extends BaseController
     public function update(StoreExpense $request, Expense $expense)
     {
         
+        
           $request['user_id'] = Auth::user()->id;
         
         if ($expense->fill($request->except('_token'))->save()) {

@@ -57,32 +57,56 @@ class ExpenseTypeController extends BaseController
         return response($res);
     }
 
-      /**
-     * Display the specified resource.
-     *
-     * @param  \App\ExpensesType  $shift
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ExpensesType $ex)
+
+    public function show($id)
     {
         //
-    }
+    } 
 
-     /**
+      /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExpensesType  $expense
+     * @param  \App\ExpensesType  $exType
      * @return \Illuminate\Http\Response
      */
-
-
-    public function update(ExpenseTypeRequest $request,ExpensesType $expense)
+    public function update(ExpenseTypeRequest $request,ExpensesType $exType)
     {
+       // dd($request['id']);
+        $exType=ExpensesType::find($request['id']);
+        $exType->name = $request['name'];
+        
+        if ($exType->save()) {
+            $res = [
+                'status' => true,
+                'title' => 'تم بنجاح',
+                'message' => 'تم الحفظ'
+            ];
+        } else {
+            $res = [
+                'status' => false,
+                'title' => 'حدث خطاء',
+                'message' => 'لم يتم الحفظ'
+            ];
+        }
 
-        $expense->name = $request['name'];
+        return response($res);
+    }
+
+
+   
+
+   
+   /*  
+   public function update(ExpenseTypeRequest $request,ExpensesType $expenseType)
+    {
+       dd($expenseType->id);
+       $x= ExpensesType::find($expenseType->id);
+
+        dd($x);
+        $expenseType->name = $request['name'];
        // dd($expense->fill($request->except('_token'))->save());
-        if($expense ->save()) {
+        if($expenseType ->save()) {
             $res = [
                 'status' => true,
                 'title' => 'عملية الحفظ',
@@ -98,4 +122,5 @@ class ExpenseTypeController extends BaseController
 //dd($res);
         return response($res);
     }
+    */
 }
