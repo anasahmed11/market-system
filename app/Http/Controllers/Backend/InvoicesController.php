@@ -409,9 +409,8 @@ class InvoicesController extends Controller
             } elseif($invoicesType->slug === 'selling-2') {
                 $invoiceProduct->price = $product->price2;
             } elseif ($invoicesType->slug === 'buying-1') {
-                $invoiceProduct->price = $product['price'];
+                $invoiceProduct->price = $invProduct['price'];
             }
-
             $invoiceProduct->sub_total = $invoiceProduct->price * $invoiceProduct->quantity;
             try {
                 if (!$invoiceProduct->saveOrFail()) {
