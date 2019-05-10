@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpensesType extends Model
 {
+    protected $table = "expenses_types";
+    protected $fillable = ['name'];
+    
     /**
      * @return string
      */
