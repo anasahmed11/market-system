@@ -74,7 +74,7 @@
                             @if (count($category->products))
                                 <optgroup label="@isset($category->rowParent->name) {{ $category->rowParent->name }} , @endisset {{ $category->name }}">
                                     @foreach($category->products as $product)
-                                        @if ($product->quantity > 1 || $invoicesType->slug == 'buying-1')
+                                        @if ($product->quantity > 0 || $invoicesType->slug == 'buying-1')
                                             <option value="{{ $product->id }}"
                                                     quantity="{{ $product->quantity }}"
                                                     price="@if($invoicesType->slug == 'selling-1'){{ $product->price }}@elseif ($invoicesType->slug == 'selling-2'){{ $product->price2 }}@endif">
