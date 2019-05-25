@@ -285,7 +285,7 @@
             invoiceProductsArray.push(product);
             invoiceProductsWithAllDetails.push({
                 id: product,
-                price: option.attr('price'),
+                price: productPrice,
                 quantity: quantity.val(),
                 product_total: productTotal
             });

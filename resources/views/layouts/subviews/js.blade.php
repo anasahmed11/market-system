@@ -36,16 +36,12 @@
 <script src="{{ Request::root() }}/backend/assets/plugins/datatables/datatables.min.js"></script>
 <script>
 
-    $('#invoice-table').DataTable({
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
+    $('#invoice-table').DataTable();
     $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 
     $.fn.dataTableExt.sErrMode = 'throw';
 
-    $('.datepicker').datepicker();
+    // $('.datepicker').datepicker();
 </script>
 
 <!-- ============================================================== -->

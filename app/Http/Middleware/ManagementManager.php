@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin
+class ManagementManager
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class Admin
         /**
          * @todo set admin role
          */
-        if(auth()->user()->is_admin === 1){
+        if(auth()->user()->is_admin === 3){
             return $next($request);
         }
         return redirect('/401')->with('error','You have not admin access');

@@ -37,7 +37,7 @@
     <div class="error-box">
         <div class="error-body text-center">
             <h1 class="text-info">401</h1>
-            <h3 class="text-uppercase">ليس لديك صلحية الوصول !</h3>
+            <h3 class="text-uppercase">ليس لديك صلاحية الوصول !</h3>
             <a href="{{ route('index') }}" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">اذهب الي الرئسية</a> </div>
         <footer class="footer text-center">© 2019 GitSolve.</footer>
     </div>

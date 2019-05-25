@@ -308,10 +308,15 @@ class InvoicesController extends Controller
     {
         if ($invoicesType->slug === 'buying-1') {
             $invoice = SuppliersInvoice::find($invoice);
-        } elseif ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
+        } elseif ($invoicesType->slug === 'selling-1' ||
+            $invoicesType->slug === 'selling-2') {
             $invoice = Invoice::find($invoice);
         }
-        if (!$invoice) return ['status' => false, 'title' => 'حدث خطاء', 'message' => 'لم يتم تحديد الفاتورة'];
+        if (!$invoice) return [
+            'status' => false,
+            'title' => 'حدث خطاء',
+            'message' => 'لم يتم تحديد الفاتورة'
+        ];
 
         $errors = [];
 
@@ -334,7 +339,11 @@ class InvoicesController extends Controller
         }
 
         if (count($errors)) {
-            return ['status' => false, 'title' => 'حدث خطاء', 'message' => implode(' , ',$errors)];
+            return [
+                'status' => false,
+                'title' => 'حدث خطاء',
+                'message' => implode(' , ',$errors)
+            ];
         }
         // save Invoice info
         if ($invoicesType->slug === 'buying-1') {
@@ -374,6 +383,7 @@ class InvoicesController extends Controller
         }
 
         //add new products
+//        dd($request['products']);
         foreach ($request['products'] as $invProduct) {
             // save Invoice Product
             if (!$product = Product::findOrFail($invProduct['id'])) continue;
