@@ -138,7 +138,7 @@
                         </ul>
                     </li>
 
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('customers.index') }}">
                                 <i class="ti-face-smile"></i>العملاء
@@ -146,49 +146,49 @@
                         </li>
                     @endif
 
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('suppliers.index') }}">
                             <i class="ti-import"></i>الموردين
                         </a>
                     </li>
                     @endif
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">
                             <i class="ti-user"></i>المستخدمين
                         </a>
                     </li>
                     @endif
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('branches.index') }}">
                             <i class="ti-home"></i>الفروع
                         </a>
                     </li>
                     @endif
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shifts.index') }}">
                             <i class="ti-time"></i>الورديات
                         </a>
                     </li>
                     @endif
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('employees.index') }}">
                             <i class="ti-face-smile"></i>الموظفين
                         </a>
                     </li>
                     @endif
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('expenses.index') }}">
                             <i class="ti-money"></i>المصروفات
                         </a>
                     </li>
                     @endif
-                    @if (Auth::user()->is_admin <= 1)
+                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('expensesType.index') }}">
                             <i class="ti-money"></i> نوع المصروفات
