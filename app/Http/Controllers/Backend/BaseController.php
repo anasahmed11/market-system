@@ -39,7 +39,10 @@ class BaseController extends Controller
 
     public function search(Request $request)
     {
-        if (!empty($request['search']) && array_key_exists($request['search_type'], $this->searchTypes)) {
+
+        //dd($request['search']);
+        if ( array_key_exists($request['search_type'], $this->searchTypes)) {
+          //  die("asas.........");
             if ($request['search_type'] === 'id')
             
             {
@@ -50,9 +53,10 @@ class BaseController extends Controller
                $data = $this->model::where($request['search_type'], 'LIKE', "%" . $request['search'] ."%");
 
                //check if category selected
-               if(!empty($request['cat_id']) && $request['cat_id'] )
+               if(!empty($request['cat_id']))
                {
-                  $data->Where('cat_id',$request['cat_id']);
+                   
+                  $data->where('cat_id',$request['cat_id']);
                }
 
               $data=$data->paginate(10);
