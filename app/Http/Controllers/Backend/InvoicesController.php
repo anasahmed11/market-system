@@ -24,6 +24,7 @@ class InvoicesController extends Controller
 
     public function index(InvoicesType $invoicesType)
     {
+        if (auth()->user() !== null && Auth::user()->is_admin != 1 && $invoicesType->slug == 'buying-1') return redirect('/401');
         $data = $invoicesType->slug != 'buying-1'?
             Invoice::orderBy('created_at', 'desc')->get() :
             SuppliersInvoice::orderBy('created_at', 'desc')->get();
@@ -36,6 +37,8 @@ class InvoicesController extends Controller
 
     public function edit(InvoicesType $invoicesType, $invoice)
     {
+        if (auth()->user() !== null && Auth::user()->is_admin != 1 && $invoicesType->slug == 'buying-1') return redirect('/401');
+
         switch ($invoicesType->slug) {
             case 'selling-2':
             case 'selling-1':
@@ -114,6 +117,8 @@ class InvoicesController extends Controller
 
     public function create(InvoicesType $invoicesType)
     {
+        if (auth()->user() !== null && Auth::user()->is_admin != 1 && $invoicesType->slug == 'buying-1') return redirect('/401');
+
         if (!$invoicesType) return redirect()->route('invoices.index');
 
         switch ($invoicesType->slug) {
@@ -166,6 +171,8 @@ class InvoicesController extends Controller
      */
     public function store(Request $request, InvoicesType $invoicesType)
     {
+        if (auth()->user() !== null && Auth::user()->is_admin != 1 && $invoicesType->slug == 'buying-1') return redirect('/401');
+
         if (!$invoicesType) return ['status' => false, 'title' => 'حدث خطاء', 'message' => 'لم يتم تحديد نوع الفاتورة'];
 
         $errors = [];
@@ -306,6 +313,8 @@ class InvoicesController extends Controller
 
     public function update(Request $request, InvoicesType $invoicesType, $invoice)
     {
+        if (auth()->user() !== null && Auth::user()->is_admin != 1 && $invoicesType->slug == 'buying-1') return redirect('/401');
+
         if ($invoicesType->slug === 'buying-1') {
             $invoice = SuppliersInvoice::find($invoice);
         } elseif ($invoicesType->slug === 'selling-1' ||
@@ -480,6 +489,8 @@ class InvoicesController extends Controller
 
     public function delete($id, InvoicesType $invoicesType)
     {
+        if (auth()->user() !== null && Auth::user()->is_admin != 1 && $invoicesType->slug == 'buying-1') return redirect('/401');
+
         if ($invoicesType->slug === 'selling-1' || $invoicesType->slug === 'selling-2') {
             $invoice = Invoice::find($id);
             $customer = $invoice->customer;
@@ -539,6 +550,8 @@ class InvoicesController extends Controller
 
     public function filter(Request $request, InvoicesType $invoicesType)
     {
+        if (auth()->user() !== null && Auth::user()->is_admin != 1 && $invoicesType->slug == 'buying-1') return redirect('/401');
+
         if (!$request['from'] || !$request['to'])
             return redirect(route('invoices.index', $invoicesType->slug));
 

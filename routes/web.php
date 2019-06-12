@@ -196,3 +196,8 @@ Route::get('/cache', function() {
 
     return '<h1>Clear cleared</h1>';
 });
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect(route('login'));
+})->name('user.logout');

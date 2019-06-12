@@ -39,196 +39,204 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href="{{ route('index') }}">
-                <b>
-                    LOGO
-                </b>
-            </a>
-            <button class="navbar-toggler"
-                    type="button" data-toggle="collapse"
-                    data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        @if (Auth::check())
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                <a class="navbar-brand" href="{{ route('index') }}">
+                    <b>
+                        LOGO
+                    </b>
+                </a>
+                <button class="navbar-toggler"
+                        type="button" data-toggle="collapse"
+                        data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="main-nav">
-                <!-- ============================================================== -->
-                <!-- toggle and nav items -->
-                <!-- ============================================================== -->
-                <ul class="navbar-nav mr-auto" >
-                    <!-- This is  -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto" >
+                        <!-- This is  -->
 
-                    <li class="nav-item dropdown ">
-                        <a class="dropdown-toggle d-inline-block"
-                           data-toggle="dropdown"
-                           href="#"
-                           style="height: 100%; line-height: 35px">
-                            فاتورة بيع
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="">
-                                <a class="nav-link btn " href="{{ route('invoices.create', 'selling-1') }}">
-                                    قطاعي
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('invoices.create', 'selling-2') }}">
-                                    جملة
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('invoices.index', 'selling-1') }}">
-                                    كل الفواتير
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown ">
-                        <a class="dropdown-toggle d-inline-block"
-                           data-toggle="dropdown"
-                           href="#"
-                           style="height: 100%; line-height: 35px">
-                            فاتورة شراء
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('invoices.create', 'buying-1') }}">
-                                    <i class="ti-user" ></i> فاتورة جديدة
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('invoices.index', 'buying-1') }}">
-                                    كل الفواتير
-                                </a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle d-inline-block"
-                           data-toggle="dropdown"
-                           href="#"
-                           style="height: 100%; line-height: 35px">
-                            المخزن
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('products.index') }}">
-                                    <i class="ti-package"></i>المنتجات
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('categories.index') }}">
-                                    <i class="ti-import"></i>الاصناف
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="nav-link btn" href="{{ route('report.storeState') }}">
-                                    حالة المخزن
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="nav-link btn " href="{{ route('report.outOfStock') }}">
-                                    النواقص
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customers.index') }}">
-                                <i class="ti-face-smile"></i>العملاء
+                        <li class="nav-item dropdown ">
+                            <a class="dropdown-toggle d-inline-block"
+                               data-toggle="dropdown"
+                               href="#"
+                               style="height: 100%; line-height: 35px">
+                                فاتورة بيع
+                                <b class="caret"></b>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li class="">
+                                    <a class="nav-link btn " href="{{ route('invoices.create', 'selling-1') }}">
+                                        قطاعي
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link btn" href="{{ route('invoices.create', 'selling-2') }}">
+                                        جملة
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link btn" href="{{ route('invoices.index', 'selling-1') }}">
+                                        كل الفواتير
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                    @endif
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item dropdown ">
+                                <a class="dropdown-toggle d-inline-block"
+                                   data-toggle="dropdown"
+                                   href="#"
+                                   style="height: 100%; line-height: 35px">
+                                    فاتورة شراء
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+                                        <a class="nav-link btn" href="{{ route('invoices.create', 'buying-1') }}">
+                                            <i class="ti-user" ></i> فاتورة جديدة
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="nav-link btn" href="{{ route('invoices.index', 'buying-1') }}">
+                                            كل الفواتير
+                                        </a>
+                                    </li>
+                                </ul>
 
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('suppliers.index') }}">
-                            <i class="ti-import"></i>الموردين
-                        </a>
-                    </li>
-                    @endif
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}">
-                            <i class="ti-user"></i>المستخدمين
-                        </a>
-                    </li>
-                    @endif
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('branches.index') }}">
-                            <i class="ti-home"></i>الفروع
-                        </a>
-                    </li>
-                    @endif
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shifts.index') }}">
-                            <i class="ti-time"></i>الورديات
-                        </a>
-                    </li>
-                    @endif
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('employees.index') }}">
-                            <i class="ti-face-smile"></i>الموظفين
-                        </a>
-                    </li>
-                    @endif
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('expenses.index') }}">
-                            <i class="ti-money"></i>المصروفات
-                        </a>
-                    </li>
-                    @endif
-                    @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('expensesType.index') }}">
-                            <i class="ti-money"></i> نوع المصروفات
-                        </a>
-                    </li>
-                    @endif
-                </ul>
-                <!-- ============================================================== -->
-                <!-- User profile and search -->
-                <!-- ============================================================== -->
-                <ul class="navbar-nav my-lg-0">
-                    {{--<!-- ============================================================== -->--}}
-                    {{--<!-- Profile -->--}}
-                    {{--<!-- ============================================================== -->--}}
-                    {{--<li class="nav-item dropdown">--}}
+                            </li>
+                        @endif
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle d-inline-block"
+                               data-toggle="dropdown"
+                               href="#"
+                               style="height: 100%; line-height: 35px">
+                                المخزن
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="">
+                                    <a class="nav-link btn" href="{{ route('products.index') }}">
+                                        <i class="ti-package"></i>المنتجات
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link btn" href="{{ route('categories.index') }}">
+                                        <i class="ti-import"></i>الاصناف
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link btn" href="{{ route('report.storeState') }}">
+                                        حالة المخزن
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link btn " href="{{ route('report.outOfStock') }}">
+                                        النواقص
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('customers.index') }}">
+                                    <i class="ti-face-smile"></i>العملاء
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('suppliers.index') }}">
+                                    <i class="ti-import"></i>الموردين
+                                </a>
+                            </li>
+                        @endif
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index') }}">
+                                    <i class="ti-user"></i>المستخدمين
+                                </a>
+                            </li>
+                        @endif
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('branches.index') }}">
+                                    <i class="ti-home"></i>الفروع
+                                </a>
+                            </li>
+                        @endif
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('shifts.index') }}">
+                                    <i class="ti-time"></i>الورديات
+                                </a>
+                            </li>
+                        @endif
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('employees.index') }}">
+                                    <i class="ti-face-smile"></i>الموظفين
+                                </a>
+                            </li>
+                        @endif
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('expenses.index') }}">
+                                    <i class="ti-money"></i>المصروفات
+                                </a>
+                            </li>
+                        @endif
+                        @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('expensesType.index') }}">
+                                    <i class="ti-money"></i> نوع المصروفات
+                                </a>
+                            </li>
+                        @endif
+                        <li class="nav-item">
+                            <a href="{{route('user.logout')}}" class="nav-link">تسجيل خروج</a>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        {{--<!-- ============================================================== -->--}}
+                        {{--<!-- Profile -->--}}
+                        {{--<!-- ============================================================== -->--}}
+                        {{--<li class="nav-item dropdown">--}}
                         {{--<a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ Request::root() }}/backend/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>--}}
                         {{--<div class="dropdown-menu dropdown-menu-right animated flipInY">--}}
-                            {{--<ul class="dropdown-user">--}}
-                                {{--<li>--}}
-                                    {{--<div class="dw-user-box">--}}
-                                        {{--<div class="u-img"><img src="{{ Request::root() }}/backend/assets/images/users/1.jpg" alt="user"></div>--}}
-                                        {{--<div class="u-text">--}}
-                                            {{--<h4>Steave Jobs</h4>--}}
-                                            {{--<p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
-                                {{--<li role="separator" class="divider"></li>--}}
-                                {{--<li><a href="#"><i class="ti-user"></i> My Profile</a></li>--}}
-                                {{--<li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>--}}
-                                {{--<li><a href="#"><i class="ti-email"></i> Inbox</a></li>--}}
-                                {{--<li role="separator" class="divider"></li>--}}
-                                {{--<li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>--}}
-                                {{--<li role="separator" class="divider"></li>--}}
-                                {{--<li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>--}}
-                            {{--</ul>--}}
+                        {{--<ul class="dropdown-user">--}}
+                        {{--<li>--}}
+                        {{--<div class="dw-user-box">--}}
+                        {{--<div class="u-img"><img src="{{ Request::root() }}/backend/assets/images/users/1.jpg" alt="user"></div>--}}
+                        {{--<div class="u-text">--}}
+                        {{--<h4>Steave Jobs</h4>--}}
+                        {{--<p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>--}}
                         {{--</div>--}}
-                    {{--</li>--}}
-                </ul>
-            </div>
-        </nav>
+                        {{--</li>--}}
+                        {{--<li role="separator" class="divider"></li>--}}
+                        {{--<li><a href="#"><i class="ti-user"></i> My Profile</a></li>--}}
+                        {{--<li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>--}}
+                        {{--<li><a href="#"><i class="ti-email"></i> Inbox</a></li>--}}
+                        {{--<li role="separator" class="divider"></li>--}}
+                        {{--<li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>--}}
+                        {{--<li role="separator" class="divider"></li>--}}
+                        {{--<li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>--}}
+                        {{--</ul>--}}
+                        {{--</div>--}}
+                        {{--</li>--}}
+                    </ul>
+                </div>
+            </nav>
+        @endif
+
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
