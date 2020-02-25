@@ -13,9 +13,9 @@
             </div>
             <form method="post" action="{{ route('users.store') }}" class="form-add">
             <div class="modal-body">
-           
+
                 @csrf
-                   
+
                     @include('common.forms.select',
                                 array(
                                     'options'=> $employees,
@@ -25,13 +25,22 @@
                                     'name'=> 'employee_id'
                                 )
                             )
+                @include('common.forms.select',
+                                array(
+                                    'options'=> $users,
+                                    'value'=> 'is_admin',
+                                    'input_label'=> 'اختار الموظف',
+                                    'label'=> ['is_admin'],
+                                    'name'=> 'id'
+                                )
+                            )
                         @include('common.forms.input', ['name'=> 'email','type'=> 'email','label'=>  'االبريد'])
                         @include('common.forms.input', ['name'=> 'phone','type'=> 'phone','label'=>  'الموبيل'])
                         @include('common.forms.input', ['name'=> 'password','type'=> 'password', 'label'=> 'كلمة المرور'])
                         @include('common.forms.input', ['name'=> 'cpassword','type'=> 'password', 'label'=> 'تاكيد كلمة المرور'])
-                      
-                    
-              
+
+
+
             </div>
             <div class="modal-footer">
                     @include('common.forms.close', ['label'=> 'الغاء'])

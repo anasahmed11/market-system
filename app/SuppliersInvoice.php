@@ -20,4 +20,12 @@ class SuppliersInvoice extends Model
     {
         return $this->belongsTo(InvoicesType::class, 'type_id');
     }
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+    public function employer()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

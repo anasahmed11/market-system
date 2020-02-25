@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 /**
  * @property false|string date
  * @property  branch_id
@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Invoice extends Model
 {
+    protected $with = ['user','customer','branch'];
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');
@@ -30,4 +31,16 @@ class Invoice extends Model
     {
         return $this->hasMany(InvoiceProduct::class, 'invoice_id');
     }
+    public function employer()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->with('employer');
+    }
+
+
+
+
 }

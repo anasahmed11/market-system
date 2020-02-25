@@ -16,17 +16,18 @@ class UsersController extends BaseController
     {
         $this->searchTypes = [
             'email' => 'البريد الالكترونى',
-            
+
             'id' => 'الكود'
         ];
         $this->model = User::class;
         $this->view = 'users';
 
         View::share('employees', Employee::all());
+        View::share('users', User::all());
         parent::__construct();
     }
 
-  
+
 
 
     /**
@@ -56,7 +57,7 @@ class UsersController extends BaseController
         return response($res);
     }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -83,5 +84,5 @@ class UsersController extends BaseController
 
         return response($res);
     }
-    
+
 }

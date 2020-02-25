@@ -28,8 +28,19 @@ Route::group([
     Route::resource('/categories', 'CategoriesController');
 
     //Report controller
-    Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');
+    Route::get('/user-details/{id}', 'ReportController@get_user_details');
+    Route::get('/report/storeState', 'ReportController@full_stock');
     Route::get('/report/outOfStock', 'ReportController@getOutOfStock')->name('report.outOfStock');
+    Route::get('/report/empty-stock', 'ReportController@empty_stock');
+    Route::get('/report/full-stock', 'ReportController@full_stock_ajax');
+    Route::get('/all-s-invoices', 'ReportController@all_invoices');
+    Route::get('/today-invoices', 'ReportController@today_invoices');
+    Route::get('/this-invoices/{id}', 'ReportController@invoice_products');
+    Route::get('/today-invoices/{id}', 'ReportController@t_invoice_products');
+    Route::get('/shift-1', 'ReportController@shift_1');
+    Route::get('/shift/{id}', 'ReportController@shift');
+    Route::get('/today-shift/{id}', 'ReportController@today_invoices_shift');
+    Route::get('/today-invoice', 'ReportController@today_invoices_ajax');
     Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
 
@@ -70,8 +81,19 @@ Route::group([
     Route::resource('/categories', 'CategoriesController');
 
     //Report controller
-    Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');
+    Route::get('/user-details/{id}', 'ReportController@get_user_details');
+    Route::get('/report/storeState', 'ReportController@full_stock');
     Route::get('/report/outOfStock', 'ReportController@getOutOfStock')->name('report.outOfStock');
+    Route::get('/report/empty-stock', 'ReportController@empty_stock');
+    Route::get('/report/full-stock', 'ReportController@full_stock_ajax');
+    Route::get('/all-s-invoices', 'ReportController@all_invoices');
+    Route::get('/today-invoices', 'ReportController@today_invoices');
+    Route::get('/shift-1', 'ReportController@shift_1');
+    Route::get('/shift/{id}', 'ReportController@shift');
+    Route::get('/today-shift/{id}', 'ReportController@today_invoices_shift');
+    Route::get('/today-invoice', 'ReportController@today_invoices_ajax');
+    Route::get('/this-invoices/{id}', 'ReportController@invoice_products');
+    Route::get('/today-invoices/{id}', 'ReportController@t_invoice_products');
     Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
 
@@ -154,8 +176,19 @@ Route::group([
 
 
     //Report controller
-    Route::get('/report/storeState', 'ReportController@getStoreState')->name('report.storeState');
+    Route::get('/user-details/{id}', 'ReportController@get_user_details');
+    Route::get('/report/storeState', 'ReportController@full_stock');
     Route::get('/report/outOfStock', 'ReportController@getOutOfStock')->name('report.outOfStock');
+    Route::get('/report/empty-stock', 'ReportController@empty_stock');
+    Route::get('/report/full-stock', 'ReportController@full_stock_ajax');
+    Route::get('/all-s-invoices', 'ReportController@all_invoices');
+    Route::get('/today-invoices', 'ReportController@today_invoices');
+    Route::get('/shift-1', 'ReportController@shift_1');
+    Route::get('/shift/{id}', 'ReportController@shift');
+    Route::get('/today-shift/{id}', 'ReportController@today_invoices_shift');
+    Route::get('/today-invoice-ajax', 'ReportController@today_invoices_ajax');
+    Route::get('/this-invoices/{id}', 'ReportController@invoice_products');
+    Route::get('/today-invoices/{id}', 'ReportController@t_invoice_products');
     Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
 

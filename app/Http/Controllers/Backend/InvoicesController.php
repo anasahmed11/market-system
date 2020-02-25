@@ -90,15 +90,16 @@ class InvoicesController extends Controller
 
                 $products = [];
                 $productIds = [];
+                if (is_array($invoice->products) || is_object($invoice->products))
+                {
                 foreach ($invoice->products as $product) {
-//                    dd($product->product);
                     $row = $product->product->toArray();
                     $row['quantity'] = $product->quantity;
                     $row['price'] = $product->price;
                     $row['product_total'] = $product->price * $product->quantity;
                     $products[] = $row;
                     $productIds[] = $product->product_id;
-                }
+                }}
 
                 $view = view('backend.invoices.edit', [
                     'js_products' => json_encode($products),
@@ -523,7 +524,7 @@ class InvoicesController extends Controller
 
         $invoice->delete();
 
-        return back();
+        return response()->json($invoice);
     }
 
     private function deleteProductFromInvoiceByInvoice(Invoice $invoice)
@@ -569,4 +570,5 @@ class InvoicesController extends Controller
 
         return view('backend.invoices.index', compact('table', 'invoicesType'));
     }
+
 }

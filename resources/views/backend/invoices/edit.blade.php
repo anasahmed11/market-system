@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pageTitle')
-    فاتورة بيع
+    تعديل فاتوره
 @endsection
 
 @section('content')
@@ -125,6 +125,8 @@
                     <td>اجمالي السعر</td>
                     <td>  </td>
                 </tr>
+                @if (is_array($invoice->products) || is_object($invoice->products))
+
             @foreach($invoice->products as $product)
                 <tr id="row-{{ $product->product->id }}">
                     <td>{{ $product->product->name }}</td>
@@ -134,6 +136,7 @@
                     <td><button class="btn btn-danger delete-row" row-id="{{ $product->product->id }}">حذف</button></td>
                 </tr>
             @endforeach
+                    @endif
             </tbody>
         </table>
     </div>
@@ -388,7 +391,7 @@
             $('#invoice-total').val(total);
             $('#remaining').val(total - payed);
         }
-        
+
         function validInvoice() {
             //
         }

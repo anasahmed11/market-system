@@ -11,7 +11,6 @@
         <meta name="description" content="">
         <meta name="author" content="Ahmed Elnemr">
         <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
         <title>ERP | @yield('title')</title>
         @yield('before_css')
         @include('layouts.subviews.css')
@@ -22,7 +21,6 @@
     </head>
 
     <body class="fix-header card-no-border fix-sidebar">
-    <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='demo_wait.gif' width="64" height="64" /><br>Loading..</div>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -79,6 +77,16 @@
                                     </a>
                                 </li>
                                 <li class="">
+                                    <a class="nav-link btn" href="{{ url('/today-invoices') }}">
+                                        فواتير اليوم
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link btn" href="{{ url('/shift-1') }}">
+                                        مبيعات الورديه
+                                    </a>
+                                </li>
+                                <li class="">
                                     <a class="nav-link btn" href="{{ route('invoices.index', 'selling-1') }}">
                                         كل الفواتير
                                     </a>
@@ -101,7 +109,7 @@
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a class="nav-link btn" href="{{ route('invoices.index', 'buying-1') }}">
+                                        <a class="nav-link btn" href="{{ url('/all-s-invoices') }}">
                                             كل الفواتير
                                         </a>
                                     </li>
@@ -129,7 +137,7 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a class="nav-link btn" href="{{ route('report.storeState') }}">
+                                    <a class="nav-link btn" href="{{ url('/report/storeState') }}">
                                         حالة المخزن
                                     </a>
                                 </li>

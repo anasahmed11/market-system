@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $with = ['category'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -28,7 +30,7 @@ class Product extends Model
             $q->whereRaw('reorder_point > quantity');
             });
     return $result;
-         
+
     }
 
         /**
@@ -45,9 +47,8 @@ class Product extends Model
             $q->whereRaw('reorder_point < quantity');
             });
     return $result;
-         
+
     }
 
-    
 
 }

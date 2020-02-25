@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
@@ -29,18 +30,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    
+
      /**
      * Get the  Expense employee  .
      */
-    public function employee()
+    public function employer()
     {
-        return $this->belongsTo('App\Employee','employee_id');
+        return $this->belongsTo(Employee::class,'employee_id');
     }
 
     public function setPasswordAttribute($pass){
 
         $this->attributes['password'] = Hash::make($pass);
-        
+
         }
 }

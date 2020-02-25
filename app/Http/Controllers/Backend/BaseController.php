@@ -25,7 +25,7 @@ class BaseController extends Controller
         if ($request->ajax()) {
             //$data->appends(request()->input())->links();
             $table = view("backend.$this->view.table", compact('data'))->render();
-    
+
             $res = [
                 'status' => true,
                 'table' => $table
@@ -44,10 +44,10 @@ class BaseController extends Controller
         if ( array_key_exists($request['search_type'], $this->searchTypes)) {
           //  die("asas.........");
             if ($request['search_type'] === 'id')
-            
+
             {
                 $data = $this->model::where($request['search_type'], $request['search'])->paginate(1);
-            } 
+            }
             else
             {
                $data = $this->model::where($request['search_type'], 'LIKE', "%" . $request['search'] ."%");
@@ -55,15 +55,15 @@ class BaseController extends Controller
                //check if category selected
                if(!empty($request['cat_id']))
                {
-                   
+
                   $data->where('cat_id',$request['cat_id']);
                }
 
               $data=$data->paginate(10);
-            
+
             }
-            
-        
+
+
         } else {
             $data = $this->model::paginate(10);
         }

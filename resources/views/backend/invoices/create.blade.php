@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pageTitle')
-    فاتورة بيع
+    فاتوره جديده
 @endsection
 
 @section('content')
@@ -342,7 +342,7 @@
             $('#invoice-total').val(total);
             $('#remaining').val(total - payed);
         }
-        
+
         function validInvoice() {
             //
         }

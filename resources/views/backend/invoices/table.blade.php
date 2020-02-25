@@ -23,7 +23,7 @@
     </tfoot>
     <tbody>
     @foreach($data as $row)
-            <tr>
+            <tr class="customer-invoice-{{$row->id}}">
                 <td>{{ $row->slug }}{{ $row->id }}</td>
                 <td>{{ $row->date }}</td>
                 @if ($invoicesType->slug != 'buying-1')
@@ -49,7 +49,7 @@
                 <td>{{ $row->total }}</td>
                 <td>
                     <a href="{{ route('invoices.edit', [$invoicesType->slug, $row->id ]) }}" class="btn btn-info">تعديل</a>
-                    <a href="{{ route('invoices.delete', ['id'=>$row->id, 'invoicesType'=>$invoicesType->slug]) }}" class="btn btn-danger">حذف</a>
+                    <a  class="delete-customer-invoice btn btn-danger" data-id="{{ $row->id }}">حذف</a>
                 </td>
             </tr>
     @endforeach

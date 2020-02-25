@@ -12,7 +12,7 @@
         <th>نقطة الطلب</th>
         <th>الكمية</th>
         <th>التفاصيل</th>
-       
+
     </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
         <td>
             {{ str_limit($row->description, $limit = 20, $end = '...') }}
         </td>
-        
+
     </tr>
     @endforeach
     </tbody>
