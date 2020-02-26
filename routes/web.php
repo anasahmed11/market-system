@@ -36,7 +36,7 @@ Route::group([
     Route::get('/all-s-invoices', 'ReportController@all_invoices');
     Route::get('/today-invoices', 'ReportController@today_invoices');
     Route::get('/this-invoices/{id}', 'ReportController@invoice_products');
-    Route::get('/today-invoices/{id}', 'ReportController@t_invoice_products');
+    Route::get('/this-customer-invoices/{id}', 'ReportController@c_invoice_products');
     Route::get('/shift-1', 'ReportController@shift_1');
     Route::get('/shift/{id}', 'ReportController@shift');
     Route::get('/today-shift/{id}', 'ReportController@today_invoices_shift');
@@ -50,6 +50,7 @@ Route::group([
         'prefix' => 'invoices',
         'as' => 'invoices.'
     ], function () {
+        Route::get('/this-customer-invoices/{id}', 'ReportController@c_invoice_products');
         Route::get('/{invoicesType}', 'InvoicesController@index')->name('index');
         Route::get('/create/{invoicesType}', 'InvoicesController@create')->name('create');
         Route::get('/edit/{invoicesType}/{invoice}', 'InvoicesController@edit')->name('edit');
@@ -93,7 +94,7 @@ Route::group([
     Route::get('/today-shift/{id}', 'ReportController@today_invoices_shift');
     Route::get('/today-invoice', 'ReportController@today_invoices_ajax');
     Route::get('/this-invoices/{id}', 'ReportController@invoice_products');
-    Route::get('/today-invoices/{id}', 'ReportController@t_invoice_products');
+    Route::get('/this-customer-invoices/{id}', 'ReportController@c_invoice_products');
     Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
 
@@ -103,6 +104,7 @@ Route::group([
         'prefix' => 'invoices',
         'as' => 'invoices.'
     ], function () {
+        Route::get('/this-customer-invoices/{id}', 'ReportController@c_invoice_products');
         Route::get('/{invoicesType}', 'InvoicesController@index')->name('index');
         Route::get('/create/{invoicesType}', 'InvoicesController@create')->name('create');
         Route::get('/edit/{invoicesType}/{invoice}', 'InvoicesController@edit')->name('edit');
@@ -188,7 +190,7 @@ Route::group([
     Route::get('/today-shift/{id}', 'ReportController@today_invoices_shift');
     Route::get('/today-invoice-ajax', 'ReportController@today_invoices_ajax');
     Route::get('/this-invoices/{id}', 'ReportController@invoice_products');
-    Route::get('/today-invoices/{id}', 'ReportController@t_invoice_products');
+    Route::get('/this-customer-invoices/{id}', 'ReportController@c_invoice_products');
     Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
 
@@ -200,6 +202,7 @@ Route::group([
         'prefix' => 'invoices',
         'as' => 'invoices.'
     ], function () {
+        Route::get('/this-customer-invoices/{id}', 'ReportController@c_invoice_products');
         Route::get('/{invoicesType}', 'InvoicesController@index')->name('index');
         Route::get('/create/{invoicesType}', 'InvoicesController@create')->name('create');
         Route::get('/edit/{invoicesType}/{invoice}', 'InvoicesController@edit')->name('edit');

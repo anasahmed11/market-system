@@ -102,7 +102,7 @@ class ReportController extends Controller
         ));
     }
     /*تفاصيل فواتير االبيع*/
-    public function t_invoice_products($id){
+    public function c_invoice_products($id){
         $details=InvoiceProduct::where('invoice_id', '=',$id )->get();
         return  response()->json($details);
     }

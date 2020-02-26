@@ -50,10 +50,10 @@
                         <td>{{ $row->payed }}</td>
                         <td>{{ $row->remaining }}</td>
                         <td>
-                            <button class="invoice-details btn btn-success" data-toggle="modal" data-target="#invoice-details" data-id="{{ $row->id }}">التفاصيل</button>
+                            <button class="s-invoice-details btn btn-success" data-toggle="modal" data-target="#invoice-details" data-id="{{ $row->id }}">التفاصيل</button>
                         </td>
                         <td>
-                            <button href="{{ route('invoices.edit', ['buying-1', $row->id ]) }}" class="btn btn-info">تعديل</button>
+                            <a href="{{ route('invoices.edit', ['buying-1', $row->id ]) }}"><button  class="btn btn-info">تعديل</button></a>
                         </td>
                         <td>
                             <button class="delete-supplier-invoice  btn btn-danger"  data-id="{{ $row->id }}">حذف</button>

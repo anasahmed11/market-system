@@ -1,3 +1,4 @@
+
 <div id="add-new"
      class="modal fade"
      tabindex="-1"
@@ -25,15 +26,16 @@
                                     'name'=> 'employee_id'
                                 )
                             )
-                @include('common.forms.select',
-                                array(
-                                    'options'=> $users,
-                                    'value'=> 'is_admin',
-                                    'input_label'=> 'اختار الموظف',
-                                    'label'=> ['is_admin'],
-                                    'name'=> 'id'
-                                )
-                            )
+                        <div class="form-group">
+                            <label for="is_admin" class="control-label">صلاحيه الدخول</label>
+                            <select name="is_admin" id="is_admin" class="select2 form-control" style="max-width: 100%!important;">
+                                <option value="1">مدير</option>
+                                <option value="2">مدير مخزن</option>
+                                <option value="3">مدير اداره</option>
+
+
+                            </select>
+                        </div>
                         @include('common.forms.input', ['name'=> 'email','type'=> 'email','label'=>  'االبريد'])
                         @include('common.forms.input', ['name'=> 'phone','type'=> 'phone','label'=>  'الموبيل'])
                         @include('common.forms.input', ['name'=> 'password','type'=> 'password', 'label'=> 'كلمة المرور'])

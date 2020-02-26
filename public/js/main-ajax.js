@@ -86,7 +86,7 @@ $(function(){
 
     });
     /* ------------- supplier-invoice-details --------------*/
-    $(document).on('click',".invoice-details",function(e){
+    $(document).on('click',".s-invoice-details",function(e){
         var id=$(this).data('id');
         $.ajax({
             type: 'GET',
@@ -133,7 +133,7 @@ $(function(){
         var id=$(this).data('id');
         $.ajax({
             type: 'GET',
-            url: 'today-invoices/'+id,
+            url: 'this-customer-invoices/'+id,
             processData: false,
             success: function (data) {
                 if((data.errors)){

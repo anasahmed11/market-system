@@ -15,11 +15,10 @@
                 </button>
             </form>
         </div>
+
     </div>
     <br>
-    <div id="main-table" class="row">
         {!! $table !!}
-    </div>
 @endsection
 
 @section('after_js')

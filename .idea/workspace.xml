@@ -3,28 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="ignore workspace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/BaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/InvoicesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/InvoicesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/InvoiceProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/InvoiceProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/SuplliersInvoiceProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SuplliersInvoiceProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/SuppliersInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SuppliersInvoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/ManagementManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/ManagementManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/StockManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/StockManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreUserRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/backend/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/backend/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/main-ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main-ajax.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/all-s-invoices.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/all-s-invoices.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/invoices/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/invoices/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/reports/outOfStock.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/reports/outOfStock.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/reports/stockState.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/reports/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/reports/table.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/users/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/users/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/users/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/users/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/subviews/js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/subviews/js.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -301,6 +290,7 @@
       <workItem from="1582110288586" duration="93342000" />
       <workItem from="1582544987139" duration="7078000" />
       <workItem from="1582582862517" duration="26138000" />
+      <workItem from="1582661693893" duration="15212000" />
     </task>
     <task id="LOCAL-00001" summary="ignore workspace">
       <created>1555050498691</created>
