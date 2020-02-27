@@ -87,6 +87,11 @@
                                     </a>
                                 </li>
                                 <li class="">
+                                    <a class="nav-link btn" href="{{ url('/selling-products') }}">
+                                        الاكثر مبيعا
+                                    </a>
+                                </li>
+                                <li class="">
                                     <a class="nav-link btn" href="{{ route('invoices.index', 'selling-1') }}">
                                         كل الفواتير
                                     </a>

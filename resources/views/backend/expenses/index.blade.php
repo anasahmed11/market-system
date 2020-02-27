@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pageTitle')
-    المصروفات 
+    المصروفات
 @endsection
 @section('content')
     <div class="row text-center">
@@ -17,9 +17,9 @@
         </div>
     </div>
     <br>
-    <div id="main-table" class="row">
+
         {!! $table !!}
-    </div>
+
 
     @include('backend.expenses.add')
     <section id="edit"></section>

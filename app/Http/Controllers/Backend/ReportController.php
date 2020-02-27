@@ -137,6 +137,11 @@ class ReportController extends Controller
         ));
 
     }
+    /*---------------------- most selling products*/
+    public function selling_products(){
+        $data=InvoiceProduct::groupBy('product_id','category_id')->selectRaw('product_id ,category_id,SUM(quantity) as quantity')->orderByRaw('SUM(quantity) DESC')->get();
+        return view('backend/invoices/selling-products')->with('data',$data);
+    }
 
     public function filter(Request $request)
     {

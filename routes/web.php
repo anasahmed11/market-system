@@ -191,6 +191,7 @@ Route::group([
     Route::get('/today-invoice-ajax', 'ReportController@today_invoices_ajax');
     Route::get('/this-invoices/{id}', 'ReportController@invoice_products');
     Route::get('/this-customer-invoices/{id}', 'ReportController@c_invoice_products');
+    Route::get('/selling-products', 'ReportController@selling_products');
     Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
 

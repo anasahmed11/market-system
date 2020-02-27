@@ -21,7 +21,6 @@ class ProductsController extends BaseController
             'name' => 'الاسم',
             'description' => 'التفاصيل',
             'id' => 'الكود',
-            'cat_id' => 'الصنف',
         ];
         parent::__construct();
         $this->model = Product::class;

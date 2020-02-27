@@ -21,20 +21,22 @@ class ExpenseController extends BaseController
         $this->searchTypes = [
             'payment_date' => 'تاريخ الدفع',
             'notes' => 'ملاحظات',
+            'paid_amount' => 'المبلغ المدفوع',
+            'received_amount' => 'المبلغ لمستحق',
          ];
         parent::__construct();
         $this->model = Expense::class;
         $this->view = 'expenses';
 
-      
-        
-        
+
+
+
         View::share('expenses_type', ExpensesType::all());
-        
+
 
     }
 
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -76,7 +78,7 @@ class ExpenseController extends BaseController
         return response($res);
     }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -87,10 +89,10 @@ class ExpenseController extends BaseController
      */
     public function update(StoreExpense $request, Expense $expense)
     {
-        
-        
+
+
           $request['user_id'] = Auth::user()->id;
-        
+
         if ($expense->fill($request->except('_token'))->save()) {
             $res = [
                 'status' => true,
@@ -107,7 +109,7 @@ class ExpenseController extends BaseController
         //dd($res);
         return response($res);
     }
-    
 
-    
+
+
 }
