@@ -500,6 +500,169 @@ $(function(){
 
 
     });
+    /*--------------------------- السلف--------------------*/
+    $(document).on('change', '.select2-employee', function () {
+        emploan=$('.select2-employee option[value="' + $(this).val() + '"]').attr('loan');
+        $('.loan-input').html("السلف"+ '<br>'+
+            emploan );
+    });
+    $(document).on('click',"#new-loan",function(e){
+        var loanform=$('#new-loan-form').serialize();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'loan',
+            data: loanform,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا حاول مره اخرى',
+                        text: 'حدث خطا ! يجب ان تملا جميع البيانات المطلوبه الموظف والتاريخ و المبلغ ',
+                    })
+                }else{
+                    Swal.fire(
+                        'تمت العمليه بنجاح',
+                        '',
+                        'success'
+                    );
+                    $('.loan-input').html("السلف"+ '<br>');
+
+                    $(".loan-table").append("<tr class='loan-"+data.id+"'>"+
+                        "<td>"+data.id+"</td>"+
+                        "<td>"+data.user.employer.f_name+" "+data.user.employer.l_name+"</td>"+
+                        "<td>"+data.employer.f_name+" "+data.employer.l_name+"</td>"+
+                        "<td>"+data.date+"</td>"+
+                        "<td>"+data.payed+"</td>"+
+                        "<td>"+data.notes+"</td>"+
+                        "<td><button class='edit-loan btn btn-success'  data-toggle='modal' data-target='#edit-modal-salary' data-id='" + data.id + "' data-user-id='"+ data.user_id + "' data-user-id='"+ data.user_id + "' data-employee-id='"+ data.employee_id + "' data-payed='"+ data.payed + "'  data-date='"+ data.date+ "' data-notes='"+ data.notes + "'>تعديل</button></td>"
+                        +
+                        "<td><button class='delete-loan btn btn-danger'  data-id='" + data.id +  "' data-emp-id='" + data.employee_id+"'>حذف</button></td>"
+                        +
+                        "</tr>")
+                }
+                $('#new-loan-form').trigger("reset");
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+    /* delete salary*/
+    $(document).on('click',".delete-loan",function(e) {
+        var loan_id=$(this).data('id');
+        var emp_id=$(this).data('emp-id')
+        Swal({
+            title: 'هل انت متاكد?',
+            text: "اذا تم الحذف لن نتمكن من استرجاعه!",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'الغاء',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم, احذف!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'loan/'+loan_id+'/'+emp_id,
+                    processData: false,
+                    success: function (res) {
+                        if((res.errors)){
+                            Swal.fire({
+                                type: 'error',
+                                title: 'عفوا حاول مره اخري',
+                                text: 'حدث خطا في الجذف',
+                            })
+                        }else{
+                            $(".loan-"+loan_id).remove();
+                            Swal.fire(
+                                'تم الحذف',
+                                'بنجاح',
+                                'success'
+                            )
+                        }
+                    }
+                });
+            } else {
+                swal("تم الغاء الحذف", "لم يتم الحذف :)", "error");
+            }
+        });
+        e.preventDefault();
+
+    });
+    $(".edit-loan").click(function(){
+        $("#edit-loan-user-id").val($(this).data('user-id'));
+        $("#edit-loan-date").val($(this).data('date'));
+        $("#edit-loan-payed").val($(this).data('payed'));
+        $("#edit-loan-notes").val($(this).data('notes'));
+        $('.select2-employee option[value="' + $(this).data('employee-id') + '"]').attr("selected","selected");
+        sloan=$('.select2-employee option[value="' + $(this).data('employee-id') + '"]').attr('loan');
+        $('.loan-input').html("السلف"+ '<br>'+
+            sloan );
+
+        loanid=$(this).data('id');
+    });
+    $(document).on('click',"#edit-loan",function(e){
+        var eloanform=$('#edit-loan-form').serialize();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'PUT',
+            url: 'loan/'+loanid,
+            data: eloanform,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا حاول مره اخرى',
+                        text: 'حدث خطا ! يجب ان تملا جميع البيانات المطلوبه الموظف والتاريخ و المبلغ ',
+                    })
+                }else{
+                    Swal.fire(
+                        'تمت العمليه بنجاح',
+                        '',
+                        'success'
+                    );
+                    $('.loan-input').html("السلف"+ '<br>');
+
+                    $(".loan-table").append("<tr class='loan-"+data.id+"'>"+
+                        "<td>"+data.id+"</td>"+
+                        "<td>"+data.user.employer.f_name+" "+data.user.employer.l_name+"</td>"+
+                        "<td>"+data.employer.f_name+" "+data.employer.l_name+"</td>"+
+                        "<td>"+data.date+"</td>"+
+                        "<td>"+data.payed+"</td>"+
+                        "<td>"+data.notes+"</td>"+
+                        "<td><button class='edit-loan btn btn-success'  data-toggle='modal' data-target='#edit-modal-salary' data-id='" + data.id + "' data-user-id='"+ data.user_id + "' data-user-id='"+ data.user_id + "' data-employee-id='"+ data.employee_id + "' data-payed='"+ data.payed + "'  data-date='"+ data.date+ "' data-notes='"+ data.notes + "'>تعديل</button></td>"
+                        +
+                        "<td><button class='delete-loan btn btn-danger'  data-id='" + data.id +  "' data-emp-id='" + data.employee_id+"'>حذف</button></td>"
+                        +
+                        "</tr>")
+                }
+                $('#edit-loan-form').trigger("reset");
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+
     /*--------------------------- المرتبات--------------------*/
     $(document).on('change', '.select-employee', function () {
         empsalary=$('.select-employee option[value="' + $(this).val() + '"]').attr('salary');

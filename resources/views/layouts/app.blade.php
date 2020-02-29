@@ -191,10 +191,31 @@
                             </li>
                         @endif
                         @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('employees.index') }}">
+                            <li class="nav-item dropdown">
+                                <a class="dropdown-toggle d-inline-block"
+                                   data-toggle="dropdown"
+                                   href="#"
+                                   style="height: 100%; line-height: 40px">
                                     <i class="ti-face-smile"></i>الموظفين
+                                    <b class="caret"></b>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+                                        <a class="nav-link btn" href="{{url('/salary')}}">
+                                            دفع المرتبات
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="nav-link btn" href="{{ url('/loan') }}">
+                                            دفع السلف
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="nav-link" href="{{ route('employees.index') }}">
+                                            <i class="ti-import"></i>   كل الموظفين
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         @endif
                         @if (isset(Auth::user()->is_admin) and Auth::user()->is_admin <= 1)

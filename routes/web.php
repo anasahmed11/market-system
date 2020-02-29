@@ -200,7 +200,12 @@ Route::group([
     Route::post('/salary', 'SalariesController@store');
     Route::Post('/salary/{id}', 'SalariesController@update');
     Route::delete('/salary/{id}', 'SalariesController@destroy');
-
+    // loan
+    Route::resource('loan', 'LoansController');
+    Route::get('/loan', 'LoansController@index');
+    Route::post('/loan', 'LoansController@store');
+    Route::Post('/loan/{id}', 'LoansController@update');
+    Route::delete('/loan/{id}/{empid}', 'LoansController@destroy');
     //invoices
 //    Route::resource('/invoices', 'InvoicesController');
     Route::group([
