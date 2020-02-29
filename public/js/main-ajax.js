@@ -500,4 +500,168 @@ $(function(){
 
 
     });
+    /*--------------------------- المرتبات--------------------*/
+    $(document).on('change', '.select-employee', function () {
+        empsalary=$('.select-employee option[value="' + $(this).val() + '"]').attr('salary');
+        $('.salary-input').html("المرتب"+ '<br>'+
+            empsalary );
+    });
+    $(document).on('click',"#new-salary",function(e){
+        var salaryform=$('#new-salary-form').serialize();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'salary',
+            data: salaryform,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا حاول مره اخرى',
+                        text: 'حدث خطا ! يجب ان تملا جميع البيانات المطلوبه الموظف والتاريخ و المبلغ ',
+                    })
+                }else{
+                    Swal.fire(
+                        'تمت العمليه بنجاح',
+                        '',
+                        'success'
+                    );
+                    $('.salary-input').html("المرتب"+ '<br>');
+
+                    $(".salary-table").append("<tr class='salary-"+data.id+"'>"+
+                        "<td>"+data.id+"</td>"+
+                        "<td>"+data.user.employer.f_name+" "+data.user.employer.l_name+"</td>"+
+                        "<td>"+data.employer.f_name+" "+data.employer.l_name+"</td>"+
+                        "<td>"+data.date+"</td>"+
+                        "<td>"+data.payed+"</td>"+
+                        "<td>"+data.remaining+"</td>"+
+                        "<td>"+data.notes+"</td>"+
+                        "<td><button class='edit-salary btn btn-success'  data-toggle='modal' data-target='#edit-modal-salary' data-id='" + data.id + "' data-user-id='"+ data.user_id + "' data-user-id='"+ data.user_id + "' data-employee-id='"+ data.employee_id + "' data-payed='"+ data.payed + "' data-remaining='"+ data.remaining + "' data-date='"+ data.date+ "' data-notes='"+ data.notes + "'>تعديل</button></td>"
+                        +
+                        "<td><button class='delete-salary btn btn-danger'  data-id='" + data.id +  "' >حذف</button></td>"
+                        +
+                        "</tr>")
+                }
+                $('#new-salary-form').trigger("reset");
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+    /* delete salary*/
+    $(document).on('click',".delete-salary",function(e) {
+        var salary_id=$(this).data('id');
+        Swal({
+            title: 'هل انت متاكد?',
+            text: "اذا تم الحذف لن نتمكن من استرجاعه!",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'الغاء',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم, احذف!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'salary/'+salary_id,
+                    processData: false,
+                    success: function (res) {
+                        if((res.errors)){
+                            Swal.fire({
+                                type: 'error',
+                                title: 'عفوا حاول مره اخري',
+                                text: 'حدث خطا في الجذف',
+                            })
+                        }else{
+                            $(".salary-"+salary_id).remove();
+                            Swal.fire(
+                                'تم الحذف',
+                                'بنجاح',
+                                'success'
+                            )
+                        }
+                    }
+                });
+            } else {
+                swal("تم الغاء الحذف", "لم يتم الحذف :)", "error");
+            }
+        });
+        e.preventDefault();
+
+    });
+    $(".edit-salary").click(function(){
+        $("#edit-salary-user-id").val($(this).data('user-id'));
+        $("#edit-salary-date").val($(this).data('date'));
+        $("#edit-payed").val($(this).data('payed'));
+        $("#edit-remaining").val($(this).data('remaining'));
+        $("#edit-notes").val($(this).data('notes'));
+        $('.select-employee option[value="' + $(this).data('employee-id') + '"]').attr("selected","selected");
+        ssalary=$('.select-employee option[value="' + $(this).data('employee-id') + '"]').attr('salary');
+        $('.salary-input').html("المرتب"+ '<br>'+
+            ssalary );
+
+        salid=$(this).data('id');
+    });
+    $(document).on('click',"#edit-salary",function(e){
+        var esalaryform=$('#edit-salary-form').serialize();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'PUT',
+            url: 'salary/'+salid,
+            data: esalaryform,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا حاول مره اخرى',
+                        text: 'حدث خطا ! يجب ان تملا جميع البيانات المطلوبه الموظف والتاريخ و المبلغ ',
+                    })
+                }else{
+                    Swal.fire(
+                        'تمت العمليه بنجاح',
+                        '',
+                        'success'
+                    );
+                    $('.salary-input').html("المرتب"+ '<br>');
+
+                    $(".salary-table").append("<tr class='salary-"+data.id+"'>"+
+                        "<td>"+data.id+"</td>"+
+                        "<td>"+data.user.employer.f_name+" "+data.user.employer.l_name+"</td>"+
+                        "<td>"+data.employer.f_name+" "+data.employer.l_name+"</td>"+
+                        "<td>"+data.date+"</td>"+
+                        "<td>"+data.payed+"</td>"+
+                        "<td>"+data.remaining+"</td>"+
+                        "<td>"+data.notes+"</td>"+
+                        "<td><button class='edit-salary btn btn-success'  data-toggle='modal' data-target='#edit-modal-salary' data-id='" + data.id + "' data-user-id='"+ data.user_id + "' data-user-id='"+ data.user_id + "' data-employee-id='"+ data.employee_id + "' data-payed='"+ data.payed + "' data-remaining='"+ data.remaining + "' data-date='"+ data.date+ "' data-notes='"+ data.notes + "'>تعديل</button></td>"
+                        +
+                        "<td><button class='delete-salary btn btn-danger'  data-id='" + data.id +  "' >حذف</button></td>"
+                        +
+                        "</tr>")
+                }
+                $('#edit-salary-form').trigger("reset");
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
 })

@@ -28,12 +28,7 @@ class ProductsController extends BaseController
         View::share('categories', Category::all());
 
     }
-    public function store_reduce()
-    {
 
-        $stores=Product::where('quantity', '<=', 'reorder_point')->get();
-        return view('patient_dash/history')->with('stores',$stores);
-    }
     /**
      * Store a newly created resource in storage.
      *

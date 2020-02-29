@@ -194,8 +194,12 @@ Route::group([
     Route::get('/selling-products', 'ReportController@selling_products');
     Route::get('/report/filter', 'ReportController@filter')->name('report.filter');
 
-
-
+    // salary
+    Route::resource('salary', 'SalariesController');
+    Route::get('/salary', 'SalariesController@index');
+    Route::post('/salary', 'SalariesController@store');
+    Route::Post('/salary/{id}', 'SalariesController@update');
+    Route::delete('/salary/{id}', 'SalariesController@destroy');
 
     //invoices
 //    Route::resource('/invoices', 'InvoicesController');
