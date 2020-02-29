@@ -142,6 +142,9 @@ Route::group([
     Route::post('/suppliers_debts/types/remove/{supplier}', 'SuppliersController@removeDebt')->name('suppliers_debts.types.remove');
     Route::post('/suppliers/search', 'SuppliersController@search')->name('suppliers.search');
     Route::get('/suppliers/{suppliers}/debts', 'SuppliersController@debts')->name('suppliers.debts');
+    Route::get('/supp-invoices/{id}', 'SuppliersController@supp_invoices');
+    Route::post('/payed/{id}', 'SuppliersController@edit_payed');
+    Route::get('/total-ind', 'SuppliersController@total_ind');
     Route::resource('/suppliers', 'SuppliersController');
 
     Route::get('/debts/types', 'DebtsController@getTypes')->name('debts.types');

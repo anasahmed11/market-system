@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SuppliersInvoice extends Model
 {
+    protected $with=['branch','employer'];
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
@@ -26,6 +27,7 @@ class SuppliersInvoice extends Model
     }
     public function employer()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->with('employer');
     }
+
 }

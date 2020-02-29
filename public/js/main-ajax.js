@@ -96,8 +96,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong ! ',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".hello").html(
@@ -139,8 +139,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong ! ',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".helloo").html(
@@ -184,8 +184,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong ! ',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".stock").html(
@@ -228,8 +228,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong ! ',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".stock").html(
@@ -274,8 +274,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong ! ',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".user").html(
@@ -318,8 +318,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong !',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".shift-table").html(
@@ -383,8 +383,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong !',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".t-shift-table").html(
@@ -447,8 +447,8 @@ $(function(){
                 if((data.errors)){
                     Swal.fire({
                         type: 'error',
-                        title: 'Oops... , try again',
-                        text: 'Something went wrong !',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
                     })
                 }else{
                     $(".t-shift-table").html(
@@ -641,7 +641,7 @@ $(function(){
                     );
                     $('.loan-input').html("السلف"+ '<br>');
 
-                    $(".loan-table").append("<tr class='loan-"+data.id+"'>"+
+                    $(".loan-"+loanid).replaceWith("<tr class='loan-"+data.id+"'>"+
                         "<td>"+data.id+"</td>"+
                         "<td>"+data.user.employer.f_name+" "+data.user.employer.l_name+"</td>"+
                         "<td>"+data.employer.f_name+" "+data.employer.l_name+"</td>"+
@@ -805,7 +805,7 @@ $(function(){
                     );
                     $('.salary-input').html("المرتب"+ '<br>');
 
-                    $(".salary-table").append("<tr class='salary-"+data.id+"'>"+
+                    $(".salary-"+salid).replaceWith("<tr class='salary-"+data.id+"'>"+
                         "<td>"+data.id+"</td>"+
                         "<td>"+data.user.employer.f_name+" "+data.user.employer.l_name+"</td>"+
                         "<td>"+data.employer.f_name+" "+data.employer.l_name+"</td>"+
@@ -820,6 +820,156 @@ $(function(){
                         "</tr>")
                 }
                 $('#edit-salary-form').trigger("reset");
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+    /* ------------- supplier-invoice --------------*/
+    $(document).on('click',".sup-invoice",function(e){
+        var id=$(this).data('id');
+        $.ajax({
+            type: 'GET',
+            url: 'supp-invoices/'+id,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
+                    })
+                }else{
+                    $(".supplier-invoice").html(
+                        "<tr></tr>"
+                    );
+                    Swal.fire(
+                        'سيتم عرض التفاصيل الان',
+                        '',
+                        'success'
+                    )
+                    $.each(data, function(i, item) {
+                        $(".supplier-invoice").append(
+                            "<tr class='supplier-"+item.id+"'>"+
+                            "<td>"+item.slug +"</td>"+
+                            "<td>"+item.employer.employer.f_name+" "+item.employer.employer.l_name+"</td>"+
+                            "<td>"+item.branch.name +"</td>"+
+                            "<td>"+item.date +"</td>"+
+                            "<td>"+item.total +"</td>"+
+                            "<td>"+item.payed +"</td>"+
+                            "<td>"+item.remaining  +"</td>"+
+                            "<td><button class='edit-supp-payed btn btn-success'  data-toggle='modal' data-target='#edit-modal-payed' data-id='"+item.id+"' data-payed='"+item.payed+"' data-remaining='"+item.remaining+"'> تعديل</bbutton></td>"
+                            +"</tr>"
+                        )
+                    });
+                }
+
+            }
+
+        });
+        e.preventDefault();
+
+    });
+    /* edit-supp-payed*/
+    $(document).on('click', '.edit-supp-payed',function(){
+        $("#edit-payed-payed").val($(this).data('payed'));
+        $('.remaining-input').html("المتبقي"+ '<br>'+
+            $(this).data('remaining') );
+        remain=parseFloat($(this).data('remaining'));
+        payedid=$(this).data('id');
+    });
+    $(document).on('keyup', '#edit-payed-payed', function () {
+         val = parseFloat($(this).val());
+         res=remain-val;
+        $('.remaining-input').html("المتبقي"+"<br>"+ res+ ' جنية ');
+    });
+    $(document).on('click',"#payed-edit",function(e){
+        var epayedform=$('#edit-payed-form').serialize();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'payed/'+payedid,
+            data: epayedform,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا حاول مره اخرى',
+                        text: 'حدث خطا ! يجب ان تملا جميع البيانات المطلوبه الموظف والتاريخ و المبلغ ',
+                    })
+                }else{
+                    Swal.fire(
+                        'تمت العمليه بنجاح',
+                        '',
+                        'success'
+                    );
+                    $('.remaining-input').html("المتبقي"+ '<br>');
+
+                        $(".supplier-"+payedid).replaceWith(
+                            "<tr class='supplier-"+data.id+"'>"+
+                            "<td>"+data.slug +"</td>"+
+                            "<td>"+data.employer.employer.f_name+" "+data.employer.employer.l_name+"</td>"+
+                            "<td>"+data.branch.name +"</td>"+
+                            "<td>"+data.date +"</td>"+
+                            "<td>"+data.total +"</td>"+
+                            "<td>"+data.payed +"</td>"+
+                            "<td>"+data.remaining  +"</td>"+
+                            "<td><button class='edit-supp-payed btn btn-success'  data-toggle='modal' data-target='#edit-modal-payed' data-id='"+data.id+"' data-payed='"+data.payed+"' data-remaining='"+data.remaining+"'> تعديل</bbutton></td>"
+                            +"</tr>"
+                        );
+                }
+                $('#edit-payed-form').trigger("reset");
+            },
+            error:function(){
+                Swal.fire({
+                    type: 'error',
+                    title: 'عفوا حاول مره اخرى',
+                    text: 'حدث خطا ! يجب ان تدخل رقم اقل او يساوي المتبقي ',
+                })
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+    $(document).on('click',".total-in",function(e){
+        $.ajax({
+            type: 'GET',
+            url: 'total-ind',
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
+                    })
+                }else{
+
+                    $(".total-ind").html(
+                        "اجمالي المديونات"
+                    );
+                    Swal.fire(
+                        'سيتم عرض التفاصيل الان',
+                        '',
+                        'success'
+                    )
+
+                    $(".total-ind").html(
+                        "اجمالي المديونات"+ '<br>'+
+                        data
+                    );
+
+                }
+
             }
 
         });

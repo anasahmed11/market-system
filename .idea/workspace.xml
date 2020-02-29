@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="ignore workspace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/SuppliersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/SuppliersInvoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/SuppliersInvoice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/main-ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main-ajax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/employees/salary.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/employees/salary.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/employees/loan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/employees/loan.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/suppliers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/suppliers/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/table.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -284,7 +287,7 @@
       <workItem from="1582110288586" duration="93342000" />
       <workItem from="1582544987139" duration="7078000" />
       <workItem from="1582582862517" duration="26138000" />
-      <workItem from="1582661693893" duration="52315000" />
+      <workItem from="1582661693893" duration="72912000" />
     </task>
     <task id="LOCAL-00001" summary="ignore workspace">
       <created>1555050498691</created>
@@ -457,10 +460,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="453" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1582477117172" />
-    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582933693345">
+    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1583015798801">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1582933693345" />
+    <state x="413" y="117" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1583015798801" />
     <state x="463" y="117" key="FileChooserDialogImpl" timestamp="1582849910789">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

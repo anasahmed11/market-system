@@ -8,14 +8,23 @@ use App\Http\Requests\AddDebtSupplier;
 use App\Http\Requests\StoreSupplier;
 use App\Supplier;
 use App\SupplierDebt;
+use App\SuppliersInvoice;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Response;
+use DB;
+use Validator;
 
 class SuppliersController extends BaseController
 {
 
     protected $searchTypes;
-
+    protected $rules =
+        [
+            'payed' => 'required|',
+        ];
     public function __construct()
     {
         $this->searchTypes = [
@@ -161,6 +170,33 @@ class SuppliersController extends BaseController
         }
 
         return response($res);
+    }
+    public function supp_invoices($id){
+        $details=SuppliersInvoice::where('supplier_id', '=',$id )->get();
+        return  response()->json($details);
+    }
+    public function edit_payed(Request $request,$id){
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $details = SuppliersInvoice::find($id);
+            $details->payed = $details->payed + $request->input('payed');
+            $details->remaining=$details->remaining-$request->input('payed');
+            $debt = new SupplierDebt();
+            $debt->debts_types_id = 2;
+            $debt->note = $details->slug;
+            $debt->value = $request->input('payed') * -1;
+            $debt->supplier_id = $details->supplier_id;
+            $debt->date = Carbon::today();
+            $debt->save();
+            $details->save();
+            return response()->json($details);
+        }
+    }
+    public function total_ind(){
+        $total=DB::table('suppliers')->sum('total_indebtedness');
+        return response()->json($total);
     }
 
 

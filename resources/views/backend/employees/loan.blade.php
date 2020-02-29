@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('pageTitle')
-    المرتبات
+    السلف
 @endsection
 @section('content')
     <div class="row text-center">
