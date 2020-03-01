@@ -7,14 +7,26 @@ use App\Debt;
 use App\DebtsType;
 use App\Http\Requests\AddDebtCustomer;
 use App\Http\Requests\StoreCustomer;
-use http\Client\Response;
+use App\SupplierDebt;
+use App\SuppliersInvoice;
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Response;
+use DB;
+use Validator;
 
 
 class CustomersController extends BaseController
 {
 
     protected $searchTypes;
+    protected $rules =
+        [
+            'payed' => 'required|',
+        ];
 
     public function __construct()
     {
@@ -160,5 +172,32 @@ class CustomersController extends BaseController
         }
 
         return response($res);
+    }
+    public function cust_invoices($id){
+        $details=Invoice::where('customer_id', '=',$id )->get();
+        return  response()->json($details);
+    }
+    public function edit_payed(Request $request,$id){
+        $validator = Validator::make(Input::all(), $this->rules);
+        if ($validator->fails()) {
+            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+        } else {
+            $details = Invoice::find($id);
+            $details->payed = $details->payed + $request->input('payed');
+            $details->remaining=$details->remaining-$request->input('payed');
+            $debt = new Debt();
+            $debt->debts_types_id = 2;
+            $debt->note = $details->slug;
+            $debt->value = $request->input('payed') * -1;
+            $debt->customer_id = $details->customer_id;
+            $debt->date = Carbon::today();
+            $debt->save();
+            $details->save();
+            return response()->json($details);
+        }
+    }
+    public function total_ind(){
+        $total=DB::table('customers')->sum('total_indebtedness');
+        return response()->json($total);
     }
 }

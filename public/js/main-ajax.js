@@ -940,6 +940,7 @@ $(function(){
 
 
     });
+    /* كل المديونات*/
     $(document).on('click',".total-in",function(e){
         $.ajax({
             type: 'GET',
@@ -964,6 +965,202 @@ $(function(){
                     )
 
                     $(".total-ind").html(
+                        "اجمالي المديونات"+ '<br>'+
+                        data
+                    );
+
+                }
+
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+/* كل المصاريف*/
+    $(document).on('click',".total-expenses",function(e){
+        $.ajax({
+            type: 'GET',
+            url: 'total-exp',
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
+                    })
+                }else{
+
+                    $(".total-exp").html(
+                        "اجمالي المصروفات المدفوعه"
+                    );
+                    $(".total-exp-re").html(
+                        "اجمالي المصروفات المتبقيه"
+                    );
+                    Swal.fire(
+                        'سيتم عرض التفاصيل الان',
+                        '',
+                        'success'
+                    )
+
+                    $(".total-exp").html(
+                        "اجمالي المصروفات المدفوعه"+ '<br>'+
+                        data.paid
+                    );
+                    $(".total-exp-re").html(
+                        "اجمالي المصروفات المتبقيه"+ '<br>'+
+                        data.received
+                    );
+                }
+
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+
+    /* ------------- customer-invoice --------------*/
+    $(document).on('click',".cust-invoice",function(e){
+        var id=$(this).data('id');
+        $.ajax({
+            type: 'GET',
+            url: 'cust-invoices/'+id,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
+                    })
+                }else{
+                    $(".customer-invoice").html(
+                        "<tr></tr>"
+                    );
+                    Swal.fire(
+                        'سيتم عرض التفاصيل الان',
+                        '',
+                        'success'
+                    )
+                    $.each(data, function(i, item) {
+                        $(".customer-invoice").append(
+                            "<tr class='customer-"+item.id+"'>"+
+                            "<td>"+item.slug +"</td>"+
+                            "<td>"+item.user.employer.f_name+" "+item.user.employer.l_name+"</td>"+
+                            "<td>"+item.branch.name +"</td>"+
+                            "<td>"+item.date +"</td>"+
+                            "<td>"+item.total +"</td>"+
+                            "<td>"+item.payed +"</td>"+
+                            "<td>"+item.remaining  +"</td>"+
+                            "<td><button class='edit-cust-payed btn btn-success'  data-toggle='modal' data-target='#edit-modal-payed' data-id='"+item.id+"' data-payed='"+item.payed+"' data-remaining='"+item.remaining+"'> تعديل</bbutton></td>"
+                            +"</tr>"
+                        )
+                    });
+                }
+
+            }
+
+        });
+        e.preventDefault();
+
+    });
+    /* edit-supp-payed*/
+    $(document).on('click', '.edit-cust-payed',function(){
+        $("#edit-cust-payed-payed").val($(this).data('payed'));
+        $('.cust-remaining-input').html("المتبقي"+ '<br>'+
+            $(this).data('remaining') );
+        custremain=parseFloat($(this).data('remaining'));
+        custpayedid=$(this).data('id');
+    });
+    $(document).on('keyup', '#edit-cust-payed-payed', function () {
+        val = parseFloat($(this).val());
+        res=custremain-val;
+        $('.cust-remaining-input').html("المتبقي"+"<br>"+ res+ ' جنية ');
+    });
+    $(document).on('click',"#cust-payed-edit",function(e){
+        var ecustpayedform=$('#edit-cust-payed-form').serialize();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'cust-payed/'+custpayedid,
+            data: ecustpayedform,
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا حاول مره اخرى',
+                        text: 'حدث خطا ! يجب ان تملا جميع البيانات المطلوبه الموظف والتاريخ و المبلغ ',
+                    })
+                }else{
+                    Swal.fire(
+                        'تمت العمليه بنجاح',
+                        '',
+                        'success'
+                    );
+                    $('.cust-remaining-input').html("المتبقي"+ '<br>');
+
+                    $(".customer-"+custpayedid).replaceWith(
+                        "<tr class='customer-"+data.id+"'>"+
+                        "<td>"+data.slug +"</td>"+
+                        "<td>"+data.user.employer.f_name+" "+data.user.employer.l_name+"</td>"+
+                        "<td>"+data.branch.name +"</td>"+
+                        "<td>"+data.date +"</td>"+
+                        "<td>"+data.total +"</td>"+
+                        "<td>"+data.payed +"</td>"+
+                        "<td>"+data.remaining  +"</td>"+
+                        "<td><button class='edit-supp-payed btn btn-success'  data-toggle='modal' data-target='#edit-modal-payed' data-id='"+data.id+"' data-payed='"+data.payed+"' data-remaining='"+data.remaining+"'> تعديل</bbutton></td>"
+                        +"</tr>"
+                    );
+                }
+                $('#edit-cust-payed-form').trigger("reset");
+            },
+            error:function(){
+                Swal.fire({
+                    type: 'error',
+                    title: 'عفوا حاول مره اخرى',
+                    text: 'حدث خطا ! يجب ان تدخل رقم اقل او يساوي المتبقي ',
+                })
+            }
+
+        });
+        e.preventDefault();
+
+
+    });
+    /* كل المديونات*/
+    $(document).on('click',".total-cust-in",function(e){
+        $.ajax({
+            type: 'GET',
+            url: 'cust-total-ind',
+            processData: false,
+            success: function (data) {
+                if((data.errors)){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'عفوا',
+                        text: 'حدثت مشكله ! ',
+                    })
+                }else{
+
+                    $(".total-cust-ind").html(
+                        "اجمالي المديونات"
+                    );
+                    Swal.fire(
+                        'سيتم عرض التفاصيل الان',
+                        '',
+                        'success'
+                    )
+
+                    $(".total-cust-ind").html(
                         "اجمالي المديونات"+ '<br>'+
                         data
                     );

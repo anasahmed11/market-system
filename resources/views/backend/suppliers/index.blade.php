@@ -21,8 +21,9 @@
         </div>
     </div>
     <br>
-
+    <div id="main-table" class="row">
         {!! $table !!}
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="total" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

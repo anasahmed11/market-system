@@ -131,6 +131,9 @@ Route::group([
     Route::post('/debts/types/remove/{customer}', 'CustomersController@removeDebt')->name('debts.types.remove');
     Route::post('/customers/search', 'CustomersController@search')->name('customers.search');
     Route::get('/customers/{customer}/debts', 'CustomersController@debts')->name('customers.debts');
+    Route::get('/cust-invoices/{id}', 'CustomersController@cust_invoices');
+    Route::post('/cust-payed/{id}', 'CustomersController@edit_payed');
+    Route::get('/cust-total-ind', 'CustomersController@total_ind');
     Route::resource('/customers', 'CustomersController');
 
     //branches
@@ -169,6 +172,7 @@ Route::group([
 
     //expenses
     Route::post('/expenses/search', 'ExpenseController@search')->name('expenses.search');
+    Route::get('/total-exp', 'ExpenseController@total_expenses');
     Route::resource('/expenses', 'ExpenseController');
 
     //shifts

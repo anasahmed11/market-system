@@ -8,6 +8,7 @@ use App\Employee;
 use App\Expense;
 use App\ ExpensesType as ExpensesType;
 use Auth;
+use DB;
 use Illuminate\Support\Facades\View;
 
 class ExpenseController extends BaseController
@@ -108,6 +109,14 @@ class ExpenseController extends BaseController
         }
         //dd($res);
         return response($res);
+    }
+    public function total_expenses(){
+        $total=DB::table('expenses')->sum('paid_amount');
+        $received=DB::table('expenses')->sum('received_amount');
+        return response()->json(array(
+            'paid'=>$total,
+            'received'=>$received
+        ));
     }
 
 

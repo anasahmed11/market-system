@@ -1,4 +1,4 @@
-<div id="main-table" class="row">
+
 <div class="table-responsive">
     <table class="table color-table inverse-table">
         {{ $data->appends(['sort' => 'votes'])->links() }}
@@ -40,24 +40,6 @@
         </tbody>
     </table>
 </div>
-</div>
-<div class="row text-center">
-    <div class="col-md-6 text-right">
-        <button class="t-total btn btn-primary stat4">
-            اجمالي المبلغ المدفوع
-            <br>
-            {{$data->sum('paid_amount')}}
-        </button><br>
-    </div>
-    <div class="col-md-6 text-left">
-        <button class="t-payed btn btn-danger">
-            اجمالي المبلغ المستحق
-            <br>
-            {{$data->sum('received_amount')}}
-        </button><br>
-    </div>
-</div>
-
 <div class="text-center">
     {{ $data->links() }}
 </div>

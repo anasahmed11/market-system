@@ -1,5 +1,5 @@
 
-<div id="main-table" class="row">
+
 <div class="table-responsive">
     <table class="table color-table inverse-table">
     {{ $data->appends(['sort' => 'votes'])->links() }}
@@ -56,7 +56,7 @@
 <div class="text-center">
     {{ $data->links() }}
 </div>
-</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="invoice-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
