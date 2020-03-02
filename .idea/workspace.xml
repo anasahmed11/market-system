@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a2729747-a549-4bac-a455-c819f67c8267" name="Default Changelist" comment="ignore workspace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CustomersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CustomersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/ExpenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/ExpenseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main-ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main-ajax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/customers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/customers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/customers/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/customers/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/expenses/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/expenses/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/expenses/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/expenses/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/suppliers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/suppliers/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/suppliers/table.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +280,7 @@
       <workItem from="1582110288586" duration="93342000" />
       <workItem from="1582544987139" duration="7078000" />
       <workItem from="1582582862517" duration="26138000" />
-      <workItem from="1582661693893" duration="76542000" />
+      <workItem from="1582661693893" duration="77415000" />
     </task>
     <task id="LOCAL-00001" summary="ignore workspace">
       <created>1555050498691</created>
